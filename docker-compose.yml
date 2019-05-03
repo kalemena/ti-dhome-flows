@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+
+  nodered:
+    image: kalemena/node-red:0.20.5
+    restart: always
+    ports:
+     - "2880:1880"
+    volumes:
+     - ./src/node-red:/root/.node-red
+    environment:
+     - FLOWS=tidhome.json
