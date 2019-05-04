@@ -7,6 +7,6 @@ services:
     ports:
      - "2880:1880"
     volumes:
-     - ./src/node-red:/root/.node-red
+     - ./src/node-red/flows:/opt/flows
     environment:
-     - FLOWS=tidhome.json
+     - FLOWS=/opt/flows/tidhome-flows.json
