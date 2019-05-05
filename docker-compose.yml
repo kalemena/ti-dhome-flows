@@ -1,4 +1,5 @@
 version: '3.7'
+
 services:
 
   nodered:
@@ -8,5 +9,7 @@ services:
      - "2880:1880"
     volumes:
      - ./src/node-red/flows:/opt/flows
+     - ./etc/data:/opt/data
+     - ./etc/node-red:/root/.node-red
     environment:
      - FLOWS=/opt/flows/tidhome-flows.json
