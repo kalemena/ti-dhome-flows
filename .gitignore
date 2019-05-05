@@ -1,0 +1,11 @@
+# .gitignore
+node_modules
+*.backup
+
+*~
+/.project
+/data
+trash
+
+# ignore shared volume config (credentials and stuffs)
+/etc
