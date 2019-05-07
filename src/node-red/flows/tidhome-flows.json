@@ -2,12 +2,200 @@
     {
         "id": "8627a08f.2f4c18",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Notifications",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "a3e4f514.bd951",
+        "id": "4fc69d2d.235124",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "Ti-dhome-base",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "3000",
+        "usesocks": false,
+        "sockshost": "",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "verboselogging": true
+    },
+    {
+        "id": "23793ec.9bf0742",
+        "type": "catch",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "x": 340,
+        "y": 40,
+        "wires": [
+            [
+                "1eadd747.8b08a1"
+            ]
+        ]
+    },
+    {
+        "id": "1eadd747.8b08a1",
+        "type": "debug",
+        "z": "8627a08f.2f4c18",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 860,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "2baa67f3.423ab8",
+        "type": "function",
+        "z": "8627a08f.2f4c18",
+        "name": "Send Status Notification",
+        "func": "var contentOK = \"Test\"\n\nmsg.payload = {\n    \"chatId\": msg.telegram-recipients,\n    \"type\": \"message\",\n    \"options\": { \"parse_mode\": \"Markdown\" },\n    \"content\": contentOK + \"\\r\\n\"\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 290,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b2ab7432.6f1628",
+        "type": "telegram command",
+        "z": "8627a08f.2f4c18",
+        "name": "/status",
+        "command": "/status",
+        "bot": "4fc69d2d.235124",
+        "strict": false,
+        "x": 291,
+        "y": 293,
+        "wires": [
+            [
+                "2baa67f3.423ab8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8ada82a3.815fc8",
+        "type": "telegram sender",
+        "z": "8627a08f.2f4c18",
+        "name": "Status",
+        "bot": "4fc69d2d.235124",
+        "x": 740,
+        "y": 180,
+        "wires": [
+            [
+                "bd0c93c7.885df"
+            ]
+        ]
+    },
+    {
+        "id": "bd0c93c7.885df",
+        "type": "debug",
+        "z": "8627a08f.2f4c18",
+        "name": "Status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 870,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "892680b5.f07978",
+        "type": "sunrise",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "lat": "48.45",
+        "lon": "-4.59",
+        "start": "dawn",
+        "end": "sunset",
+        "x": 330,
+        "y": 110,
+        "wires": [
+            [],
+            [
+                "9eeb09d7.5bd908"
+            ]
+        ]
+    },
+    {
+        "id": "fa30df76.e0def",
+        "type": "function",
+        "z": "8627a08f.2f4c18",
+        "name": "Hello Msg",
+        "func": "var content = \"\"\nif(msg.payload === 1) {\n    content = \"Good morning!\"\n} else {\n    content = \"Good night !\"\n}\n\nmsg.payload = {\n    \"chatId\": msg.telegramrecipients,\n    \"type\": \"message\",\n    \"options\": { \"parse_mode\": \"Markdown\" },\n    \"content\": content\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 110,
+        "wires": [
+            [
+                "8ada82a3.815fc8"
+            ]
+        ]
+    },
+    {
+        "id": "2522ad98.d8c2fa",
+        "type": "comment",
+        "z": "8627a08f.2f4c18",
+        "name": "General",
+        "info": "",
+        "x": 100,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "be0ac0f.eb38d4",
+        "type": "comment",
+        "z": "8627a08f.2f4c18",
+        "name": "Daily hello's !",
+        "info": "",
+        "x": 90,
+        "y": 110,
+        "wires": []
+    },
+    {
+        "id": "9eeb09d7.5bd908",
+        "type": "credentials",
+        "z": "8627a08f.2f4c18",
+        "name": "Keys",
+        "props": [
+            {
+                "value": "telegramrecipients",
+                "type": "msg"
+            },
+            {
+                "value": "telegramusers",
+                "type": "msg"
+            }
+        ],
+        "x": 480,
+        "y": 110,
+        "wires": [
+            [
+                "fa30df76.e0def"
+            ]
+        ]
+    },
+    {
+        "id": "f342fc0.8df6e08",
         "type": "inject",
         "z": "8627a08f.2f4c18",
         "name": "",
@@ -18,26 +206,12 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 240,
-        "y": 160,
+        "x": 330,
+        "y": 170,
         "wires": [
             [
-                "322898fe.9ecea8"
+                "9eeb09d7.5bd908"
             ]
         ]
-    },
-    {
-        "id": "322898fe.9ecea8",
-        "type": "debug",
-        "z": "8627a08f.2f4c18",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 550,
-        "y": 160,
-        "wires": []
     }
 ]
