@@ -12,9 +12,20 @@ Then grab the Bot token key, and update the flow with setting your own Telegram 
 
 ### Contacts birthdays
 
-To have birthdays to work:
+To have birthdays to work, there are 2 ways:
+
+1) use your phone
+
 - set birthdays to contacts you want to be notified about Birthdays
 - export contacts as CSV using the very good "123 Contacts Backup and restore"
 - copy the file under ./etc/data/contacts.csv
+
+2) create csv file with the form below (day/month)
+
+```bash
+"displayName","birthday"
+Titi,05/01
+Toto,21/03
+```
 
 ![Contacts Birthdays flows](/docs/flow-contacts.png)

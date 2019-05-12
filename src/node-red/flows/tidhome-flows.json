@@ -63,8 +63,8 @@
         "z": "8627a08f.2f4c18",
         "name": "Status",
         "bot": "4fc69d2d.235124",
-        "x": 970,
-        "y": 180,
+        "x": 1120,
+        "y": 170,
         "wires": [
             [
                 "bd0c93c7.885df"
@@ -82,8 +82,8 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 1120,
-        "y": 180,
+        "x": 1270,
+        "y": 170,
         "wires": []
     },
     {
@@ -160,6 +160,7 @@
         "wires": [
             [
                 "fa30df76.e0def",
+                "bb8a9cc7.370598",
                 "a473a8f3.eebb1"
             ]
         ]
@@ -227,8 +228,8 @@
         "ret": "\\n",
         "temp": "",
         "skip": "0",
-        "x": 550,
-        "y": 290,
+        "x": 670,
+        "y": 300,
         "wires": [
             [
                 "4881ab4d.cbd20c"
@@ -240,13 +241,14 @@
         "type": "function",
         "z": "8627a08f.2f4c18",
         "name": "Check date",
-        "func": "if (msg.payload.birthday !== undefined) {\n    var bparsed = msg.payload.birthday.split(' ');\n    var bdow = bparsed[0]\n    var bmonth = bparsed[1]\n    var bdom = bparsed[2]\n    var byear = bparsed[3]\n    \n    if(bdom == msg.mydom && bmonth == msg.mymonth) {\n        msg.payload = {\n            \"chatId\": msg.telegramrecipients,\n            \"type\": \"message\",\n            \"options\": { \"parse_mode\": \"Markdown\" },\n            \"content\": \"Happy \" + (msg.myyear - byear) + \"th Birthday to \" + msg.payload.displayName + \" (\" + bdow + \" \" + byear + \"-\" + bmonth + \"-\" + bdom + \")\"\n        }\n        return msg;\n    }\n}\nreturn null;",
+        "func": "if (msg.payload.birthday !== undefined) {\n    var message, bdom, bmonth;\n    bparsed = msg.payload.birthday.split(' ');\n    if(bparsed.length > 4) {\n        bparsed = msg.payload.birthday.split(' ');\n        bdow = bparsed[0]\n        bmonth = bparsed[1]\n        bdom = bparsed[2]\n        byear = bparsed[3]\n        message = \"Happy \" + (msg.myyear - byear) + \"th Birthday to \" + msg.payload.displayName + \" (\" + bdow + \" \" + byear + \"-\" + bmonth + \"-\" + bdom + \")\"\n    } else {\n        // basic day of year\n        bparsed = msg.payload.birthday.split('/');\n        bdom = parseInt(bparsed[0])\n        bmonth = parseInt(bparsed[1])\n        message = \"Happy Birthday to \" + msg.payload.displayName + \" (\" + bdom + \"/\" + bmonth + \")\"\n    } \n    \n    if(bdom == msg.mydom && (bmonth == msg.mymonth || bmonth == msg.mymonthn) ) {\n        msg.payload = {\n            \"chatId\": msg.telegramrecipients,\n            \"type\": \"message\",\n            \"options\": { \"parse_mode\": \"Markdown\" },\n            \"content\": message\n        }\n        return msg;\n    }\n}\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 840,
-        "y": 290,
+        "x": 960,
+        "y": 300,
         "wires": [
             [
+                "1eadd747.8b08a1",
                 "8ada82a3.815fc8"
             ]
         ]
@@ -256,8 +258,8 @@
         "type": "simpletime",
         "z": "8627a08f.2f4c18",
         "name": "now",
-        "x": 680,
-        "y": 290,
+        "x": 800,
+        "y": 300,
         "wires": [
             [
                 "1663ada5.b9933a"
@@ -273,5 +275,22 @@
         "x": 80,
         "y": 220,
         "wires": []
+    },
+    {
+        "id": "bb8a9cc7.370598",
+        "type": "file in",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "filename": "/opt/data/contacts-basic.csv",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "x": 590,
+        "y": 180,
+        "wires": [
+            [
+                "f9f7f04d.3b6e58"
+            ]
+        ]
     }
 ]
