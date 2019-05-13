@@ -34,8 +34,8 @@
         "type": "catch",
         "z": "8627a08f.2f4c18",
         "name": "",
-        "x": 280,
-        "y": 40,
+        "x": 580,
+        "y": 50,
         "wires": [
             [
                 "1eadd747.8b08a1"
@@ -53,8 +53,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1110,
-        "y": 40,
+        "x": 890,
+        "y": 50,
         "wires": []
     },
     {
@@ -63,8 +63,8 @@
         "z": "8627a08f.2f4c18",
         "name": "Status",
         "bot": "4fc69d2d.235124",
-        "x": 1120,
-        "y": 170,
+        "x": 1140,
+        "y": 250,
         "wires": [
             [
                 "bd0c93c7.885df"
@@ -82,8 +82,8 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 1270,
-        "y": 170,
+        "x": 1290,
+        "y": 250,
         "wires": []
     },
     {
@@ -95,8 +95,8 @@
         "lon": "-4.59",
         "start": "sunriseEnd",
         "end": "sunsetStart",
-        "x": 270,
-        "y": 110,
+        "x": 100,
+        "y": 50,
         "wires": [
             [],
             [
@@ -112,23 +112,13 @@
         "func": "var content = \"\"\nif(msg.payload === 1) {\n    content = \"Good morning!\"\n} else {\n    content = \"Good night !\"\n}\n\nmsg.payload = {\n    \"chatId\": msg.telegramrecipients,\n    \"type\": \"message\",\n    \"options\": { \"parse_mode\": \"Markdown\" },\n    \"content\": content\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 560,
-        "y": 110,
+        "x": 310,
+        "y": 190,
         "wires": [
             [
                 "8ada82a3.815fc8"
             ]
         ]
-    },
-    {
-        "id": "2522ad98.d8c2fa",
-        "type": "comment",
-        "z": "8627a08f.2f4c18",
-        "name": "General",
-        "info": "",
-        "x": 100,
-        "y": 40,
-        "wires": []
     },
     {
         "id": "be0ac0f.eb38d4",
@@ -137,7 +127,7 @@
         "name": "Daily hello's !",
         "info": "",
         "x": 90,
-        "y": 110,
+        "y": 190,
         "wires": []
     },
     {
@@ -155,13 +145,15 @@
                 "type": "msg"
             }
         ],
-        "x": 420,
-        "y": 110,
+        "x": 260,
+        "y": 50,
         "wires": [
             [
                 "fa30df76.e0def",
                 "bb8a9cc7.370598",
-                "a473a8f3.eebb1"
+                "a473a8f3.eebb1",
+                "4a628474.016e84",
+                "468a476f.26bc3"
             ]
         ]
     },
@@ -176,26 +168,11 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 280,
-        "y": 160,
+        "x": 110,
+        "y": 100,
         "wires": [
             [
                 "9eeb09d7.5bd908"
-            ]
-        ]
-    },
-    {
-        "id": "8efe1ba9.8ccab",
-        "type": "watch",
-        "z": "8627a08f.2f4c18",
-        "name": "contacts.csv",
-        "files": "/opt/data/contacts.csv",
-        "recursive": "",
-        "x": 270,
-        "y": 220,
-        "wires": [
-            [
-                "a473a8f3.eebb1"
             ]
         ]
     },
@@ -208,8 +185,8 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 550,
-        "y": 220,
+        "x": 330,
+        "y": 340,
         "wires": [
             [
                 "f9f7f04d.3b6e58"
@@ -228,8 +205,8 @@
         "ret": "\\n",
         "temp": "",
         "skip": "0",
-        "x": 670,
-        "y": 300,
+        "x": 590,
+        "y": 320,
         "wires": [
             [
                 "4881ab4d.cbd20c"
@@ -244,11 +221,10 @@
         "func": "if (msg.payload.birthday !== undefined) {\n    var message, bdom, bmonth;\n    bparsed = msg.payload.birthday.split(' ');\n    if(bparsed.length > 4) {\n        bparsed = msg.payload.birthday.split(' ');\n        bdow = bparsed[0]\n        bmonth = bparsed[1]\n        bdom = bparsed[2]\n        byear = bparsed[3]\n        message = \"Happy \" + (msg.myyear - byear) + \"th Birthday to \" + msg.payload.displayName + \" (\" + bdow + \" \" + byear + \"-\" + bmonth + \"-\" + bdom + \")\"\n    } else {\n        // basic day of year\n        bparsed = msg.payload.birthday.split('/');\n        bdom = parseInt(bparsed[0])\n        bmonth = parseInt(bparsed[1])\n        message = \"Happy Birthday to \" + msg.payload.displayName + \" (\" + bdom + \"/\" + bmonth + \")\"\n    } \n    \n    if(bdom == msg.mydom && (bmonth == msg.mymonth || bmonth == msg.mymonthn) ) {\n        msg.payload = {\n            \"chatId\": msg.telegramrecipients,\n            \"type\": \"message\",\n            \"options\": { \"parse_mode\": \"Markdown\" },\n            \"content\": message\n        }\n        return msg;\n    }\n}\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 960,
-        "y": 300,
+        "x": 900,
+        "y": 320,
         "wires": [
             [
-                "1eadd747.8b08a1",
                 "8ada82a3.815fc8"
             ]
         ]
@@ -258,8 +234,8 @@
         "type": "simpletime",
         "z": "8627a08f.2f4c18",
         "name": "now",
-        "x": 800,
-        "y": 300,
+        "x": 740,
+        "y": 320,
         "wires": [
             [
                 "1663ada5.b9933a"
@@ -272,8 +248,8 @@
         "z": "8627a08f.2f4c18",
         "name": "Birthdays today?",
         "info": "",
-        "x": 80,
-        "y": 220,
+        "x": 100,
+        "y": 300,
         "wires": []
     },
     {
@@ -285,11 +261,163 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 590,
-        "y": 180,
+        "x": 350,
+        "y": 300,
         "wires": [
             [
                 "f9f7f04d.3b6e58"
+            ]
+        ]
+    },
+    {
+        "id": "59a67b31.f0ecec",
+        "type": "comment",
+        "z": "8627a08f.2f4c18",
+        "name": "Saints today?",
+        "info": "",
+        "x": 90,
+        "y": 450,
+        "wires": []
+    },
+    {
+        "id": "4a628474.016e84",
+        "type": "file in",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "filename": "/opt/data/calendar-saints.csv",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "x": 350,
+        "y": 450,
+        "wires": [
+            [
+                "2513ca6b.11efe6"
+            ]
+        ]
+    },
+    {
+        "id": "2513ca6b.11efe6",
+        "type": "csv",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "sep": ";",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "x": 590,
+        "y": 450,
+        "wires": [
+            [
+                "c629f17b.ba7a6"
+            ]
+        ]
+    },
+    {
+        "id": "c629f17b.ba7a6",
+        "type": "simpletime",
+        "z": "8627a08f.2f4c18",
+        "name": "now",
+        "x": 740,
+        "y": 450,
+        "wires": [
+            [
+                "a23580f8.0c33f8"
+            ]
+        ]
+    },
+    {
+        "id": "a23580f8.0c33f8",
+        "type": "function",
+        "z": "8627a08f.2f4c18",
+        "name": "Check date",
+        "func": "var message, bdom, bmonth;\nbparsed = msg.payload.date.split('/');\nif(bparsed.length > 0) {\n    bmonth = bparsed[0]\n    bdom = bparsed[1]\n    message = \"Happy day to \" + msg.payload.names\n    \n    if(bdom == msg.mydom && (bmonth == msg.mymonth || bmonth == msg.mymonthn) ) {\n        msg.payload = {\n            \"chatId\": msg.telegramrecipients,\n            \"type\": \"message\",\n            \"options\": { \"parse_mode\": \"Markdown\" },\n            \"content\": message\n        }\n        return msg;\n    }\n} \nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 900,
+        "y": 450,
+        "wires": [
+            [
+                "8ada82a3.815fc8"
+            ]
+        ]
+    },
+    {
+        "id": "b90c4a5d.407e28",
+        "type": "comment",
+        "z": "8627a08f.2f4c18",
+        "name": "World day today?",
+        "info": "",
+        "x": 110,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "468a476f.26bc3",
+        "type": "file in",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "filename": "/opt/data/calendar-world-days.csv",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "x": 370,
+        "y": 520,
+        "wires": [
+            [
+                "cf609b3b.1774e"
+            ]
+        ]
+    },
+    {
+        "id": "cf609b3b.1774e",
+        "type": "csv",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "x": 590,
+        "y": 520,
+        "wires": [
+            [
+                "3152a9b6.167896"
+            ]
+        ]
+    },
+    {
+        "id": "3152a9b6.167896",
+        "type": "simpletime",
+        "z": "8627a08f.2f4c18",
+        "name": "now",
+        "x": 740,
+        "y": 520,
+        "wires": [
+            [
+                "60379aec.53683c"
+            ]
+        ]
+    },
+    {
+        "id": "60379aec.53683c",
+        "type": "function",
+        "z": "8627a08f.2f4c18",
+        "name": "Check date",
+        "func": "var message, bdom, bmonth;\nbparsed = msg.payload.date.split('/');\nif(bparsed.length > 0) {\n    bmonth = bparsed[1]\n    bdom = bparsed[0]\n    message = \"Today is the \" + msg.payload.description\n    \n    if(bdom == msg.mydom && (bmonth == msg.mymonth || bmonth == msg.mymonthn) ) {\n        msg.payload = {\n            \"chatId\": msg.telegramrecipients,\n            \"type\": \"message\",\n            \"options\": { \"parse_mode\": \"Markdown\" },\n            \"content\": message\n        }\n        return msg;\n    }\n} \nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 900,
+        "y": 520,
+        "wires": [
+            [
+                "8ada82a3.815fc8"
             ]
         ]
     }
