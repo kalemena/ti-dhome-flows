@@ -7,5 +7,8 @@ node_modules
 /data
 trash
 
-# ignore shared volume config (credentials and stuffs)
-/etc
+contacts*
+.config.json
+package.json
+settings.js
+*_cred.json

@@ -3,7 +3,8 @@ version: '3.7'
 services:
 
   nodered:
-    image: kalemena/node-red:0.20.5
+    #image: kalemena/node-red:latest
+    build: src/node-red
     restart: always
     ports:
      - "2880:1880"
