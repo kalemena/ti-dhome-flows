@@ -19,5 +19,8 @@ services:
      - ./src/node-red/flows:/opt/flows
      - ./etc/data:/opt/data
      - ./etc/node-red:/root/.node-red
+    devices:
+     - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
+     - "/dev/ttyJeeLink:/dev/ttyJeeLink"
     environment:
      - FLOWS=/opt/flows/tidhome-flows.json

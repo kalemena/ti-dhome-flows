@@ -7,6 +7,20 @@
         "info": ""
     },
     {
+        "id": "d06e385b.de11c8",
+        "type": "tab",
+        "label": "Sensors",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "112e9cf8.590b23",
+        "type": "tab",
+        "label": "MessageQueue",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "4fc69d2d.235124",
         "type": "telegram bot",
         "z": "",
@@ -28,6 +42,55 @@
         "certificate": "",
         "useselfsignedcertificate": false,
         "verboselogging": true
+    },
+    {
+        "id": "4c23cd92.778204",
+        "type": "serial-port",
+        "z": 0,
+        "serialport": "/dev/ttyJeeLink",
+        "serialbaud": "57600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": false
+    },
+    {
+        "id": "36396f66.41717",
+        "type": "serial-port",
+        "z": 0,
+        "serialport": "/dev/ttyCurrenCost",
+        "serialbaud": "57600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": false
+    },
+    {
+        "id": "c38452a5.4f84e8",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "mqtt",
+        "broker": "mqtt",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "15",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
     },
     {
         "id": "23793ec.9bf0742",
@@ -127,13 +190,13 @@
         "z": "8627a08f.2f4c18",
         "name": "",
         "topic": "",
-        "payload": "1",
-        "payloadType": "num",
+        "payload": "",
+        "payloadType": "date",
         "repeat": "",
         "crontab": "",
         "once": true,
         "onceDelay": "1",
-        "x": 105,
+        "x": 125,
         "y": 100,
         "wires": [
             [
@@ -464,5 +527,247 @@
                 "a68c9fbf.b8cd9"
             ]
         ]
+    },
+    {
+        "id": "e9d7a1fd.be1e5",
+        "type": "catch",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "x": 140,
+        "y": 70,
+        "wires": [
+            [
+                "b4de4531.e18c6"
+            ]
+        ]
+    },
+    {
+        "id": "b4de4531.e18c6",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 650,
+        "y": 70,
+        "wires": []
+    },
+    {
+        "id": "c95e00f9.370ef",
+        "type": "inject",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "4f426855.e9451"
+            ]
+        ]
+    },
+    {
+        "id": "6702fe6d.7775d8",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 650,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "84f43015.9d08c",
+        "type": "yaml",
+        "z": "d06e385b.de11c8",
+        "property": "payload",
+        "name": "",
+        "x": 500,
+        "y": 120,
+        "wires": [
+            [
+                "6702fe6d.7775d8"
+            ]
+        ]
+    },
+    {
+        "id": "4f426855.e9451",
+        "type": "file in",
+        "z": "d06e385b.de11c8",
+        "name": "ti-dhome.yaml",
+        "filename": "/opt/data/ti-dhome.yaml",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "84f43015.9d08c"
+            ]
+        ]
+    },
+    {
+        "id": "91974a7f.e2fe4",
+        "type": "mqtt in",
+        "z": "112e9cf8.590b23",
+        "name": "docker sensors/+/+/+/+/+",
+        "topic": "sensors/+/+/+/+/+",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c38452a5.4f84e8",
+        "x": 330,
+        "y": 80,
+        "wires": [
+            [
+                "c451b641.f25a18"
+            ]
+        ]
+    },
+    {
+        "id": "c451b641.f25a18",
+        "type": "debug",
+        "z": "112e9cf8.590b23",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 750,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "72bb0768.1bdbd8",
+        "type": "comment",
+        "z": "112e9cf8.590b23",
+        "name": "Tests",
+        "info": "",
+        "x": 110,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "613655ae.7a0704",
+        "type": "serial in",
+        "z": "d06e385b.de11c8",
+        "name": "Jeelink",
+        "serial": "4c23cd92.778204",
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "922e5b14.64ef1"
+            ]
+        ]
+    },
+    {
+        "id": "922e5b14.64ef1",
+        "type": "function",
+        "z": "d06e385b.de11c8",
+        "name": "Parse JeeLink",
+        "func": "var s = msg.payload.split(' ')\nif(s[0] === 'ROOM') {\n    var type = ''\n    var nodeid = (\"00000\" + s[1]).slice (-5)\n    var entry = s[2]\n    var value = s[4].replace(/(\\r\\n|\\n|\\r)/gm,\"\");\n    if(s[3] == 0) {\n      type = 'temperature';\n      value = value / 10;\n    } else if(s[3] == 1) {\n      type = 'humidity';\n      value = value / 10;\n    } else if(s[3] == 2) {\n      type = 'pressure';\n      value = value / 10;\n    } else if(s[3] == 3) {\n      type = 'light';\n    } else if(s[3] == 4 && value !== 0) {\n      type = 'battery';\n      value = value / 100;\n    } else if(s[3] == 5) {\n      type = 'soil';\n    } else if(s[3] == 6) {\n      type = 'toggle';\n      value = parseInt(value);\n    }\n    \n    if(type !== '') {\n        msg.topic = 'sensors/' + nodeid + '/entries/' + entry + '/events/' + type;\n        msg.payload = value;\n        return msg;\n    }\n    \n    //setTimeout(function() { this.status({}); }, 500);\n    //this.status({fill:\"green\",shape:\"dot\",text:\"processed\"});\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 300,
+        "wires": [
+            [
+                "6cfa6f02.ce921"
+            ]
+        ]
+    },
+    {
+        "id": "5840b9d9.43453",
+        "type": "comment",
+        "z": "d06e385b.de11c8",
+        "name": "Sensors - MQTT push",
+        "info": "",
+        "x": 140,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "4eb57f6e.51aa18",
+        "type": "serial in",
+        "z": "d06e385b.de11c8",
+        "name": "CurrentCost",
+        "serial": "36396f66.41717",
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "3121b59f.5acfaa"
+            ]
+        ]
+    },
+    {
+        "id": "3121b59f.5acfaa",
+        "type": "xml",
+        "z": "d06e385b.de11c8",
+        "name": "xml2json",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 360,
+        "y": 240,
+        "wires": [
+            [
+                "2cb00072.df01f"
+            ]
+        ]
+    },
+    {
+        "id": "2cb00072.df01f",
+        "type": "function",
+        "z": "d06e385b.de11c8",
+        "name": "Parse CurrentCost",
+        "func": "var outputMsgs = [];\n\nif(msg.payload.msg.tmpr) {\n    // Live power\n    if(msg.payload.msg.id == '03967') {\n        // sensors/03967/entries/0/events/temperature\n        var topic = 'sensors/' + msg.payload.msg.id[0] + '/entries/' + msg.payload.msg.sensor[0] + '/events/temperature';\n        outputMsgs.push( { topic:topic, payload: msg.payload.msg.tmpr[0]});\n    }\n    var topic = 'sensors/' + msg.payload.msg.id[0] + '/entries/' + msg.payload.msg.sensor[0] + '/events/power';\n    outputMsgs.push( { topic:topic, payload: msg.payload.msg.ch1[0].watts[0]});\n} else {\n    // History power\n    for (var i in msg.payload.msg.hist[0].data) {\n        var chunk = msg.payload.msg.hist[0].data[i];\n        var chunkClean = {};\n        for (var j in chunk) {\n            chunkClean[j] = chunk[j][0];\n        }\n        var topic = 'sensors/03967/entries/' + chunk.sensor[0] + '/history/power';\n        outputMsgs.push( { topic:topic, payload: chunkClean });\n    }\n}\n\nreturn [ outputMsgs ];",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 240,
+        "wires": [
+            [
+                "6cfa6f02.ce921"
+            ]
+        ]
+    },
+    {
+        "id": "6cfa6f02.ce921",
+        "type": "mqtt out",
+        "z": "d06e385b.de11c8",
+        "name": "mqtt",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 850,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a80e2fc5.a2c7b",
+        "type": "comment",
+        "z": "d06e385b.de11c8",
+        "name": "Sensors - Configuration",
+        "info": "",
+        "x": 140,
+        "y": 20,
+        "wires": []
     }
 ]

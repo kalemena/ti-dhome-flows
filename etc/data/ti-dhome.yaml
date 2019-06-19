@@ -1,0 +1,31 @@
+sensors:
+  - id: 10
+    location: Garage
+  - id: 9
+    location: "Ch.Bas"
+  - id: 108
+    location: "SdB.Bas"
+  - id: 50
+    location: "Aquarium"
+  - id: 33
+    location: "Hall"
+  - id: 6
+    location: "Salon"
+  - id: 51
+    location: "Ext-Potager"
+  - id: 49920
+    location: "Ext-Terrasse"
+  - id: 53
+    location: "Bureau"
+  - id: 8
+    location: "Ch.Damien"
+  - id: 5
+    location: "Ch.Jeux"
+  - id: 7
+    location: "Mezanine"
+  - id: 4
+    location: "Ch.Léna"
+  - id: 12
+    location: "SdB.Haut"
+  - id: 3967
+    location: "Bureau"
