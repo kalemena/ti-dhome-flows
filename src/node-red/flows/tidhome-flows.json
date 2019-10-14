@@ -382,7 +382,7 @@
         "type": "function",
         "z": "8627a08f.2f4c18",
         "name": "Meteo",
-        "func": "var message = msg.payload.detail + '\\n' + \n    \"temp=\" + msg.data.currently.temperature + \" (\" + msg.payload.mintemp + \" to \" + msg.payload.maxtemp + \") \\n\" +\n    \"humidity=\" + msg.payload.humidity + \"\\n\" +\n    \"pressure=\" + msg.data.currently.pressure + \"\\n\" +\n    \"windspeed=\" + msg.payload.windspeed + \"\\n\" +\n    \"winddirection=\" + msg.payload.winddirection + \"\\n\" + \n    \"clouds=\" + msg.payload.clouds;\n    \nmsg.payload = {\n    \"chatId\": context.global.telegramrecipients,\n    \"type\": \"message\",\n    \"options\": { \"parse_mode\": \"Markdown\" },\n    \"content\": message \n}\nreturn msg;",
+        "func": "var message = msg.payload.detail + '\\n' + \n    \"temp=\" + msg.data.currently.temperature + \"°C (\" + msg.payload.mintemp + \"°C to \" + msg.payload.maxtemp + \"°C) \\n\" +\n    \"humidity=\" + (msg.payload.humidity * 100) + \"%\\n\" +\n    \"pressure=\" + msg.data.currently.pressure + \"hPa\\n\" +\n    \"windspeed=\" + msg.payload.windspeed + \"km/h\\n\" +\n    \"winddirection=\" + msg.payload.winddirection + \"\\n\" + \n    \"clouds=\" + (msg.payload.clouds * 100) + \"%\";\n    \nmsg.payload = {\n    \"chatId\": context.global.telegramrecipients,\n    \"type\": \"message\",\n    \"options\": { \"parse_mode\": \"Markdown\" },\n    \"content\": message \n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 984,
@@ -771,6 +771,26 @@
         "wires": [
             [
                 "8b517c2b.d93ed8"
+            ]
+        ]
+    },
+    {
+        "id": "9b4ceb45.43c628",
+        "type": "inject",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 390,
+        "wires": [
+            [
+                "45d9a893.f40ca8"
             ]
         ]
     }
