@@ -96,7 +96,7 @@
         "id": "56c5e5e6.d3610c",
         "type": "darksky-credentials",
         "z": "",
-        "key_identifier": "clem"
+        "key_identifier": "kalemena"
     },
     {
         "id": "23793ec.9bf0742",
@@ -132,8 +132,8 @@
         "z": "8627a08f.2f4c18",
         "name": "Status",
         "bot": "4fc69d2d.235124",
-        "x": 1185,
-        "y": 170,
+        "x": 1180,
+        "y": 190,
         "wires": [
             [
                 "bd0c93c7.885df"
@@ -151,8 +151,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1315,
-        "y": 170,
+        "x": 1310,
+        "y": 190,
         "wires": []
     },
     {
@@ -164,8 +164,8 @@
         "lon": "-4.59",
         "start": "sunriseEnd",
         "end": "sunsetStart",
-        "x": 125,
-        "y": 170,
+        "x": 120,
+        "y": 200,
         "wires": [
             [],
             [
@@ -183,8 +183,8 @@
         "func": "var content = \"\"\nif(msg.payload === 1) {\n    content = \"Good morning!\"\n} else {\n    content = \"Good night !\"\n}\n\nmsg.payload = {\n    \"chatId\": context.global.telegramrecipients,\n    \"type\": \"message\",\n    \"options\": { \"parse_mode\": \"Markdown\" },\n    \"content\": content\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 986,
-        "y": 170,
+        "x": 910,
+        "y": 210,
         "wires": [
             [
                 "8ada82a3.815fc8"
@@ -202,7 +202,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "1",
+        "onceDelay": "5",
         "x": 125,
         "y": 100,
         "wires": [
@@ -220,60 +220,11 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 335,
-        "y": 250,
+        "x": 330,
+        "y": 270,
         "wires": [
             [
                 "f9f7f04d.3b6e58"
-            ]
-        ]
-    },
-    {
-        "id": "f9f7f04d.3b6e58",
-        "type": "csv",
-        "z": "8627a08f.2f4c18",
-        "name": "",
-        "sep": ",",
-        "hdrin": true,
-        "hdrout": "",
-        "multi": "one",
-        "ret": "\\n",
-        "temp": "",
-        "skip": "0",
-        "x": 724,
-        "y": 230,
-        "wires": [
-            [
-                "4881ab4d.cbd20c"
-            ]
-        ]
-    },
-    {
-        "id": "1663ada5.b9933a",
-        "type": "function",
-        "z": "8627a08f.2f4c18",
-        "name": "Birthdays",
-        "func": "if (msg.payload.date !== undefined) {\n    var message, bdom, bmonth;\n    bparsed = msg.payload.date.split('/');\n    if(bparsed.length == 3) {\n        bdom = parseInt(bparsed[2])\n        bmonth = parseInt(bparsed[1])\n        byear = parseInt(bparsed[0])\n        message = \"Happy \" + (msg.myyear - byear) + \"th Birthday to \" + msg.payload.value + \" (\" + bdom + \"/\" + bmonth + \")\"\n    } else {\n        bdom = parseInt(bparsed[1])\n        bmonth = parseInt(bparsed[0])\n        message = \"Happy Birthday to \" + msg.payload.value + \" (\" + bdom + \"/\" + bmonth + \")\"\n    }\n    if(bdom == msg.mydom && (bmonth == msg.mymonth || bmonth == msg.mymonthn) ) {\n        msg.payload = {\n            \"chatId\": context.global.telegramrecipients,\n            \"type\": \"message\",\n            \"options\": { \"parse_mode\": \"Markdown\" },\n            \"content\": message\n        }\n        return msg;\n    }\n}\nreturn null;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 994,
-        "y": 230,
-        "wires": [
-            [
-                "8ada82a3.815fc8"
-            ]
-        ]
-    },
-    {
-        "id": "4881ab4d.cbd20c",
-        "type": "simpletime",
-        "z": "8627a08f.2f4c18",
-        "name": "now",
-        "x": 854,
-        "y": 230,
-        "wires": [
-            [
-                "1663ada5.b9933a"
             ]
         ]
     },
@@ -286,8 +237,8 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 355,
-        "y": 210,
+        "x": 350,
+        "y": 230,
         "wires": [
             [
                 "f9f7f04d.3b6e58"
@@ -303,60 +254,11 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 355,
-        "y": 290,
+        "x": 350,
+        "y": 310,
         "wires": [
             [
-                "4d9d5437.7d61bc"
-            ]
-        ]
-    },
-    {
-        "id": "2513ca6b.11efe6",
-        "type": "csv",
-        "z": "8627a08f.2f4c18",
-        "name": "",
-        "sep": ",",
-        "hdrin": true,
-        "hdrout": "",
-        "multi": "one",
-        "ret": "\\n",
-        "temp": "",
-        "skip": "0",
-        "x": 724,
-        "y": 290,
-        "wires": [
-            [
-                "c629f17b.ba7a6"
-            ]
-        ]
-    },
-    {
-        "id": "c629f17b.ba7a6",
-        "type": "simpletime",
-        "z": "8627a08f.2f4c18",
-        "name": "now",
-        "x": 854,
-        "y": 290,
-        "wires": [
-            [
-                "a23580f8.0c33f8"
-            ]
-        ]
-    },
-    {
-        "id": "a23580f8.0c33f8",
-        "type": "function",
-        "z": "8627a08f.2f4c18",
-        "name": "Saints",
-        "func": "var message, bdom, bmonth;\nbparsed = msg.payload.date.split('/');\nif(bparsed.length > 0) {\n    bmonth = bparsed[0]\n    bdom = bparsed[1]\n    message = msg.topic + msg.payload.value\n    \n    if(bdom == msg.mydom && (bmonth == msg.mymonth || bmonth == msg.mymonthn) ) {\n        msg.payload = {\n            \"chatId\": context.global.telegramrecipients,\n            \"type\": \"message\",\n            \"options\": { \"parse_mode\": \"Markdown\" },\n            \"content\": message\n        }\n        return msg;\n    }\n} \nreturn null;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 984,
-        "y": 290,
-        "wires": [
-            [
-                "8ada82a3.815fc8"
+                "f9f7f04d.3b6e58"
             ]
         ]
     },
@@ -369,11 +271,11 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 375,
-        "y": 330,
+        "x": 370,
+        "y": 350,
         "wires": [
             [
-                "46e20461.c93c84"
+                "f9f7f04d.3b6e58"
             ]
         ]
     },
@@ -385,7 +287,7 @@
         "func": "var message = msg.payload.detail + '\\n' + \n    \"temp=\" + msg.data.currently.temperature + \"°C (\" + msg.payload.mintemp + \"°C to \" + msg.payload.maxtemp + \"°C) \\n\" +\n    \"humidity=\" + (msg.payload.humidity * 100) + \"%\\n\" +\n    \"pressure=\" + msg.data.currently.pressure + \"hPa\\n\" +\n    \"windspeed=\" + msg.payload.windspeed + \"km/h\\n\" +\n    \"winddirection=\" + msg.payload.winddirection + \"\\n\" + \n    \"clouds=\" + (msg.payload.clouds * 100) + \"%\";\n    \nmsg.payload = {\n    \"chatId\": context.global.telegramrecipients,\n    \"type\": \"message\",\n    \"options\": { \"parse_mode\": \"Markdown\" },\n    \"content\": message \n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 984,
+        "x": 910,
         "y": 390,
         "wires": [
             [
@@ -448,38 +350,6 @@
         ]
     },
     {
-        "id": "4d9d5437.7d61bc",
-        "type": "function",
-        "z": "8627a08f.2f4c18",
-        "name": "Context",
-        "func": "msg.topic = \"Saints: \"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 564,
-        "y": 290,
-        "wires": [
-            [
-                "2513ca6b.11efe6"
-            ]
-        ]
-    },
-    {
-        "id": "46e20461.c93c84",
-        "type": "function",
-        "z": "8627a08f.2f4c18",
-        "name": "Context",
-        "func": "msg.topic = \"\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 564,
-        "y": 330,
-        "wires": [
-            [
-                "2513ca6b.11efe6"
-            ]
-        ]
-    },
-    {
         "id": "3fa73a2d.e8f246",
         "type": "switch",
         "z": "8627a08f.2f4c18",
@@ -501,8 +371,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 125,
-        "y": 270,
+        "x": 120,
+        "y": 290,
         "wires": [
             [
                 "bb8a9cc7.370598",
@@ -766,7 +636,7 @@
         "mode": "node",
         "lang": "fr",
         "units": "si",
-        "x": 360,
+        "x": 350,
         "y": 390,
         "wires": [
             [
@@ -786,11 +656,87 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 120,
-        "y": 390,
+        "x": 100,
+        "y": 370,
         "wires": [
             [
-                "45d9a893.f40ca8"
+                "468a476f.26bc3"
+            ]
+        ]
+    },
+    {
+        "id": "83721280.40b3e8",
+        "type": "comment",
+        "z": "8627a08f.2f4c18",
+        "name": "Daily news:",
+        "info": "",
+        "x": 80,
+        "y": 150,
+        "wires": []
+    },
+    {
+        "id": "436b2017.90da28",
+        "type": "function",
+        "z": "8627a08f.2f4c18",
+        "name": "Fresh deploy",
+        "func": "var content = \"Fresh (re-)deploy !\"\n\nmsg.payload = {\n    \"chatId\": context.global.telegramrecipients,\n    \"type\": \"message\",\n    \"options\": { \"parse_mode\": \"Markdown\" },\n    \"content\": content\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 890,
+        "y": 170,
+        "wires": [
+            [
+                "8ada82a3.815fc8"
+            ]
+        ]
+    },
+    {
+        "id": "4881ab4d.cbd20c",
+        "type": "simpletime",
+        "z": "8627a08f.2f4c18",
+        "name": "now",
+        "x": 680,
+        "y": 320,
+        "wires": [
+            [
+                "57125e6f.c04dd"
+            ]
+        ]
+    },
+    {
+        "id": "f9f7f04d.3b6e58",
+        "type": "csv",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "x": 590,
+        "y": 270,
+        "wires": [
+            [
+                "4881ab4d.cbd20c"
+            ]
+        ]
+    },
+    {
+        "id": "57125e6f.c04dd",
+        "type": "function",
+        "z": "8627a08f.2f4c18",
+        "name": "Render day events",
+        "func": "if (msg.payload.date !== undefined) {\n    \n    var message, bdom, bmonth, byear;\n    bparsed = msg.payload.date.split('/');\n    \n    if(bparsed.length == 3) {\n        // year/month/day\n        bdom = parseInt(bparsed[2])\n        bmonth = parseInt(bparsed[1])\n        byear = parseInt(bparsed[0])\n        \n    } else {\n        // month/day\n        bdom = parseInt(bparsed[1])\n        bmonth = parseInt(bparsed[0])\n        \n    }\n    \n    if((bdom == msg.mydom) && (bmonth == msg.mymonthn)) {\n        // date matches today\n        \n        if(msg.filename.indexOf('saints') !== -1) {\n            message = \"Saints \" + msg.topic + msg.payload.value\n            \n        } else if(msg.filename.indexOf('contacts') !== -1) { \n            if(byear !== undefined) {\n                message = \"Happy \" + (msg.myyear - byear) + \"th Birthday to \" + msg.payload.value + \" (\" + bdom + \"/\" + bmonth + \")\"\n            } else {\n                message = \"Happy Birthday to \" + msg.payload.value + \" (\" + bdom + \"/\" + bmonth + \")\"\n            }\n            \n        } else {\n            message = msg.topic + msg.payload.value\n        }\n        \n        msg.payload = {\n            \"chatId\": context.global.telegramrecipients,\n            \"type\": \"message\",\n            \"options\": { \"parse_mode\": \"Markdown\" },\n            \"content\": message\n        }\n        \n        return msg;\n    }\n}\n\n// Default nothing\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 870,
+        "y": 320,
+        "wires": [
+            [
+                "8ada82a3.815fc8"
             ]
         ]
     }
