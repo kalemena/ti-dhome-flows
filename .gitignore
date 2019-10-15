@@ -7,7 +7,7 @@ node_modules
 /data
 trash
 
-contacts*
+birthdays*
 .config.json
 package.json
 settings.js

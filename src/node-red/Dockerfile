@@ -4,4 +4,5 @@ RUN npm i \
     node-red-contrib-telegrambot \
     node-red-node-darksky \
     node-red-contrib-fs \
+    node-red-contrib-readdir \
     node-red-contrib-simple-weekly-scheduler;
