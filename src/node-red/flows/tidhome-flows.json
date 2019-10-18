@@ -1,22 +1,22 @@
 [
     {
-        "id": "8627a08f.2f4c18",
-        "type": "tab",
-        "label": "Notifications",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "d06e385b.de11c8",
         "type": "tab",
-        "label": "Sensors",
+        "label": "Sensors/Actors",
         "disabled": false,
         "info": ""
     },
     {
         "id": "112e9cf8.590b23",
         "type": "tab",
-        "label": "MessageQueue",
+        "label": "Configuration",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8627a08f.2f4c18",
+        "type": "tab",
+        "label": "Notifications",
         "disabled": false,
         "info": ""
     },
@@ -106,7 +106,7 @@
         "scope": null,
         "uncaught": false,
         "x": 120,
-        "y": 60,
+        "y": 30,
         "wires": [
             [
                 "1eadd747.8b08a1"
@@ -125,7 +125,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 660,
-        "y": 60,
+        "y": 30,
         "wires": []
     },
     {
@@ -135,7 +135,7 @@
         "name": "Status",
         "bot": "4fc69d2d.235124",
         "x": 710,
-        "y": 430,
+        "y": 460,
         "wires": [
             [
                 "bd0c93c7.885df"
@@ -154,7 +154,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 840,
-        "y": 430,
+        "y": 460,
         "wires": []
     },
     {
@@ -170,7 +170,7 @@
         "once": true,
         "onceDelay": "5",
         "x": 120,
-        "y": 100,
+        "y": 130,
         "wires": [
             [
                 "436b2017.90da28"
@@ -185,8 +185,8 @@
         "func": "var message = msg.payload.detail + '\\n' + \n    \"temp=\" + msg.data.currently.temperature + \"°C (\" + msg.payload.mintemp + \"°C to \" + msg.payload.maxtemp + \"°C) \\n\" +\n    \"humidity=\" + (msg.payload.humidity * 100) + \"%\\n\" +\n    \"pressure=\" + msg.data.currently.pressure + \"hPa\\n\" +\n    \"windspeed=\" + msg.payload.windspeed + \"km/h\\n\" +\n    \"winddirection=\" + msg.payload.winddirection + \"\\n\" + \n    \"clouds=\" + (msg.payload.clouds * 100) + \"%\";\n    \nmsg.payload = message\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 950,
-        "y": 330,
+        "x": 730,
+        "y": 340,
         "wires": [
             [
                 "57bdbb93.d54314"
@@ -200,8 +200,8 @@
         "name": "",
         "scope": null,
         "uncaught": false,
-        "x": 140,
-        "y": 70,
+        "x": 100,
+        "y": 30,
         "wires": [
             [
                 "b4de4531.e18c6"
@@ -219,8 +219,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 650,
-        "y": 70,
+        "x": 610,
+        "y": 30,
         "wires": []
     },
     {
@@ -235,8 +235,8 @@
         "crontab": "",
         "once": true,
         "onceDelay": "1",
-        "x": 140,
-        "y": 120,
+        "x": 100,
+        "y": 130,
         "wires": [
             [
                 "4f426855.e9451"
@@ -254,8 +254,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 650,
-        "y": 120,
+        "x": 610,
+        "y": 130,
         "wires": []
     },
     {
@@ -264,8 +264,8 @@
         "z": "d06e385b.de11c8",
         "property": "payload",
         "name": "",
-        "x": 500,
-        "y": 120,
+        "x": 460,
+        "y": 130,
         "wires": [
             [
                 "6702fe6d.7775d8"
@@ -281,8 +281,8 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 330,
-        "y": 120,
+        "x": 290,
+        "y": 130,
         "wires": [
             [
                 "84f43015.9d08c"
@@ -296,13 +296,13 @@
         "name": "sensors/+/+/+/+/+",
         "topic": "sensors/+/+/+/+/+",
         "qos": "2",
-        "datatype": "auto",
+        "datatype": "json",
         "broker": "c38452a5.4f84e8",
-        "x": 310,
-        "y": 80,
+        "x": 140,
+        "y": 120,
         "wires": [
             [
-                "c451b641.f25a18"
+                "dbbdea79.1ee17"
             ]
         ]
     },
@@ -310,19 +310,22 @@
         "id": "c451b641.f25a18",
         "type": "debug",
         "z": "112e9cf8.590b23",
-        "name": "",
+        "name": "53-Bureau",
         "active": false,
-        "console": "false",
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
         "complete": "true",
-        "x": 750,
-        "y": 80,
+        "targetType": "full",
+        "x": 580,
+        "y": 320,
         "wires": []
     },
     {
         "id": "72bb0768.1bdbd8",
         "type": "comment",
         "z": "112e9cf8.590b23",
-        "name": "Tests",
+        "name": "Sensors",
         "info": "",
         "x": 110,
         "y": 80,
@@ -334,8 +337,8 @@
         "z": "d06e385b.de11c8",
         "name": "Jeelink",
         "serial": "4c23cd92.778204",
-        "x": 130,
-        "y": 300,
+        "x": 90,
+        "y": 290,
         "wires": [
             [
                 "922e5b14.64ef1"
@@ -347,11 +350,11 @@
         "type": "function",
         "z": "d06e385b.de11c8",
         "name": "Parse JeeLink",
-        "func": "var s = msg.payload.split(' ')\nif(s[0] === 'ROOM') {\n    var type = ''\n    var nodeid = (\"00000\" + s[1]).slice (-5)\n    var entry = s[2]\n    var value = s[4].replace(/(\\r\\n|\\n|\\r)/gm,\"\");\n    if(s[3] == 0) {\n      type = 'temperature';\n      value = value / 10;\n    } else if(s[3] == 1) {\n      type = 'humidity';\n      value = value / 10;\n    } else if(s[3] == 2) {\n      type = 'pressure';\n      value = value / 10;\n    } else if(s[3] == 3) {\n      type = 'light';\n    } else if(s[3] == 4 && value !== 0) {\n      type = 'battery';\n      value = value / 100;\n    } else if(s[3] == 5) {\n      type = 'soil';\n    } else if(s[3] == 6) {\n      type = 'toggle';\n      value = parseInt(value);\n    }\n    \n    if(type !== '') {\n        msg.topic = 'sensors/' + nodeid + '/entries/' + entry + '/events/' + type;\n        msg.payload = value;\n        return msg;\n    }\n    \n    //setTimeout(function() { this.status({}); }, 500);\n    //this.status({fill:\"green\",shape:\"dot\",text:\"processed\"});\n}\nreturn null;",
+        "func": "var s = msg.payload.split(' ')\nif(s[0] === 'ROOM') {\n    var type = ''\n    var nodeid = s[1]\n    var nodeid5 = (\"00000\" + nodeid).slice (-5)\n    var entry = s[2]\n    var value = s[4].replace(/(\\r\\n|\\n|\\r)/gm,\"\");\n    if(s[3] == 0) {\n      type = 'temperature';\n      value = value / 10;\n    } else if(s[3] == 1) {\n      type = 'humidity';\n      value = value / 10;\n    } else if(s[3] == 2) {\n      type = 'pressure';\n      value = value / 10;\n    } else if(s[3] == 3) {\n      type = 'light';\n    } else if(s[3] == 4 && value !== 0) {\n      type = 'battery';\n      value = value / 100;\n    } else if(s[3] == 5) {\n      type = 'soil';\n    } else if(s[3] == 6) {\n      type = 'toggle';\n      value = parseInt(value);\n    }\n    \n    if(type !== '') {\n        msg.topic = 'sensors/' + nodeid5 + '/entries/' + entry + '/events/' + type;\n        msg.payload = { \n            \"nodeid\": nodeid,\n            \"entry\": entry,\n            \"type\": type,\n            \"value\": value\n        }\n        return msg;\n    }\n    \n    //setTimeout(function() { this.status({}); }, 500);\n    //this.status({fill:\"green\",shape:\"dot\",text:\"processed\"});\n}\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 580,
-        "y": 300,
+        "x": 540,
+        "y": 290,
         "wires": [
             [
                 "6cfa6f02.ce921"
@@ -365,7 +368,7 @@
         "name": "Sensors - MQTT push",
         "info": "",
         "x": 140,
-        "y": 180,
+        "y": 190,
         "wires": []
     },
     {
@@ -374,8 +377,8 @@
         "z": "d06e385b.de11c8",
         "name": "CurrentCost",
         "serial": "36396f66.41717",
-        "x": 150,
-        "y": 240,
+        "x": 110,
+        "y": 230,
         "wires": [
             [
                 "3121b59f.5acfaa"
@@ -390,8 +393,8 @@
         "property": "payload",
         "attr": "",
         "chr": "",
-        "x": 360,
-        "y": 240,
+        "x": 320,
+        "y": 230,
         "wires": [
             [
                 "2cb00072.df01f"
@@ -406,8 +409,8 @@
         "func": "var outputMsgs = [];\n\nif(msg.payload.msg.tmpr) {\n    // Live power\n    if(msg.payload.msg.id == '03967') {\n        // sensors/03967/entries/0/events/temperature\n        var topic = 'sensors/' + msg.payload.msg.id[0] + '/entries/' + msg.payload.msg.sensor[0] + '/events/temperature';\n        outputMsgs.push( { topic:topic, payload: msg.payload.msg.tmpr[0]});\n    }\n    var topic = 'sensors/' + msg.payload.msg.id[0] + '/entries/' + msg.payload.msg.sensor[0] + '/events/power';\n    outputMsgs.push( { topic:topic, payload: msg.payload.msg.ch1[0].watts[0]});\n} else {\n    // History power\n    for (var i in msg.payload.msg.hist[0].data) {\n        var chunk = msg.payload.msg.hist[0].data[i];\n        var chunkClean = {};\n        for (var j in chunk) {\n            chunkClean[j] = chunk[j][0];\n        }\n        var topic = 'sensors/03967/entries/' + chunk.sensor[0] + '/history/power';\n        outputMsgs.push( { topic:topic, payload: chunkClean });\n    }\n}\n\nreturn [ outputMsgs ];",
         "outputs": 1,
         "noerr": 0,
-        "x": 590,
-        "y": 240,
+        "x": 550,
+        "y": 230,
         "wires": [
             []
         ]
@@ -416,13 +419,13 @@
         "id": "6cfa6f02.ce921",
         "type": "mqtt out",
         "z": "d06e385b.de11c8",
-        "name": "mqtt",
+        "name": "sensors/+/+/+/+/+",
         "topic": "",
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 840,
-        "y": 270,
+        "x": 810,
+        "y": 290,
         "wires": []
     },
     {
@@ -432,7 +435,7 @@
         "name": "Sensors - Configuration",
         "info": "",
         "x": 140,
-        "y": 20,
+        "y": 90,
         "wires": []
     },
     {
@@ -448,8 +451,8 @@
         "mode": "node",
         "lang": "fr",
         "units": "si",
-        "x": 360,
-        "y": 330,
+        "x": 330,
+        "y": 340,
         "wires": [
             [
                 "8b517c2b.d93ed8"
@@ -468,23 +471,13 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 110,
-        "y": 310,
+        "x": 130,
+        "y": 250,
         "wires": [
             [
                 "f6373746.83f598"
             ]
         ]
-    },
-    {
-        "id": "83721280.40b3e8",
-        "type": "comment",
-        "z": "8627a08f.2f4c18",
-        "name": "Daily News",
-        "info": "",
-        "x": 120,
-        "y": 190,
-        "wires": []
     },
     {
         "id": "436b2017.90da28",
@@ -495,7 +488,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 670,
-        "y": 100,
+        "y": 130,
         "wires": [
             [
                 "57bdbb93.d54314"
@@ -507,8 +500,8 @@
         "type": "simpletime",
         "z": "8627a08f.2f4c18",
         "name": "now",
-        "x": 740,
-        "y": 290,
+        "x": 530,
+        "y": 300,
         "wires": [
             [
                 "57125e6f.c04dd"
@@ -528,8 +521,8 @@
         "temp": "",
         "skip": "0",
         "strings": true,
-        "x": 620,
-        "y": 290,
+        "x": 480,
+        "y": 260,
         "wires": [
             [
                 "4881ab4d.cbd20c"
@@ -544,8 +537,8 @@
         "func": "if (msg.payload.date !== undefined) {\n    \n    var message, bdom, bmonth, byear;\n    bparsed = msg.payload.date.split('/');\n    \n    if(bparsed.length == 3) {\n        // year/month/day\n        bdom = parseInt(bparsed[2])\n        bmonth = parseInt(bparsed[1])\n        byear = parseInt(bparsed[0])\n        \n    } else {\n        // month/day\n        bdom = parseInt(bparsed[1])\n        bmonth = parseInt(bparsed[0])\n        \n    }\n    \n    if((bdom == msg.mydom) && (bmonth == msg.mymonthn)) {\n        // date matches today\n        \n        if(msg.filename.indexOf('saints') !== -1) {\n            message = \"Saints \" + msg.payload.value\n            \n        } else if(msg.filename.indexOf('birthday') !== -1) { \n            if(byear !== undefined) {\n                message = \"Happy \" + (msg.myyear - byear) + \"th Birthday to \" + msg.payload.value + \" (\" + bdom + \"/\" + bmonth + \")\"\n            } else {\n                message = \"Happy Birthday to \" + msg.payload.value + \" (\" + bdom + \"/\" + bmonth + \")\"\n            }\n            \n        } else {\n            message = msg.payload.value\n        }\n        \n        msg.payload = message\n        return msg;\n    }\n}\n\n// Default nothing\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 910,
-        "y": 290,
+        "x": 690,
+        "y": 300,
         "wires": [
             [
                 "57bdbb93.d54314"
@@ -561,8 +554,8 @@
         "as": "multi",
         "recursive": false,
         "outproperty": "filename",
-        "x": 340,
-        "y": 290,
+        "x": 310,
+        "y": 240,
         "wires": [
             [
                 "8e4b9462.126df"
@@ -578,8 +571,8 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 490,
-        "y": 290,
+        "x": 350,
+        "y": 280,
         "wires": [
             [
                 "f9f7f04d.3b6e58"
@@ -595,11 +588,11 @@
         "payload": "Good morning!",
         "payloadType": "str",
         "repeat": "",
-        "crontab": "00 09 * * *",
+        "crontab": "30 08 * * *",
         "once": false,
         "onceDelay": "5",
         "x": 120,
-        "y": 230,
+        "y": 210,
         "wires": [
             [
                 "45d9a893.f40ca8",
@@ -620,8 +613,8 @@
         "crontab": "00 22 * * *",
         "once": false,
         "onceDelay": "5",
-        "x": 110,
-        "y": 270,
+        "x": 130,
+        "y": 170,
         "wires": [
             [
                 "57bdbb93.d54314"
@@ -638,7 +631,7 @@
         "datatype": "auto",
         "broker": "c38452a5.4f84e8",
         "x": 150,
-        "y": 430,
+        "y": 460,
         "wires": [
             [
                 "5646d1f7.0ae1d8"
@@ -654,7 +647,7 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 1130,
+        "x": 940,
         "y": 200,
         "wires": []
     },
@@ -667,7 +660,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 520,
-        "y": 430,
+        "y": 460,
         "wires": [
             [
                 "8ada82a3.815fc8"
@@ -678,10 +671,10 @@
         "id": "63c9e566.dc8624",
         "type": "comment",
         "z": "8627a08f.2f4c18",
-        "name": "Publish event",
+        "name": "Publish Telegram event",
         "info": "",
-        "x": 130,
-        "y": 390,
+        "x": 160,
+        "y": 420,
         "wires": []
     },
     {
@@ -691,7 +684,7 @@
         "name": "Daily News",
         "info": "",
         "x": 120,
-        "y": 20,
+        "y": 90,
         "wires": []
     },
     {
@@ -710,11 +703,530 @@
             }
         ],
         "x": 330,
-        "y": 430,
+        "y": 460,
         "wires": [
             [
                 "a1e5ec43.17a97"
             ]
         ]
+    },
+    {
+        "id": "dbbdea79.1ee17",
+        "type": "switch",
+        "z": "112e9cf8.590b23",
+        "name": "",
+        "property": "payload.nodeid",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "7",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "8",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "12",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "53",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "20d61b84.1b6924"
+            ],
+            [
+                "6d2e18c5.5c942"
+            ],
+            [
+                "b32abd94.544218"
+            ],
+            [
+                "1b1528bb.4369cf"
+            ],
+            [
+                "85400e87.07af7"
+            ],
+            [
+                "c451b641.f25a18"
+            ],
+            [
+                "66980d71.86001c"
+            ]
+        ],
+        "inputLabels": [
+            "sensors"
+        ],
+        "outputLabels": [
+            "4-Ch.Léna",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "info": "## fgdfgd"
+    },
+    {
+        "id": "85400e87.07af7",
+        "type": "debug",
+        "z": "112e9cf8.590b23",
+        "name": "12-SdB.Haut",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 580,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "1b1528bb.4369cf",
+        "type": "debug",
+        "z": "112e9cf8.590b23",
+        "name": "8-Ch.Damien",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 580,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "20d61b84.1b6924",
+        "type": "debug",
+        "z": "112e9cf8.590b23",
+        "name": "4-Ch.Léna",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 580,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "66980d71.86001c",
+        "type": "debug",
+        "z": "112e9cf8.590b23",
+        "name": "?",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 560,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6d2e18c5.5c942",
+        "type": "debug",
+        "z": "112e9cf8.590b23",
+        "name": "5-Ch.Jeux",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 570,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "63fb326d.8d4e04",
+        "type": "http request",
+        "z": "d06e385b.de11c8",
+        "name": "Web Relays",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "http://192.168.1.56/gpios/status",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 340,
+        "y": 350,
+        "wires": [
+            [
+                "7e941c59.6340fc"
+            ]
+        ]
+    },
+    {
+        "id": "ad519cb2.e58da",
+        "type": "inject",
+        "z": "d06e385b.de11c8",
+        "name": "Scheduler (30s)",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "30",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 130,
+        "y": 350,
+        "wires": [
+            [
+                "63fb326d.8d4e04"
+            ]
+        ]
+    },
+    {
+        "id": "7e941c59.6340fc",
+        "type": "function",
+        "z": "d06e385b.de11c8",
+        "name": "Parse web relays",
+        "func": "var outputMsgs = [];\nfor (var i in msg.payload) {\n  var topic = 'actors/iotheaters/relays/' + msg.payload[i].switch + '/state';\n  outputMsgs.push( \n      { \n          topic:topic, \n          payload: { \n            \"actorid\": \"iotheaters\",\n            \"relayid\": msg.payload[i].switch,\n            \"value\": msg.payload[i].value\n          }\n      }\n    );\n}\nreturn [ outputMsgs ];",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 350,
+        "wires": [
+            [
+                "62c3ccac.f19bd4"
+            ]
+        ]
+    },
+    {
+        "id": "b32abd94.544218",
+        "type": "debug",
+        "z": "112e9cf8.590b23",
+        "name": "7-Mezanine",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 580,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "62c3ccac.f19bd4",
+        "type": "mqtt out",
+        "z": "d06e385b.de11c8",
+        "name": "actors/iotheaters/relays/+/state",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 850,
+        "y": 350,
+        "wires": []
+    },
+    {
+        "id": "39ae1a17.7f3306",
+        "type": "comment",
+        "z": "112e9cf8.590b23",
+        "name": "Actors",
+        "info": "",
+        "x": 110,
+        "y": 550,
+        "wires": []
+    },
+    {
+        "id": "c243b327.34b1e",
+        "type": "mqtt in",
+        "z": "112e9cf8.590b23",
+        "name": "actors/iotheaters/relays/+/state",
+        "topic": "actors/iotheaters/relays/+/state",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "c38452a5.4f84e8",
+        "x": 180,
+        "y": 630,
+        "wires": [
+            [
+                "9de49f76.c04b"
+            ]
+        ]
+    },
+    {
+        "id": "46f4eabb.fb1554",
+        "type": "debug",
+        "z": "112e9cf8.590b23",
+        "name": "Other relays",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 770,
+        "y": 1090,
+        "wires": []
+    },
+    {
+        "id": "9de49f76.c04b",
+        "type": "switch",
+        "z": "112e9cf8.590b23",
+        "name": "Relays Mapping",
+        "property": "payload.relayid",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "6",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "7",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "14",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "15",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 11,
+        "x": 450,
+        "y": 630,
+        "wires": [
+            [
+                "8cc04f9c.03afd8"
+            ],
+            [
+                "502f5598.261254"
+            ],
+            [
+                "96c754f8.a6f498"
+            ],
+            [
+                "5f20f1d2.b087b"
+            ],
+            [
+                "67a6f151.dd3388"
+            ],
+            [
+                "dca91ef0.19f8b8"
+            ],
+            [
+                "9f35c2ee.fc7348"
+            ],
+            [
+                "4d72849c.9d0a14"
+            ],
+            [
+                "8c06cc3.7f97fb"
+            ],
+            [
+                "8ae386fa.38ded8"
+            ],
+            [
+                "46f4eabb.fb1554"
+            ]
+        ]
+    },
+    {
+        "id": "8cc04f9c.03afd8",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "0-Ch.Jeux",
+        "topic": "actors/iotheaters/relays/cjeux/state",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 760,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "502f5598.261254",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "1-Bureau",
+        "topic": "actors/iotheaters/relays/cbureau/state",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 760,
+        "y": 590,
+        "wires": []
+    },
+    {
+        "id": "96c754f8.a6f498",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "2-Ch.Léna",
+        "topic": "actors/iotheaters/relays/clena/state",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 770,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "5f20f1d2.b087b",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "3-Ch.Damien",
+        "topic": "actors/iotheaters/relays/cdamien/state",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 770,
+        "y": 690,
+        "wires": []
+    },
+    {
+        "id": "67a6f151.dd3388",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "4-SdB.Haut",
+        "topic": "actors/iotheaters/relays/sdbh/state",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 770,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "dca91ef0.19f8b8",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "5-Mezzanine",
+        "topic": "actors/iotheaters/relays/mezzanine/state",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 770,
+        "y": 790,
+        "wires": []
+    },
+    {
+        "id": "9f35c2ee.fc7348",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "6-Ch.Parents",
+        "topic": "actors/iotheaters/relays/cparents/state",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 770,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "4d72849c.9d0a14",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "7-SdB.Bas",
+        "topic": "actors/iotheaters/relays/sdbb/state",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 770,
+        "y": 890,
+        "wires": []
+    },
+    {
+        "id": "8ae386fa.38ded8",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "15-Hall",
+        "topic": "actors/iotheaters/relays/hall/state",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 760,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "8c06cc3.7f97fb",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "14-Salon",
+        "topic": "actors/iotheaters/relays/salon/state",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 760,
+        "y": 970,
+        "wires": []
     }
 ]
