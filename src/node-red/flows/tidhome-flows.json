@@ -2,7 +2,14 @@
     {
         "id": "d06e385b.de11c8",
         "type": "tab",
-        "label": "Sensors/Actors",
+        "label": "Sensors",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a6ca2108.abdcc8",
+        "type": "tab",
+        "label": "Actors",
         "disabled": false,
         "info": ""
     },
@@ -224,72 +231,6 @@
         "wires": []
     },
     {
-        "id": "c95e00f9.370ef",
-        "type": "inject",
-        "z": "d06e385b.de11c8",
-        "name": "Initialize",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "x": 100,
-        "y": 130,
-        "wires": [
-            [
-                "4f426855.e9451"
-            ]
-        ]
-    },
-    {
-        "id": "6702fe6d.7775d8",
-        "type": "debug",
-        "z": "d06e385b.de11c8",
-        "name": "Debug",
-        "active": true,
-        "tosidebar": true,
-        "console": true,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 610,
-        "y": 130,
-        "wires": []
-    },
-    {
-        "id": "84f43015.9d08c",
-        "type": "yaml",
-        "z": "d06e385b.de11c8",
-        "property": "payload",
-        "name": "",
-        "x": 460,
-        "y": 130,
-        "wires": [
-            [
-                "6702fe6d.7775d8"
-            ]
-        ]
-    },
-    {
-        "id": "4f426855.e9451",
-        "type": "file in",
-        "z": "d06e385b.de11c8",
-        "name": "ti-dhome.yaml",
-        "filename": "/opt/data/ti-dhome.yaml",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "x": 290,
-        "y": 130,
-        "wires": [
-            [
-                "84f43015.9d08c"
-            ]
-        ]
-    },
-    {
         "id": "91974a7f.e2fe4",
         "type": "mqtt in",
         "z": "112e9cf8.590b23",
@@ -298,8 +239,8 @@
         "qos": "2",
         "datatype": "json",
         "broker": "c38452a5.4f84e8",
-        "x": 140,
-        "y": 120,
+        "x": 120,
+        "y": 400,
         "wires": [
             [
                 "dbbdea79.1ee17"
@@ -317,8 +258,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 580,
-        "y": 320,
+        "x": 560,
+        "y": 600,
         "wires": []
     },
     {
@@ -327,8 +268,8 @@
         "z": "112e9cf8.590b23",
         "name": "Sensors",
         "info": "",
-        "x": 110,
-        "y": 80,
+        "x": 90,
+        "y": 360,
         "wires": []
     },
     {
@@ -338,7 +279,7 @@
         "name": "Jeelink",
         "serial": "4c23cd92.778204",
         "x": 90,
-        "y": 290,
+        "y": 220,
         "wires": [
             [
                 "922e5b14.64ef1"
@@ -354,7 +295,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 540,
-        "y": 290,
+        "y": 220,
         "wires": [
             [
                 "6cfa6f02.ce921"
@@ -368,7 +309,7 @@
         "name": "Sensors - MQTT push",
         "info": "",
         "x": 140,
-        "y": 190,
+        "y": 120,
         "wires": []
     },
     {
@@ -378,7 +319,7 @@
         "name": "CurrentCost",
         "serial": "36396f66.41717",
         "x": 110,
-        "y": 230,
+        "y": 160,
         "wires": [
             [
                 "3121b59f.5acfaa"
@@ -394,7 +335,7 @@
         "attr": "",
         "chr": "",
         "x": 320,
-        "y": 230,
+        "y": 160,
         "wires": [
             [
                 "2cb00072.df01f"
@@ -410,7 +351,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 550,
-        "y": 230,
+        "y": 160,
         "wires": [
             []
         ]
@@ -425,17 +366,7 @@
         "retain": "",
         "broker": "c38452a5.4f84e8",
         "x": 810,
-        "y": 290,
-        "wires": []
-    },
-    {
-        "id": "a80e2fc5.a2c7b",
-        "type": "comment",
-        "z": "d06e385b.de11c8",
-        "name": "Sensors - Configuration",
-        "info": "",
-        "x": 140,
-        "y": 90,
+        "y": 220,
         "wires": []
     },
     {
@@ -755,8 +686,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 7,
-        "x": 370,
-        "y": 160,
+        "x": 350,
+        "y": 440,
         "wires": [
             [
                 "20d61b84.1b6924"
@@ -805,8 +736,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 580,
-        "y": 280,
+        "x": 560,
+        "y": 560,
         "wires": []
     },
     {
@@ -820,8 +751,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 580,
-        "y": 240,
+        "x": 560,
+        "y": 520,
         "wires": []
     },
     {
@@ -835,8 +766,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 580,
-        "y": 120,
+        "x": 560,
+        "y": 400,
         "wires": []
     },
     {
@@ -850,8 +781,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 560,
-        "y": 360,
+        "x": 540,
+        "y": 640,
         "wires": []
     },
     {
@@ -865,8 +796,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 570,
-        "y": 160,
+        "x": 550,
+        "y": 440,
         "wires": []
     },
     {
@@ -879,11 +810,11 @@
         "paytoqs": false,
         "url": "http://192.168.1.56/gpios/status",
         "tls": "",
-        "persist": false,
+        "persist": true,
         "proxy": "",
         "authType": "",
-        "x": 340,
-        "y": 350,
+        "x": 360,
+        "y": 280,
         "wires": [
             [
                 "7e941c59.6340fc"
@@ -894,7 +825,7 @@
         "id": "ad519cb2.e58da",
         "type": "inject",
         "z": "d06e385b.de11c8",
-        "name": "Scheduler (30s)",
+        "name": "Poll Web Relays (30s)",
         "topic": "",
         "payload": "",
         "payloadType": "str",
@@ -902,8 +833,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": "",
-        "x": 130,
-        "y": 350,
+        "x": 150,
+        "y": 280,
         "wires": [
             [
                 "63fb326d.8d4e04"
@@ -919,7 +850,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 550,
-        "y": 350,
+        "y": 280,
         "wires": [
             [
                 "62c3ccac.f19bd4"
@@ -937,8 +868,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 580,
-        "y": 200,
+        "x": 560,
+        "y": 480,
         "wires": []
     },
     {
@@ -951,7 +882,7 @@
         "retain": "",
         "broker": "c38452a5.4f84e8",
         "x": 850,
-        "y": 350,
+        "y": 280,
         "wires": []
     },
     {
@@ -960,8 +891,8 @@
         "z": "112e9cf8.590b23",
         "name": "Actors",
         "info": "",
-        "x": 110,
-        "y": 550,
+        "x": 90,
+        "y": 690,
         "wires": []
     },
     {
@@ -973,8 +904,8 @@
         "qos": "2",
         "datatype": "json",
         "broker": "c38452a5.4f84e8",
-        "x": 180,
-        "y": 630,
+        "x": 160,
+        "y": 770,
         "wires": [
             [
                 "9de49f76.c04b"
@@ -992,8 +923,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 770,
-        "y": 1090,
+        "x": 750,
+        "y": 1230,
         "wires": []
     },
     {
@@ -1061,8 +992,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 11,
-        "x": 450,
-        "y": 630,
+        "x": 430,
+        "y": 770,
         "wires": [
             [
                 "8cc04f9c.03afd8"
@@ -1108,8 +1039,8 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 760,
-        "y": 540,
+        "x": 740,
+        "y": 680,
         "wires": []
     },
     {
@@ -1121,8 +1052,8 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 760,
-        "y": 590,
+        "x": 740,
+        "y": 730,
         "wires": []
     },
     {
@@ -1134,8 +1065,8 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 770,
-        "y": 640,
+        "x": 750,
+        "y": 780,
         "wires": []
     },
     {
@@ -1147,8 +1078,8 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 770,
-        "y": 690,
+        "x": 750,
+        "y": 830,
         "wires": []
     },
     {
@@ -1160,8 +1091,8 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 770,
-        "y": 740,
+        "x": 750,
+        "y": 880,
         "wires": []
     },
     {
@@ -1173,8 +1104,8 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 770,
-        "y": 790,
+        "x": 750,
+        "y": 930,
         "wires": []
     },
     {
@@ -1186,8 +1117,8 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 770,
-        "y": 840,
+        "x": 750,
+        "y": 980,
         "wires": []
     },
     {
@@ -1199,8 +1130,8 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 770,
-        "y": 890,
+        "x": 750,
+        "y": 1030,
         "wires": []
     },
     {
@@ -1212,8 +1143,8 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 760,
-        "y": 1020,
+        "x": 740,
+        "y": 1160,
         "wires": []
     },
     {
@@ -1225,8 +1156,541 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 760,
-        "y": 970,
+        "x": 740,
+        "y": 1110,
         "wires": []
+    },
+    {
+        "id": "8befeef.c99cc1",
+        "type": "comment",
+        "z": "a6ca2108.abdcc8",
+        "name": "Actors - MQTT push",
+        "info": "",
+        "x": 130,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "9ee431c1.7d7f9",
+        "type": "mqtt in",
+        "z": "a6ca2108.abdcc8",
+        "name": "actors/iotheaters/relays/+/switch",
+        "topic": "actors/iotheaters/relays/+/switch",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "c38452a5.4f84e8",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "645e6e71.1855e8"
+            ]
+        ]
+    },
+    {
+        "id": "645e6e71.1855e8",
+        "type": "http request",
+        "z": "a6ca2108.abdcc8",
+        "name": "Switch Web Relays",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://192.168.1.56/gpios/switch?id={{{payload}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 460,
+        "y": 160,
+        "wires": [
+            [
+                "a6119d4e.020e28"
+            ]
+        ]
+    },
+    {
+        "id": "a6119d4e.020e28",
+        "type": "debug",
+        "z": "a6ca2108.abdcc8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 640,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a7880a9.06ed278",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "01 - Bureau",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 330,
+        "wires": [
+            [
+                "bf8ede0a.82467"
+            ]
+        ]
+    },
+    {
+        "id": "b1dbdfae.39a7b",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "00 - Salle de Jeux",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 120,
+        "y": 290,
+        "wires": [
+            [
+                "bf8ede0a.82467"
+            ]
+        ]
+    },
+    {
+        "id": "53262eed.f7e5e",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "02 - Chambre Léna",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 130,
+        "y": 370,
+        "wires": [
+            [
+                "bf8ede0a.82467"
+            ]
+        ]
+    },
+    {
+        "id": "8976bd76.5edb88",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "03 - Chambre Damien",
+        "topic": "",
+        "payload": "3",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 410,
+        "wires": [
+            [
+                "bf8ede0a.82467"
+            ]
+        ]
+    },
+    {
+        "id": "adf2bccd.e3ed5",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "04 - Salle de Bain - Haut",
+        "topic": "",
+        "payload": "4",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 450,
+        "wires": [
+            [
+                "bf8ede0a.82467"
+            ]
+        ]
+    },
+    {
+        "id": "e622a046.d513",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "05 - Mezanine",
+        "topic": "",
+        "payload": "5",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 490,
+        "wires": [
+            [
+                "bf8ede0a.82467"
+            ]
+        ]
+    },
+    {
+        "id": "9eb9836d.f905d8",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "06 - Chambre Papa/Maman",
+        "topic": "",
+        "payload": "6",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 150,
+        "y": 530,
+        "wires": [
+            [
+                "bf8ede0a.82467"
+            ]
+        ]
+    },
+    {
+        "id": "d32525df.94aaa",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "07 - Salle de Bain - Bas",
+        "topic": "",
+        "payload": "7",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 570,
+        "wires": [
+            [
+                "bf8ede0a.82467"
+            ]
+        ]
+    },
+    {
+        "id": "68332464.3f29b4",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "14 - Salon",
+        "topic": "",
+        "payload": "14",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 100,
+        "y": 610,
+        "wires": [
+            [
+                "bf8ede0a.82467"
+            ]
+        ]
+    },
+    {
+        "id": "78234f2b.1a52d8",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "15 - Hall",
+        "topic": "",
+        "payload": "15",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 100,
+        "y": 650,
+        "wires": [
+            [
+                "bf8ede0a.82467"
+            ]
+        ]
+    },
+    {
+        "id": "bf8ede0a.82467",
+        "type": "mqtt out",
+        "z": "a6ca2108.abdcc8",
+        "name": "actors/iotheaters/relays/+/switch",
+        "topic": "actors/iotheaters/relays/{{{payload}}}/switch",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 590,
+        "y": 490,
+        "wires": []
+    },
+    {
+        "id": "d285c515.7b709",
+        "type": "catch",
+        "z": "a6ca2108.abdcc8",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 100,
+        "y": 30,
+        "wires": [
+            [
+                "a6f2a3e0.0d0fe"
+            ]
+        ]
+    },
+    {
+        "id": "a6f2a3e0.0d0fe",
+        "type": "debug",
+        "z": "a6ca2108.abdcc8",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 650,
+        "y": 30,
+        "wires": []
+    },
+    {
+        "id": "3099cf40.d425b",
+        "type": "comment",
+        "z": "a6ca2108.abdcc8",
+        "name": "Actors - Test",
+        "info": "",
+        "x": 110,
+        "y": 250,
+        "wires": []
+    },
+    {
+        "id": "f26be183.4f807",
+        "type": "inject",
+        "z": "112e9cf8.590b23",
+        "name": "Initialize",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "x": 100,
+        "y": 160,
+        "wires": [
+            [
+                "94e381cf.c2bab"
+            ]
+        ]
+    },
+    {
+        "id": "af26e828.9b92",
+        "type": "debug",
+        "z": "112e9cf8.590b23",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 870,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "77ded097.d4bc6",
+        "type": "yaml",
+        "z": "112e9cf8.590b23",
+        "property": "payload",
+        "name": "",
+        "x": 460,
+        "y": 160,
+        "wires": [
+            [
+                "87655eff.6eacc"
+            ]
+        ]
+    },
+    {
+        "id": "94e381cf.c2bab",
+        "type": "file in",
+        "z": "112e9cf8.590b23",
+        "name": "ti-dhome.yaml",
+        "filename": "/opt/data/ti-dhome.yaml",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "x": 290,
+        "y": 160,
+        "wires": [
+            [
+                "77ded097.d4bc6"
+            ]
+        ]
+    },
+    {
+        "id": "ea98f666.7ddaa",
+        "type": "comment",
+        "z": "112e9cf8.590b23",
+        "name": "Sensors - Configuration",
+        "info": "",
+        "x": 140,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d4efc750.434898",
+        "type": "catch",
+        "z": "112e9cf8.590b23",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 100,
+        "y": 30,
+        "wires": [
+            [
+                "9c4b0bd9.75b93"
+            ]
+        ]
+    },
+    {
+        "id": "9c4b0bd9.75b93",
+        "type": "debug",
+        "z": "112e9cf8.590b23",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 610,
+        "y": 30,
+        "wires": []
+    },
+    {
+        "id": "3abe79d3.4f1a2e",
+        "type": "comment",
+        "z": "d06e385b.de11c8",
+        "name": "Sensors - store in context",
+        "info": "",
+        "x": 150,
+        "y": 350,
+        "wires": []
+    },
+    {
+        "id": "c4d91ffd.2c1b",
+        "type": "mqtt in",
+        "z": "d06e385b.de11c8",
+        "name": "sensors/+/+/+/+/+",
+        "topic": "sensors/+/+/+/+/+",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "c38452a5.4f84e8",
+        "x": 120,
+        "y": 390,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7bc740ea.52bc2",
+        "type": "change",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 390,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87655eff.6eacc",
+        "type": "change",
+        "z": "112e9cf8.590b23",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "tidhome",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 160,
+        "wires": [
+            [
+                "af26e828.9b92"
+            ]
+        ]
+    },
+    {
+        "id": "335e289.f392e58",
+        "type": "inject",
+        "z": "112e9cf8.590b23",
+        "name": "Initialize",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "1",
+        "x": 90,
+        "y": 220,
+        "wires": [
+            [
+                "d18b1e8a.48615"
+            ]
+        ]
+    },
+    {
+        "id": "d18b1e8a.48615",
+        "type": "change",
+        "z": "112e9cf8.590b23",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "tidhome",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 220,
+        "wires": [
+            [
+                "af26e828.9b92"
+            ]
+        ]
     }
 ]
