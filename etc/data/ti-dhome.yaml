@@ -1,31 +1,78 @@
 sensors:
-  - id: 10
-    location: Garage
-  - id: 9
-    location: "Ch.Bas"
-  - id: 108
-    location: "SdB.Bas"
-  - id: 50
-    location: "Aquarium"
-  - id: 33
-    location: "Hall"
-  - id: 6
-    location: "Salon"
-  - id: 51
-    location: "Ext-Potager"
-  - id: 49920
-    location: "Ext-Terrasse"
-  - id: 53
-    location: "Bureau"
-  - id: 8
-    location: "Ch.Damien"
-  - id: 5
-    location: "Ch.Jeux"
-  - id: 7
-    location: "Mezanine"
-  - id: 4
-    location: "Ch.Léna"
-  - id: 12
-    location: "SdB.Haut"
-  - id: 3967
-    location: "Bureau"
+  iotpower:
+    nodes:
+    - id: 0
+      location: Home
+    - id: 1
+      location: Bureau
+    - id: 2
+      location: Cuisine~Lavage
+    - id: 3
+      location: Celier~Lavage
+    - id: 4
+      location: Aquarium
+    - id: 5
+      location: Salon~TV
+    - id: 6
+      location: Celier~Frigo
+    - id: 7
+      location: Salon~Ambiance
+    - id: 8
+      location: Freebox
+    - id: 9
+      location: Spare
+  iotheaters:
+    nodes:
+    - id: 0
+      location: S.Jeux
+    - id: 1
+      location: Bureau
+    - id: 2
+      location: Ch.Léna
+    - id: 3
+      location: Ch.Damien
+    - id: 4
+      location: SdB.Haut
+    - id: 5
+      location: Mezzanine
+    - id: 6
+      location: Ch.Bas
+    - id: 7
+      location: SdB.Bas
+    - id: 14
+      location: Salon
+    - id: 15
+      location: Hall
+  rfm868usb:
+    nodes:
+    - id: 10
+      location: Garage
+    - id: 9
+      location: "Ch.Bas"
+    - id: 108
+      location: "SdB.Bas"
+    - id: 50
+      location: "Aquarium"
+    - id: 33
+      location: "Hall"
+    - id: 6
+      location: "Salon"
+    - id: 51
+      location: "Ext-Potager"
+    - id: 49920
+      location: "Ext-Terrasse"
+    - id: 53
+      location: "Bureau"
+    - id: 8
+      location: "Ch.Damien"
+    - id: 5
+      location: "Ch.Jeux"
+    - id: 7
+      location: "Mezanine"
+    - id: 4
+      location: "Ch.Léna"
+    - id: 12
+      location: "SdB.Haut"
+    - id: 3967
+      location: "Bureau"
+  
