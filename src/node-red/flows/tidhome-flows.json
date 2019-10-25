@@ -179,9 +179,7 @@
         "x": 120,
         "y": 130,
         "wires": [
-            [
-                "436b2017.90da28"
-            ]
+            []
         ]
     },
     {
@@ -282,23 +280,7 @@
         "y": 220,
         "wires": [
             [
-                "922e5b14.64ef1"
-            ]
-        ]
-    },
-    {
-        "id": "922e5b14.64ef1",
-        "type": "function",
-        "z": "d06e385b.de11c8",
-        "name": "Parse JeeLink",
-        "func": "var s = msg.payload.split(' ')\nif(s[0] === 'ROOM') {\n    var type = ''\n    var nodeid = s[1]\n    // var nodeid5 = (\"00000\" + nodeid).slice (-5)\n    var entry = s[2]\n    var value = s[4].replace(/(\\r\\n|\\n|\\r)/gm,\"\");\n    if(s[3] == 0) {\n      type = 'temperature';\n      value = value / 10;\n    } else if(s[3] == 1) {\n      type = 'humidity';\n      value = value / 10;\n    } else if(s[3] == 2) {\n      type = 'pressure';\n      value = value / 10;\n    } else if(s[3] == 3) {\n      type = 'light';\n    } else if(s[3] == 4 && value !== 0) {\n      type = 'battery';\n      value = value / 100;\n    } else if(s[3] == 5) {\n      type = 'soil';\n    } else if(s[3] == 6) {\n      type = 'toggle';\n      value = parseInt(value);\n    }\n    \n    if(type !== '') {\n        msg.topic = 'sensors/rfm868usb/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;\n        msg.payload = { \n            \"gateway\":\"rfm868usb\",\n            \"id\": nodeid,\n            \"entry\": entry,\n            \"type\": type,\n            \"value\": value\n        }\n        return msg;\n    }\n    \n    //setTimeout(function() { this.status({}); }, 500);\n    //this.status({fill:\"green\",shape:\"dot\",text:\"processed\"});\n}\nreturn null;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 540,
-        "y": 220,
-        "wires": [
-            [
-                "f1beea2b.c0578"
+                "e8d888e4.072f5"
             ]
         ]
     },
@@ -338,23 +320,7 @@
         "y": 160,
         "wires": [
             [
-                "2cb00072.df01f"
-            ]
-        ]
-    },
-    {
-        "id": "2cb00072.df01f",
-        "type": "function",
-        "z": "d06e385b.de11c8",
-        "name": "Parse CurrentCost",
-        "func": "var outputMsgs = [];\n\n// node.warn(\"CC event:\\n\" + JSON.stringify(msg.payload))\n\n// temperature\nif(msg.payload.msg.tmpr != undefined && msg.payload.msg.sensor[0] == '1') {\n    // sensors/iotpower/nodes/0/entries/0/events/temperature\n    type = 'temperature'\n    nodeid = 0\n    entry = 0\n    value = msg.payload.msg.tmpr[0]\n    \n    var msgT = {}\n    msgT.topic = 'sensors/iotpower/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;\n    msgT.payload = { \n        \"gateway\":\"iotpower\",\n        \"id\": nodeid,\n        \"entry\": entry,\n        \"type\": type,\n        \"value\": parseFloat(value)\n    }\n    outputMsgs.push(msgT);\n    // node.warn(\"CC event temp:\\n\" + JSON.stringify(msgT))\n}\n\n// Live power\nif(msg.payload.msg.sensor[0] != undefined) {\n    // sensors/iotpower/nodes/.../entries/0/events/watts\n    type = 'watts'\n    nodeid = msg.payload.msg.sensor[0]\n    entry = 0\n    value = msg.payload.msg.ch1[0].watts[0]\n    \n    var msgP = {}\n    msgP.topic = 'sensors/iotpower/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;\n    msgP.payload = { \n        \"gateway\":\"iotpower\",\n        \"id\": nodeid,\n        \"entry\": entry,\n        \"type\": type,\n        \"value\": parseFloat(value)\n    }\n    outputMsgs.push(msgP);\n    // node.warn(\"CC event:\\n\" + JSON.stringify(msgP))\n}\n\n/*\n// History power\nfor (var i in msg.payload.msg.hist[0].data) {\n    var chunk = msg.payload.msg.hist[0].data[i];\n    var chunkClean = {};\n    for (var j in chunk) {\n        chunkClean[j] = chunk[j][0];\n    }\n    var topic = 'sensors/03967/entries/' + chunk.sensor[0] + '/history/power';\n    outputMsgs.push( { topic:topic, payload: chunkClean });\n}\n*/\n\nreturn [ outputMsgs ];",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 550,
-        "y": 160,
-        "wires": [
-            [
-                "f20c9be2.db11d8"
+                "32ac0f30.9239f8"
             ]
         ]
     },
@@ -824,7 +790,7 @@
         "y": 280,
         "wires": [
             [
-                "7e941c59.6340fc"
+                "54613c06.23f4fc"
             ]
         ]
     },
@@ -845,22 +811,6 @@
         "wires": [
             [
                 "63fb326d.8d4e04"
-            ]
-        ]
-    },
-    {
-        "id": "7e941c59.6340fc",
-        "type": "function",
-        "z": "d06e385b.de11c8",
-        "name": "Parse web relays",
-        "func": "var outputMsgs = [];\n\nfor (var i in msg.payload) {\n    type = 'toggle'\n    nodeid = msg.payload[i].switch\n    entry = 0\n    value = msg.payload[i].value\n    \n    var msgS = {}\n    msgS.topic = 'sensors/iotheaters/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;\n    msgS.payload = { \n        \"gateway\":\"iotheaters\",\n        \"id\": nodeid,\n        \"entry\": entry,\n        \"type\": type,\n        \"value\": value\n    }\n    outputMsgs.push(msgS);\n}\n\nreturn [ outputMsgs ];",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 550,
-        "y": 280,
-        "wires": [
-            [
-                "b71c316e.66ac78"
             ]
         ]
     },
@@ -1690,5 +1640,53 @@
         "x": 830,
         "y": 280,
         "wires": []
+    },
+    {
+        "id": "32ac0f30.9239f8",
+        "type": "file function",
+        "z": "d06e385b.de11c8",
+        "name": "Parse CurrentCost",
+        "filename": "/root/.node-red/lib/functions/Parse-CurrentCost.js",
+        "reloadfile": false,
+        "outputs": 1,
+        "x": 550,
+        "y": 160,
+        "wires": [
+            [
+                "f20c9be2.db11d8"
+            ]
+        ]
+    },
+    {
+        "id": "e8d888e4.072f5",
+        "type": "file function",
+        "z": "d06e385b.de11c8",
+        "name": "Parse JeeLink",
+        "filename": "/root/.node-red/lib/functions/Parse-JeeLink.js",
+        "reloadfile": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 220,
+        "wires": [
+            [
+                "f1beea2b.c0578"
+            ]
+        ]
+    },
+    {
+        "id": "54613c06.23f4fc",
+        "type": "file function",
+        "z": "d06e385b.de11c8",
+        "name": "Parse WebRelays",
+        "filename": "/root/.node-red/lib/functions/Parse-WebRelays.js",
+        "reloadfile": true,
+        "outputs": 1,
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "b71c316e.66ac78"
+            ]
+        ]
     }
 ]
