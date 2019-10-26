@@ -26,7 +26,7 @@ if(msg.payload.msg.tmpr != undefined && msg.payload.msg.sensor[0] == '1') {
 }
 
 // Live power
-if(msg.payload.msg.sensor[0] != undefined) {
+if(msg.payload.msg.sensor != undefined && msg.payload.msg.sensor[0] != undefined) {
     // sensors/iotpower/nodes/.../entries/0/events/watts
     type = 'watts'
     nodeid = msg.payload.msg.sensor[0]

@@ -11,16 +11,15 @@ services:
 
   nodered:
     #image: kalemena/node-red:latest
-    build: src/node-red
+    build: src/tidhome
     restart: always
     ports:
      - "2880:1880"
     volumes:
-     - ./src/node-red/flows:/opt/flows
-     - ./etc/data:/opt/data
+     - ./src/tidhome:/opt/tidhome
      - ./etc/node-red:/root/.node-red
     devices:
      - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"
     environment:
-     - FLOWS=/opt/flows/tidhome-flows.json
+     - FLOWS=/opt/tidhome/flows/tidhome-flows.json
