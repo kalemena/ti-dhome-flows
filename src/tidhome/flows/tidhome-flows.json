@@ -112,11 +112,12 @@
         "name": "",
         "scope": null,
         "uncaught": false,
-        "x": 120,
+        "x": 100,
         "y": 30,
         "wires": [
             [
-                "1eadd747.8b08a1"
+                "1eadd747.8b08a1",
+                "8657cb9d.cdd43"
             ]
         ]
     },
@@ -131,7 +132,7 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 660,
+        "x": 640,
         "y": 30,
         "wires": []
     },
@@ -141,8 +142,8 @@
         "z": "8627a08f.2f4c18",
         "name": "Status",
         "bot": "4fc69d2d.235124",
-        "x": 710,
-        "y": 460,
+        "x": 690,
+        "y": 490,
         "wires": [
             [
                 "bd0c93c7.885df"
@@ -160,8 +161,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 840,
-        "y": 460,
+        "x": 820,
+        "y": 490,
         "wires": []
     },
     {
@@ -176,10 +177,12 @@
         "crontab": "",
         "once": true,
         "onceDelay": "5",
-        "x": 120,
-        "y": 130,
+        "x": 100,
+        "y": 160,
         "wires": [
-            []
+            [
+                "436b2017.90da28"
+            ]
         ]
     },
     {
@@ -190,8 +193,8 @@
         "func": "var message = msg.payload.detail + '\\n' + \n    \"temp=\" + msg.data.currently.temperature + \"°C (\" + msg.payload.mintemp + \"°C to \" + msg.payload.maxtemp + \"°C) \\n\" +\n    \"humidity=\" + (msg.payload.humidity * 100) + \"%\\n\" +\n    \"pressure=\" + msg.data.currently.pressure + \"hPa\\n\" +\n    \"windspeed=\" + msg.payload.windspeed + \"km/h\\n\" +\n    \"winddirection=\" + msg.payload.winddirection + \"\\n\" + \n    \"clouds=\" + (msg.payload.clouds * 100) + \"%\";\n    \nmsg.payload = message\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 730,
-        "y": 340,
+        "x": 710,
+        "y": 370,
         "wires": [
             [
                 "57bdbb93.d54314"
@@ -209,7 +212,8 @@
         "y": 30,
         "wires": [
             [
-                "b4de4531.e18c6"
+                "b4de4531.e18c6",
+                "da4f836d.e9aba8"
             ]
         ]
     },
@@ -224,7 +228,7 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 610,
+        "x": 770,
         "y": 30,
         "wires": []
     },
@@ -337,8 +341,8 @@
         "mode": "node",
         "lang": "fr",
         "units": "si",
-        "x": 330,
-        "y": 340,
+        "x": 310,
+        "y": 370,
         "wires": [
             [
                 "8b517c2b.d93ed8"
@@ -357,8 +361,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 130,
-        "y": 250,
+        "x": 110,
+        "y": 280,
         "wires": [
             [
                 "f6373746.83f598"
@@ -373,12 +377,10 @@
         "func": "msg.payload = \"Fresh (re-)deploy !\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 670,
-        "y": 130,
+        "x": 260,
+        "y": 160,
         "wires": [
-            [
-                "57bdbb93.d54314"
-            ]
+            []
         ]
     },
     {
@@ -386,8 +388,8 @@
         "type": "simpletime",
         "z": "8627a08f.2f4c18",
         "name": "now",
-        "x": 530,
-        "y": 300,
+        "x": 510,
+        "y": 330,
         "wires": [
             [
                 "57125e6f.c04dd"
@@ -407,8 +409,8 @@
         "temp": "",
         "skip": "0",
         "strings": true,
-        "x": 480,
-        "y": 260,
+        "x": 460,
+        "y": 290,
         "wires": [
             [
                 "4881ab4d.cbd20c"
@@ -423,8 +425,8 @@
         "func": "if (msg.payload.date !== undefined) {\n    \n    var message, bdom, bmonth, byear;\n    bparsed = msg.payload.date.split('/');\n    \n    if(bparsed.length == 3) {\n        // year/month/day\n        bdom = parseInt(bparsed[2])\n        bmonth = parseInt(bparsed[1])\n        byear = parseInt(bparsed[0])\n        \n    } else {\n        // month/day\n        bdom = parseInt(bparsed[1])\n        bmonth = parseInt(bparsed[0])\n        \n    }\n    \n    if((bdom == msg.mydom) && (bmonth == msg.mymonthn)) {\n        // date matches today\n        \n        if(msg.filename.indexOf('saints') !== -1) {\n            message = \"Saints \" + msg.payload.value\n            \n        } else if(msg.filename.indexOf('birthday') !== -1) { \n            if(byear !== undefined) {\n                message = \"Happy \" + (msg.myyear - byear) + \"th Birthday to \" + msg.payload.value + \" (\" + bdom + \"/\" + bmonth + \")\"\n            } else {\n                message = \"Happy Birthday to \" + msg.payload.value + \" (\" + bdom + \"/\" + bmonth + \")\"\n            }\n            \n        } else {\n            message = msg.payload.value\n        }\n        \n        msg.payload = message\n        return msg;\n    }\n}\n\n// Default nothing\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 690,
-        "y": 300,
+        "x": 670,
+        "y": 330,
         "wires": [
             [
                 "57bdbb93.d54314"
@@ -436,12 +438,12 @@
         "type": "readdir",
         "z": "8627a08f.2f4c18",
         "name": "Daily CSVs",
-        "dir": "/opt/data/daily-events",
+        "dir": "/opt/tidhome/data/daily-events",
         "as": "multi",
         "recursive": false,
         "outproperty": "filename",
-        "x": 310,
-        "y": 240,
+        "x": 290,
+        "y": 270,
         "wires": [
             [
                 "8e4b9462.126df"
@@ -457,8 +459,8 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 350,
-        "y": 280,
+        "x": 330,
+        "y": 310,
         "wires": [
             [
                 "f9f7f04d.3b6e58"
@@ -477,8 +479,8 @@
         "crontab": "30 08 * * *",
         "once": false,
         "onceDelay": "5",
-        "x": 120,
-        "y": 210,
+        "x": 100,
+        "y": 240,
         "wires": [
             [
                 "45d9a893.f40ca8",
@@ -499,8 +501,8 @@
         "crontab": "00 22 * * *",
         "once": false,
         "onceDelay": "5",
-        "x": 130,
-        "y": 170,
+        "x": 110,
+        "y": 200,
         "wires": [
             [
                 "57bdbb93.d54314"
@@ -516,8 +518,8 @@
         "qos": "2",
         "datatype": "auto",
         "broker": "c38452a5.4f84e8",
-        "x": 150,
-        "y": 460,
+        "x": 130,
+        "y": 490,
         "wires": [
             [
                 "5646d1f7.0ae1d8"
@@ -533,8 +535,8 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 940,
-        "y": 200,
+        "x": 920,
+        "y": 230,
         "wires": []
     },
     {
@@ -545,8 +547,8 @@
         "func": "msg.payload = {\n    \"chatId\": msg.telegramrecipients,\n    \"type\": \"message\",\n    \"options\": { \"parse_mode\": \"Markdown\" },\n    \"content\": msg.payload\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 520,
-        "y": 460,
+        "x": 500,
+        "y": 490,
         "wires": [
             [
                 "8ada82a3.815fc8"
@@ -559,8 +561,8 @@
         "z": "8627a08f.2f4c18",
         "name": "Publish Telegram event",
         "info": "",
-        "x": 160,
-        "y": 420,
+        "x": 140,
+        "y": 450,
         "wires": []
     },
     {
@@ -569,8 +571,8 @@
         "z": "8627a08f.2f4c18",
         "name": "Daily News",
         "info": "",
-        "x": 120,
-        "y": 90,
+        "x": 100,
+        "y": 120,
         "wires": []
     },
     {
@@ -588,8 +590,8 @@
                 "type": "msg"
             }
         ],
-        "x": 330,
-        "y": 460,
+        "x": 310,
+        "y": 490,
         "wires": [
             [
                 "a1e5ec43.17a97"
@@ -1330,7 +1332,8 @@
         "y": 30,
         "wires": [
             [
-                "a6f2a3e0.0d0fe"
+                "a6f2a3e0.0d0fe",
+                "a25e9952.1947b"
             ]
         ]
     },
@@ -1446,7 +1449,8 @@
         "y": 30,
         "wires": [
             [
-                "9c4b0bd9.75b93"
+                "9c4b0bd9.75b93",
+                "898cb71f.e8a81"
             ]
         ]
     },
@@ -1461,7 +1465,7 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 610,
+        "x": 870,
         "y": 30,
         "wires": []
     },
@@ -1686,6 +1690,201 @@
         "wires": [
             [
                 "b71c316e.66ac78"
+            ]
+        ]
+    },
+    {
+        "id": "8657cb9d.cdd43",
+        "type": "function",
+        "z": "8627a08f.2f4c18",
+        "name": "Flow Notification",
+        "func": "msg.payload = \"Flow Notifications:\\n\" + msg.error.message\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 70,
+        "wires": [
+            [
+                "cbbe5fc7.3d9118"
+            ]
+        ]
+    },
+    {
+        "id": "a25e9952.1947b",
+        "type": "function",
+        "z": "a6ca2108.abdcc8",
+        "name": "Flow Actors",
+        "func": "msg.payload = \"Flow Actors:\\n\" + msg.error.message\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 70,
+        "wires": [
+            [
+                "6e8d84f5.44ef7c"
+            ]
+        ]
+    },
+    {
+        "id": "2664eb97.8979dc",
+        "type": "mqtt out",
+        "z": "a6ca2108.abdcc8",
+        "name": "notifications/telegram",
+        "topic": "notifications/telegram",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 690,
+        "y": 70,
+        "wires": []
+    },
+    {
+        "id": "da4f836d.e9aba8",
+        "type": "function",
+        "z": "d06e385b.de11c8",
+        "name": "Flow Sensors",
+        "func": "msg.payload = \"Flow Sensors:\\n\" + msg.error.message\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 70,
+        "wires": [
+            [
+                "a4910bae.3bab5"
+            ]
+        ]
+    },
+    {
+        "id": "7e3c081.db32af8",
+        "type": "mqtt out",
+        "z": "d06e385b.de11c8",
+        "name": "notifications/telegram",
+        "topic": "notifications/telegram",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 810,
+        "y": 70,
+        "wires": []
+    },
+    {
+        "id": "898cb71f.e8a81",
+        "type": "function",
+        "z": "112e9cf8.590b23",
+        "name": "Flow Configuration",
+        "func": "msg.payload = \"Flow Configuration:\\n\" + msg.error.message\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 300,
+        "y": 70,
+        "wires": [
+            [
+                "a824819.c6b45"
+            ]
+        ]
+    },
+    {
+        "id": "431b4b17.115b74",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "notifications/telegram",
+        "topic": "notifications/telegram",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 910,
+        "y": 70,
+        "wires": []
+    },
+    {
+        "id": "a4910bae.3bab5",
+        "type": "delay",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "30",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 540,
+        "y": 70,
+        "wires": [
+            [
+                "7e3c081.db32af8"
+            ]
+        ]
+    },
+    {
+        "id": "a824819.c6b45",
+        "type": "delay",
+        "z": "112e9cf8.590b23",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "30",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 620,
+        "y": 70,
+        "wires": [
+            [
+                "431b4b17.115b74"
+            ]
+        ]
+    },
+    {
+        "id": "6e8d84f5.44ef7c",
+        "type": "delay",
+        "z": "a6ca2108.abdcc8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "30",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 480,
+        "y": 70,
+        "wires": [
+            [
+                "2664eb97.8979dc"
+            ]
+        ]
+    },
+    {
+        "id": "cbbe5fc7.3d9118",
+        "type": "delay",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "30",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 660,
+        "y": 70,
+        "wires": [
+            [
+                "57bdbb93.d54314"
             ]
         ]
     }

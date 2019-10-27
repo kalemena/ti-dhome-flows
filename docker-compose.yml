@@ -17,7 +17,7 @@ services:
      - "2880:1880"
     volumes:
      - ./src/tidhome:/opt/tidhome
-     - ./etc/node-red:/root/.node-red
+     - ./src/tidhome/config:/root/.node-red
     devices:
      - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"
