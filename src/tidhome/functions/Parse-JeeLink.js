@@ -1,11 +1,14 @@
 // name: Parse JeeLink
 // outputs: 1
+var outputMsgs = []
+timestamp = new Date().getTime()
+
 var s = msg.payload.split(' ')
 if(s[0] === 'ROOM') {
     var type = ''
-    var nodeid = s[1]
+    var nodeid = parseInt(s[1])
     // var nodeid5 = ("00000" + nodeid).slice (-5)
-    var entry = s[2]
+    var entry = parseInt(s[2])
     var value = s[4].replace(/(\r\n|\n|\r)/gm,"");
     if(s[3] == 0) {
       type = 'temperature';
@@ -29,18 +32,21 @@ if(s[0] === 'ROOM') {
     }
     
     if(type !== '') {
-        msg.topic = 'sensors/rfm868usb/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;
-        msg.payload = { 
+        var msgJ = {}
+        msgJ.topic = 'sensors/rfm868usb/nodes/' + nodeid + '/entries/' + entry + '/events/' + type;
+        msgJ.payload = { 
             "gateway":"rfm868usb",
             "id": nodeid,
             "entry": entry,
             "type": type,
-            "value": value
+            "value": value,
+            "timestamp": timestamp
         }
-        return msg;
+        outputMsgs.push(msgJ);
     }
     
     //setTimeout(function() { this.status({}); }, 500);
     //this.status({fill:"green",shape:"dot",text:"processed"});
 }
-return null;
+
+return [ outputMsgs ];

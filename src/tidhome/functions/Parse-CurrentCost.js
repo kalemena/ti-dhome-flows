@@ -1,15 +1,14 @@
 // name: Parse CurrentCost
 // outputs: 1
-var outputMsgs = [];
-
-// node.warn("CC event:\n" + JSON.stringify(msg.payload))
+var outputMsgs = []
+timestamp = new Date().getTime()
 
 // temperature
 if(msg.payload.msg.tmpr != undefined && msg.payload.msg.sensor[0] == '1') {
-    // sensors/iotpower/nodes/0/entries/0/events/temperature
+    // sensors/iotpower/nodes/1/entries/1/events/temperature
     type = 'temperature'
-    nodeid = 0
-    entry = 0
+    nodeid = 1 // Bureau
+    entry = 1
     value = msg.payload.msg.tmpr[0]
     
     var msgT = {}
@@ -19,7 +18,8 @@ if(msg.payload.msg.tmpr != undefined && msg.payload.msg.sensor[0] == '1') {
         "id": nodeid,
         "entry": entry,
         "type": type,
-        "value": parseFloat(value)
+        "value": parseFloat(value),
+        "timestamp": timestamp
     }
     outputMsgs.push(msgT);
     // node.warn("CC event temp:\n" + JSON.stringify(msgT))
@@ -29,7 +29,7 @@ if(msg.payload.msg.tmpr != undefined && msg.payload.msg.sensor[0] == '1') {
 if(msg.payload.msg.sensor != undefined && msg.payload.msg.sensor[0] != undefined) {
     // sensors/iotpower/nodes/.../entries/0/events/watts
     type = 'watts'
-    nodeid = msg.payload.msg.sensor[0]
+    nodeid = parseInt(msg.payload.msg.sensor[0])
     entry = 0
     value = msg.payload.msg.ch1[0].watts[0]
     
@@ -40,7 +40,8 @@ if(msg.payload.msg.sensor != undefined && msg.payload.msg.sensor[0] != undefined
         "id": nodeid,
         "entry": entry,
         "type": type,
-        "value": parseFloat(value)
+        "value": parseFloat(value),
+        "timestamp": timestamp
     }
     outputMsgs.push(msgP);
     // node.warn("CC event:\n" + JSON.stringify(msg))

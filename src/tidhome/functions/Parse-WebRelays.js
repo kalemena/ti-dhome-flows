@@ -1,6 +1,7 @@
 // name: Parse web relays
 // outputs: 1
 var outputMsgs = [];
+timestamp = new Date().getTime()
 
 for (var i in msg.payload) {
     type = 'toggle'
@@ -15,7 +16,8 @@ for (var i in msg.payload) {
         "id": nodeid,
         "entry": entry,
         "type": type,
-        "value": value
+        "value": value,
+        "timestamp": timestamp
     }
     outputMsgs.push(msgS);
 }

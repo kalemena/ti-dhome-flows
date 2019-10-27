@@ -7,6 +7,13 @@
         "info": ""
     },
     {
+        "id": "d88a69c4.1942c8",
+        "type": "tab",
+        "label": "Storage",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "d06e385b.de11c8",
         "type": "tab",
         "label": "Sensors",
@@ -1889,36 +1896,152 @@
         ]
     },
     {
-        "id": "d7e923c.ad3b1e",
+        "id": "cc675ec4.106d",
         "type": "comment",
-        "z": "112e9cf8.590b23",
+        "z": "d88a69c4.1942c8",
         "name": "Sensors - Heaters",
         "info": "",
         "x": 120,
-        "y": 250,
+        "y": 120,
         "wires": []
     },
     {
-        "id": "76bf609b.00f098",
+        "id": "90d304a9.c871a",
         "type": "mqtt in",
-        "z": "112e9cf8.590b23",
+        "z": "d88a69c4.1942c8",
         "name": "sensors/iotheaters/#",
         "topic": "sensors/iotheaters/#",
         "qos": "2",
         "datatype": "json",
         "broker": "c38452a5.4f84e8",
         "x": 130,
-        "y": 290,
+        "y": 160,
         "wires": [
             [
-                "55098b1.00d89f4"
+                "bc256dae.db8fa8"
             ]
         ]
     },
     {
-        "id": "6285b377.6ce1f4",
+        "id": "5ee1bdd4.876894",
         "type": "debug",
-        "z": "112e9cf8.590b23",
+        "z": "d88a69c4.1942c8",
+        "name": "Debug",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 870,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "bc256dae.db8fa8",
+        "type": "function",
+        "z": "d88a69c4.1942c8",
+        "name": "Store Global",
+        "func": "var topicNodesPrefix = 'tidhome.sensors.' + msg.payload.gateway + '.nodes'\nvar nodes = global.get(topicNodesPrefix) || [];\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].id === msg.payload.id) {\n        // found node\n        global.set(topicNodesPrefix + '[' + i + '].' + msg.payload.type, msg.payload.value);\n        global.set(topicNodesPrefix + '[' + i + '].timestamp', msg.payload.timestamp);\n    }\n}\n// pass through\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 160,
+        "wires": [
+            [
+                "5ee1bdd4.876894"
+            ]
+        ]
+    },
+    {
+        "id": "f508a719.4285d8",
+        "type": "comment",
+        "z": "d88a69c4.1942c8",
+        "name": "Sensors - Power",
+        "info": "",
+        "x": 120,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "6ddf0a38.d4697c",
+        "type": "mqtt in",
+        "z": "d88a69c4.1942c8",
+        "name": "sensors/iotpower/#",
+        "topic": "sensors/iotpower/#",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "c38452a5.4f84e8",
+        "x": 130,
+        "y": 260,
+        "wires": [
+            [
+                "7a2ecb5a.00ec84"
+            ]
+        ]
+    },
+    {
+        "id": "b8523e9.afd76c",
+        "type": "debug",
+        "z": "d88a69c4.1942c8",
+        "name": "Debug",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 870,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "7a2ecb5a.00ec84",
+        "type": "function",
+        "z": "d88a69c4.1942c8",
+        "name": "Store Global",
+        "func": "var nodes=global.get('tidhome.sensors.iotpower.nodes') || [];\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].id === msg.payload.id) {\n        // found node\n        global.set('tidhome.sensors.iotpower.nodes[' + i + '].' + msg.payload.type, msg.payload.value);\n        global.set('tidhome.sensors.iotpower.nodes[' + i + '].timestamp', msg.payload.timestamp);\n    }\n}\n// pass through\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "b8523e9.afd76c"
+            ]
+        ]
+    },
+    {
+        "id": "68aae2ac.40a004",
+        "type": "comment",
+        "z": "d88a69c4.1942c8",
+        "name": "Sensors - rfm868usb",
+        "info": "",
+        "x": 130,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "401c77c8.e1141",
+        "type": "mqtt in",
+        "z": "d88a69c4.1942c8",
+        "name": "sensors/rfm868usb/#",
+        "topic": "sensors/rfm868usb/#",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "c38452a5.4f84e8",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "dcd509f1.d56dd"
+            ]
+        ]
+    },
+    {
+        "id": "14def27.355280e",
+        "type": "debug",
+        "z": "d88a69c4.1942c8",
         "name": "Debug",
         "active": true,
         "tosidebar": true,
@@ -1927,22 +2050,105 @@
         "complete": "true",
         "targetType": "full",
         "x": 870,
-        "y": 290,
+        "y": 360,
         "wires": []
     },
     {
-        "id": "55098b1.00d89f4",
+        "id": "dcd509f1.d56dd",
         "type": "function",
-        "z": "112e9cf8.590b23",
-        "name": "Global",
-        "func": "var nodes=global.get('tidhome.sensors.iotheaters.nodes') || [];\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].id === msg.payload.id) {\n        // found node\n        global.set('tidhome.sensors.iotheaters.nodes[' + i + '].toggle', msg.payload.value);\n    }\n}\n// pass through\nreturn msg;",
+        "z": "d88a69c4.1942c8",
+        "name": "Store Global",
+        "func": "var nodes=global.get('tidhome.sensors.rfm868usb.nodes') || [];\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].id === msg.payload.id) {\n        // found node\n        global.set('tidhome.sensors.rfm868usb.nodes[' + i + '].' + msg.payload.type + '-' + msg.payload.entry, msg.payload.value);\n        global.set('tidhome.sensors.rfm868usb.nodes[' + i + '].timestamp', msg.payload.timestamp);\n    }\n}\n// pass through\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 330,
-        "y": 290,
+        "x": 380,
+        "y": 360,
         "wires": [
             [
-                "6285b377.6ce1f4"
+                "14def27.355280e"
+            ]
+        ]
+    },
+    {
+        "id": "9b62bbdb.4c3cc8",
+        "type": "catch",
+        "z": "d88a69c4.1942c8",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 100,
+        "y": 30,
+        "wires": [
+            [
+                "b7abb96a.989938",
+                "d53d97.57082a68"
+            ]
+        ]
+    },
+    {
+        "id": "b7abb96a.989938",
+        "type": "debug",
+        "z": "d88a69c4.1942c8",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 870,
+        "y": 30,
+        "wires": []
+    },
+    {
+        "id": "d53d97.57082a68",
+        "type": "function",
+        "z": "d88a69c4.1942c8",
+        "name": "Flow Storage",
+        "func": "msg.payload = \"Flow Storage:\\n\" + msg.error.message\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280,
+        "y": 70,
+        "wires": [
+            [
+                "5fa9f3f6.c0bb14"
+            ]
+        ]
+    },
+    {
+        "id": "94f22d87.c4e9",
+        "type": "mqtt out",
+        "z": "d88a69c4.1942c8",
+        "name": "notifications/telegram",
+        "topic": "notifications/telegram",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 910,
+        "y": 70,
+        "wires": []
+    },
+    {
+        "id": "5fa9f3f6.c0bb14",
+        "type": "delay",
+        "z": "d88a69c4.1942c8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "30",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 620,
+        "y": 70,
+        "wires": [
+            [
+                "94f22d87.c4e9"
             ]
         ]
     }
