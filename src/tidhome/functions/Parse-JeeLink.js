@@ -1,6 +1,7 @@
 // name: Parse JeeLink
 // outputs: 1
 var outputMsgs = []
+timestampH = new Date().toISOString()
 timestamp = new Date().getTime()
 
 var s = msg.payload.split(' ')
@@ -40,7 +41,8 @@ if(s[0] === 'ROOM') {
             "entry": entry,
             "type": type,
             "value": value,
-            "timestamp": timestamp
+            "timestamp": timestamp,
+            "timestamp-human": timestampH
         }
         outputMsgs.push(msgJ);
     }

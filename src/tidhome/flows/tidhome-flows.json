@@ -1400,8 +1400,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 870,
-        "y": 180,
+        "x": 880,
+        "y": 200,
         "wires": []
     },
     {
@@ -1918,38 +1918,7 @@
         "y": 160,
         "wires": [
             [
-                "bc256dae.db8fa8"
-            ]
-        ]
-    },
-    {
-        "id": "5ee1bdd4.876894",
-        "type": "debug",
-        "z": "d88a69c4.1942c8",
-        "name": "Debug",
-        "active": false,
-        "tosidebar": true,
-        "console": true,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 870,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "bc256dae.db8fa8",
-        "type": "function",
-        "z": "d88a69c4.1942c8",
-        "name": "Store Global",
-        "func": "var topicNodesPrefix = 'tidhome.sensors.' + msg.payload.gateway + '.nodes'\nvar nodes = global.get(topicNodesPrefix) || [];\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].id === msg.payload.id) {\n        // found node\n        global.set(topicNodesPrefix + '[' + i + '].' + msg.payload.type, msg.payload.value);\n        global.set(topicNodesPrefix + '[' + i + '].timestamp', msg.payload.timestamp);\n    }\n}\n// pass through\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 380,
-        "y": 160,
-        "wires": [
-            [
-                "5ee1bdd4.876894"
+                "dcd509f1.d56dd"
             ]
         ]
     },
@@ -1976,38 +1945,7 @@
         "y": 260,
         "wires": [
             [
-                "7a2ecb5a.00ec84"
-            ]
-        ]
-    },
-    {
-        "id": "b8523e9.afd76c",
-        "type": "debug",
-        "z": "d88a69c4.1942c8",
-        "name": "Debug",
-        "active": false,
-        "tosidebar": true,
-        "console": true,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 870,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "7a2ecb5a.00ec84",
-        "type": "function",
-        "z": "d88a69c4.1942c8",
-        "name": "Store Global",
-        "func": "var nodes=global.get('tidhome.sensors.iotpower.nodes') || [];\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].id === msg.payload.id) {\n        // found node\n        global.set('tidhome.sensors.iotpower.nodes[' + i + '].' + msg.payload.type, msg.payload.value);\n        global.set('tidhome.sensors.iotpower.nodes[' + i + '].timestamp', msg.payload.timestamp);\n    }\n}\n// pass through\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 380,
-        "y": 260,
-        "wires": [
-            [
-                "b8523e9.afd76c"
+                "dcd509f1.d56dd"
             ]
         ]
     },
@@ -2043,14 +1981,14 @@
         "type": "debug",
         "z": "d88a69c4.1942c8",
         "name": "Debug",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
         "x": 870,
-        "y": 360,
+        "y": 260,
         "wires": []
     },
     {
@@ -2058,11 +1996,11 @@
         "type": "function",
         "z": "d88a69c4.1942c8",
         "name": "Store Global",
-        "func": "var nodes=global.get('tidhome.sensors.rfm868usb.nodes') || [];\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].id === msg.payload.id) {\n        // found node\n        global.set('tidhome.sensors.rfm868usb.nodes[' + i + '].' + msg.payload.type + '-' + msg.payload.entry, msg.payload.value);\n        global.set('tidhome.sensors.rfm868usb.nodes[' + i + '].timestamp', msg.payload.timestamp);\n    }\n}\n// pass through\nreturn msg;",
+        "func": "var topicNodesPrefix = 'tidhome.sensors.' + msg.payload.gateway + '.nodes'\nvar nodes = global.get(topicNodesPrefix) || [];\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].id === msg.payload.id) {\n        // found node\n        entryStr = (msg.payload.entry != undefined) ? ('-' + msg.payload.entry) : ''\n        global.set(topicNodesPrefix + '[' + i + '].' + msg.payload.type + entryStr, msg.payload.value);\n        global.set(topicNodesPrefix + '[' + i + '].timestamp', msg.payload.timestamp);\n    }\n}\n// pass through\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 380,
-        "y": 360,
+        "y": 260,
         "wires": [
             [
                 "14def27.355280e"
@@ -2149,6 +2087,42 @@
         "wires": [
             [
                 "94f22d87.c4e9"
+            ]
+        ]
+    },
+    {
+        "id": "aa1dfa0a.c912b",
+        "type": "inject",
+        "z": "112e9cf8.590b23",
+        "name": "Alarms",
+        "topic": "",
+        "payload": "[\"iotpower\",\"iotheaters\",\"rfm868usb\"]",
+        "payloadType": "json",
+        "repeat": "1800",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "900",
+        "x": 100,
+        "y": 240,
+        "wires": [
+            [
+                "9bca5b14.acefe8"
+            ]
+        ]
+    },
+    {
+        "id": "9bca5b14.acefe8",
+        "type": "function",
+        "z": "112e9cf8.590b23",
+        "name": "Alarms",
+        "func": "var outputMsgs = []\nvar now = new Date().getTime()\n\n// Read global info\nfor (var j = 0; j < msg.payload.length; j++) {\n    var topicNodesPrefix = 'tidhome.sensors.' + msg.payload[j] + '.nodes'\n    var nodes = global.get(topicNodesPrefix) || []\n    for (var i = 0; i < nodes.length; i++) {\n        \n        if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n            continue\n        \n        if(nodes[i].timestamp == undefined) {\n            var msgOut = {}\n            msgOut.topic = 'alarms/sensors/neverseen'\n            msgOut.payload = nodes[i]\n            msgOut.payload.gateway = msg.payload[j]\n            outputMsgs.push(msgOut)\n            continue\n        }\n        \n        var tOld = parseInt((now - nodes[i].timestamp) / (1000 * 60))\n        if(tOld > 30) {\n            // 30 min old data => alarm\n            var msgOut = {}\n            msgOut.topic = 'alarms/sensors/unavailable'\n            msgOut.payload = nodes[i]\n            msgOut.payload.gateway = msg.payload[j]\n            msgOut.payload.for = tOld + \"min\"\n            outputMsgs.push(msgOut)\n        }\n    }\n}\n\nreturn [ outputMsgs ];",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 240,
+        "wires": [
+            [
+                "af26e828.9b92"
             ]
         ]
     }

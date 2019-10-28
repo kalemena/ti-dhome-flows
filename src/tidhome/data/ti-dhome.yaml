@@ -21,6 +21,7 @@ sensors:
       location: Freebox
     - id: 9
       location: Spare
+      enabled: false
   iotheaters:
     nodes:
     - id: 0
@@ -39,6 +40,7 @@ sensors:
       location: Ch.Bas
     - id: 7
       location: SdB.Bas
+      enabled: false
     - id: 14
       location: Salon
     - id: 15
@@ -51,6 +53,7 @@ sensors:
       location: "Ch.Bas"
     - id: 108
       location: "SdB.Bas"
+      enabled: false
     - id: 50
       location: "Aquarium"
     - id: 33
@@ -59,8 +62,10 @@ sensors:
       location: "Salon"
     - id: 51
       location: "Ext-Potager"
+      enabled: false
     - id: 49920
       location: "Ext-Terrasse"
+      enabled: false
     - id: 53
       location: "Bureau"
     - id: 8
@@ -73,5 +78,3 @@ sensors:
       location: "Ch.Léna"
     - id: 12
       location: "SdB.Haut"
-    - id: 3967
-      location: "Bureau"

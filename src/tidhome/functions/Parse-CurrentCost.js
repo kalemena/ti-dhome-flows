@@ -1,6 +1,7 @@
 // name: Parse CurrentCost
 // outputs: 1
 var outputMsgs = []
+timestampH = new Date().toISOString()
 timestamp = new Date().getTime()
 
 // temperature
@@ -19,7 +20,8 @@ if(msg.payload.msg.tmpr != undefined && msg.payload.msg.sensor[0] == '1') {
         "entry": entry,
         "type": type,
         "value": parseFloat(value),
-        "timestamp": timestamp
+        "timestamp": timestamp,
+        "timestamp-human": timestampH
     }
     outputMsgs.push(msgT);
     // node.warn("CC event temp:\n" + JSON.stringify(msgT))
@@ -41,7 +43,8 @@ if(msg.payload.msg.sensor != undefined && msg.payload.msg.sensor[0] != undefined
         "entry": entry,
         "type": type,
         "value": parseFloat(value),
-        "timestamp": timestamp
+        "timestamp": timestamp,
+        "timestamp-human": timestampH
     }
     outputMsgs.push(msgP);
     // node.warn("CC event:\n" + JSON.stringify(msg))
