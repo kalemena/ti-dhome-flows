@@ -240,48 +240,6 @@
         "wires": []
     },
     {
-        "id": "91974a7f.e2fe4",
-        "type": "mqtt in",
-        "z": "112e9cf8.590b23",
-        "name": "sensors/+/+/+/+/+",
-        "topic": "sensors/+/+/+/+/+",
-        "qos": "2",
-        "datatype": "json",
-        "broker": "c38452a5.4f84e8",
-        "x": 130,
-        "y": 980,
-        "wires": [
-            [
-                "dbbdea79.1ee17"
-            ]
-        ]
-    },
-    {
-        "id": "c451b641.f25a18",
-        "type": "debug",
-        "z": "112e9cf8.590b23",
-        "name": "53-Bureau",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 570,
-        "y": 1180,
-        "wires": []
-    },
-    {
-        "id": "72bb0768.1bdbd8",
-        "type": "comment",
-        "z": "112e9cf8.590b23",
-        "name": "Sensors",
-        "info": "",
-        "x": 100,
-        "y": 940,
-        "wires": []
-    },
-    {
         "id": "613655ae.7a0704",
         "type": "serial in",
         "z": "d06e385b.de11c8",
@@ -606,183 +564,6 @@
         ]
     },
     {
-        "id": "dbbdea79.1ee17",
-        "type": "switch",
-        "z": "112e9cf8.590b23",
-        "name": "",
-        "property": "payload.nodeid",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "4",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "5",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "7",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "8",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "9",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "12",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "50",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "53",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 9,
-        "x": 360,
-        "y": 1020,
-        "wires": [
-            [
-                "20d61b84.1b6924"
-            ],
-            [
-                "6d2e18c5.5c942"
-            ],
-            [
-                "b32abd94.544218"
-            ],
-            [
-                "1b1528bb.4369cf"
-            ],
-            [
-                "6e85942b.b60e04"
-            ],
-            [
-                "85400e87.07af7"
-            ],
-            [
-                "5e3a957b.405244"
-            ],
-            [
-                "c451b641.f25a18"
-            ],
-            [
-                "66980d71.86001c"
-            ]
-        ],
-        "inputLabels": [
-            "sensors"
-        ],
-        "outputLabels": [
-            "4-Ch.Léna",
-            "",
-            "",
-            "",
-            null,
-            "",
-            null,
-            "",
-            ""
-        ],
-        "info": "## fgdfgd"
-    },
-    {
-        "id": "85400e87.07af7",
-        "type": "debug",
-        "z": "112e9cf8.590b23",
-        "name": "12-SdB.Haut",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 570,
-        "y": 1100,
-        "wires": []
-    },
-    {
-        "id": "1b1528bb.4369cf",
-        "type": "debug",
-        "z": "112e9cf8.590b23",
-        "name": "8-Ch.Damien",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 570,
-        "y": 1020,
-        "wires": []
-    },
-    {
-        "id": "20d61b84.1b6924",
-        "type": "debug",
-        "z": "112e9cf8.590b23",
-        "name": "4-Ch.Léna",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 570,
-        "y": 900,
-        "wires": []
-    },
-    {
-        "id": "66980d71.86001c",
-        "type": "debug",
-        "z": "112e9cf8.590b23",
-        "name": "?",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 550,
-        "y": 1220,
-        "wires": []
-    },
-    {
-        "id": "6d2e18c5.5c942",
-        "type": "debug",
-        "z": "112e9cf8.590b23",
-        "name": "5-Ch.Jeux",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 560,
-        "y": 940,
-        "wires": []
-    },
-    {
         "id": "63fb326d.8d4e04",
         "type": "http request",
         "z": "d06e385b.de11c8",
@@ -822,296 +603,6 @@
                 "63fb326d.8d4e04"
             ]
         ]
-    },
-    {
-        "id": "b32abd94.544218",
-        "type": "debug",
-        "z": "112e9cf8.590b23",
-        "name": "7-Mezanine",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 570,
-        "y": 980,
-        "wires": []
-    },
-    {
-        "id": "39ae1a17.7f3306",
-        "type": "comment",
-        "z": "112e9cf8.590b23",
-        "name": "Actors",
-        "info": "",
-        "x": 620,
-        "y": 750,
-        "wires": []
-    },
-    {
-        "id": "c243b327.34b1e",
-        "type": "mqtt in",
-        "z": "112e9cf8.590b23",
-        "name": "actors/iotheaters/relays/+/state",
-        "topic": "actors/iotheaters/relays/+/state",
-        "qos": "2",
-        "datatype": "json",
-        "broker": "c38452a5.4f84e8",
-        "x": 690,
-        "y": 830,
-        "wires": [
-            [
-                "9de49f76.c04b"
-            ]
-        ]
-    },
-    {
-        "id": "46f4eabb.fb1554",
-        "type": "debug",
-        "z": "112e9cf8.590b23",
-        "name": "Other relays",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 1280,
-        "y": 1290,
-        "wires": []
-    },
-    {
-        "id": "9de49f76.c04b",
-        "type": "switch",
-        "z": "112e9cf8.590b23",
-        "name": "Relays Mapping",
-        "property": "payload.relayid",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "0",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "1",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "2",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "3",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "4",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "5",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "6",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "7",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "14",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "15",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 11,
-        "x": 960,
-        "y": 830,
-        "wires": [
-            [
-                "8cc04f9c.03afd8"
-            ],
-            [
-                "502f5598.261254"
-            ],
-            [
-                "96c754f8.a6f498"
-            ],
-            [
-                "5f20f1d2.b087b"
-            ],
-            [
-                "67a6f151.dd3388"
-            ],
-            [
-                "dca91ef0.19f8b8"
-            ],
-            [
-                "9f35c2ee.fc7348"
-            ],
-            [
-                "4d72849c.9d0a14"
-            ],
-            [
-                "8c06cc3.7f97fb"
-            ],
-            [
-                "8ae386fa.38ded8"
-            ],
-            [
-                "46f4eabb.fb1554"
-            ]
-        ]
-    },
-    {
-        "id": "8cc04f9c.03afd8",
-        "type": "mqtt out",
-        "z": "112e9cf8.590b23",
-        "name": "0-Ch.Jeux",
-        "topic": "actors/iotheaters/relays/cjeux/state",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 1270,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "502f5598.261254",
-        "type": "mqtt out",
-        "z": "112e9cf8.590b23",
-        "name": "1-Bureau",
-        "topic": "actors/iotheaters/relays/cbureau/state",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 1270,
-        "y": 790,
-        "wires": []
-    },
-    {
-        "id": "96c754f8.a6f498",
-        "type": "mqtt out",
-        "z": "112e9cf8.590b23",
-        "name": "2-Ch.Léna",
-        "topic": "actors/iotheaters/relays/clena/state",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 1280,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "5f20f1d2.b087b",
-        "type": "mqtt out",
-        "z": "112e9cf8.590b23",
-        "name": "3-Ch.Damien",
-        "topic": "actors/iotheaters/relays/cdamien/state",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 1280,
-        "y": 890,
-        "wires": []
-    },
-    {
-        "id": "67a6f151.dd3388",
-        "type": "mqtt out",
-        "z": "112e9cf8.590b23",
-        "name": "4-SdB.Haut",
-        "topic": "actors/iotheaters/relays/sdbh/state",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 1280,
-        "y": 940,
-        "wires": []
-    },
-    {
-        "id": "dca91ef0.19f8b8",
-        "type": "mqtt out",
-        "z": "112e9cf8.590b23",
-        "name": "5-Mezzanine",
-        "topic": "actors/iotheaters/relays/mezzanine/state",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 1280,
-        "y": 990,
-        "wires": []
-    },
-    {
-        "id": "9f35c2ee.fc7348",
-        "type": "mqtt out",
-        "z": "112e9cf8.590b23",
-        "name": "6-Ch.Parents",
-        "topic": "actors/iotheaters/relays/cparents/state",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 1280,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "4d72849c.9d0a14",
-        "type": "mqtt out",
-        "z": "112e9cf8.590b23",
-        "name": "7-SdB.Bas",
-        "topic": "actors/iotheaters/relays/sdbb/state",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 1280,
-        "y": 1090,
-        "wires": []
-    },
-    {
-        "id": "8ae386fa.38ded8",
-        "type": "mqtt out",
-        "z": "112e9cf8.590b23",
-        "name": "15-Hall",
-        "topic": "actors/iotheaters/relays/hall/state",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 1270,
-        "y": 1220,
-        "wires": []
-    },
-    {
-        "id": "8c06cc3.7f97fb",
-        "type": "mqtt out",
-        "z": "112e9cf8.590b23",
-        "name": "14-Salon",
-        "topic": "actors/iotheaters/relays/salon/state",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 1270,
-        "y": 1170,
-        "wires": []
     },
     {
         "id": "8befeef.c99cc1",
@@ -1495,7 +986,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 670,
+        "x": 620,
         "y": 160,
         "wires": [
             [
@@ -1522,43 +1013,13 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 680,
+        "x": 610,
         "y": 200,
         "wires": [
             [
                 "af26e828.9b92"
             ]
         ]
-    },
-    {
-        "id": "5e3a957b.405244",
-        "type": "debug",
-        "z": "112e9cf8.590b23",
-        "name": "50-Aquarium",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 570,
-        "y": 1140,
-        "wires": []
-    },
-    {
-        "id": "6e85942b.b60e04",
-        "type": "debug",
-        "z": "112e9cf8.590b23",
-        "name": "9-Ch.Bas",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 560,
-        "y": 1060,
-        "wires": []
     },
     {
         "id": "cf6ab180.ad4d98",
@@ -2098,7 +1559,7 @@
         "topic": "",
         "payload": "[\"iotpower\",\"iotheaters\",\"rfm868usb\"]",
         "payloadType": "json",
-        "repeat": "1800",
+        "repeat": "3600",
         "crontab": "",
         "once": true,
         "onceDelay": "900",
@@ -2115,15 +1576,28 @@
         "type": "function",
         "z": "112e9cf8.590b23",
         "name": "Alarms",
-        "func": "var outputMsgs = []\nvar now = new Date().getTime()\n\n// Read global info\nfor (var j = 0; j < msg.payload.length; j++) {\n    var topicNodesPrefix = 'tidhome.sensors.' + msg.payload[j] + '.nodes'\n    var nodes = global.get(topicNodesPrefix) || []\n    for (var i = 0; i < nodes.length; i++) {\n        \n        if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n            continue\n        \n        if(nodes[i].timestamp == undefined) {\n            var msgOut = {}\n            msgOut.topic = 'alarms/sensors/neverseen'\n            msgOut.payload = nodes[i]\n            msgOut.payload.gateway = msg.payload[j]\n            outputMsgs.push(msgOut)\n            continue\n        }\n        \n        var tOld = parseInt((now - nodes[i].timestamp) / (1000 * 60))\n        if(tOld > 30) {\n            // 30 min old data => alarm\n            var msgOut = {}\n            msgOut.topic = 'alarms/sensors/unavailable'\n            msgOut.payload = nodes[i]\n            msgOut.payload.gateway = msg.payload[j]\n            msgOut.payload.for = tOld + \"min\"\n            outputMsgs.push(msgOut)\n        }\n    }\n}\n\nreturn [ outputMsgs ];",
+        "func": "var outputMsgs = []\nvar now = new Date().getTime()\nvar nowH = new Date().toISOString()\n\n// Read global info\nfor (var j = 0; j < msg.payload.length; j++) {\n    var topicNodesPrefix = 'tidhome.sensors.' + msg.payload[j] + '.nodes'\n    var nodes = global.get(topicNodesPrefix) || []\n    for (var i = 0; i < nodes.length; i++) {\n        \n        if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n            continue\n        \n        // sensor is configured but never seen !\n        if(nodes[i].timestamp == undefined) {\n            if(nodes[i].notifiedAt == undefined) {\n                var msgOut = {}\n                msgOut.payload = nodes[i]\n                msgOut.payload.gateway = msg.payload[j]\n                msgOut.payload.state = 'neverseen'\n                msgOut.payload.notifiedAt = now\n                msgOut.payload.notifiedAt_human = nowH\n                outputMsgs.push(msgOut)\n                continue\n            }\n            \n        } else {\n        \n            // sensor no longer seen after 30min !\n            var tOld = parseInt((now - nodes[i].timestamp) / (1000 * 60))\n            if(tOld > 30) {\n                if(nodes[i].notifiedAt == undefined) {\n                    // 30 min old data => alarm\n                    var msgOut = {}\n                    msgOut.payload = nodes[i]\n                    msgOut.payload.gateway = msg.payload[j]\n                    msgOut.payload.state = 'unavailable'\n                    msgOut.payload.notifiedAt = now\n                    msgOut.payload.notifiedAt_human = nowH\n                    msgOut.payload.for = tOld\n                    outputMsgs.push(msgOut)\n                }\n                \n            } else {\n                if(nodes[i].notifiedAt != undefined) {\n                    // reset notifiedAt\n                    global.set(topicNodesPrefix + '[' + i + '].notifiedAt', undefined);\n                    global.set(topicNodesPrefix + '[' + i + '].notifiedAt_human', undefined);\n                    global.set(topicNodesPrefix + '[' + i + '].for', undefined);\n                    \n                    var msgOut = {}\n                    msgOut.payload = nodes[i]\n                    msgOut.payload.state = 'available'\n                    msgOut.payload.gateway = msg.payload[j]\n                    outputMsgs.push(msgOut)\n                }\n            }\n            \n            // sensor is reporting low battery !\n            // TODO\n        }\n    }\n}\n\n// return [ outputMsgs ];\n\n// Factorize a single message\nvar finalMessage = \"\"\nfor (var j = 0; j < outputMsgs.length; j++) {\n    amsg = outputMsgs[j]\n    finalMessage += amsg.payload.state + \": \" + amsg.payload.gateway + \" / \" + amsg.payload.location + \"(\" + amsg.payload.id + \")\"\n    if(amsg.payload.for != undefined) {\n        finalMessage += amsg.payload.for + \"min\"\n    }\n    finalMessage += \"\\n\"\n}\n\nmsg.payload = finalMessage\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 710,
+        "x": 660,
         "y": 240,
         "wires": [
             [
-                "af26e828.9b92"
+                "f33af95f.a4de3"
             ]
         ]
+    },
+    {
+        "id": "f33af95f.a4de3",
+        "type": "mqtt out",
+        "z": "112e9cf8.590b23",
+        "name": "notifications/telegram",
+        "topic": "notifications/telegram",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 920,
+        "y": 260,
+        "wires": []
     }
 ]
