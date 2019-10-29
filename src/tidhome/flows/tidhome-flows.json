@@ -618,15 +618,17 @@
         "id": "9ee431c1.7d7f9",
         "type": "mqtt in",
         "z": "a6ca2108.abdcc8",
-        "name": "actors/iotheaters/relays/+/switch",
-        "topic": "actors/iotheaters/relays/+/switch",
+        "name": "actors/iotheaters/switch",
+        "topic": "actors/iotheaters/switch",
         "qos": "2",
         "datatype": "json",
         "broker": "c38452a5.4f84e8",
-        "x": 170,
+        "x": 140,
         "y": 160,
         "wires": [
-            []
+            [
+                "af4997be.134f8"
+            ]
         ]
     },
     {
@@ -644,7 +646,7 @@
         "y": 330,
         "wires": [
             [
-                "cf6ab180.ad4d98"
+                "82278990.f3ab6"
             ]
         ]
     },
@@ -663,7 +665,7 @@
         "y": 290,
         "wires": [
             [
-                "cf6ab180.ad4d98"
+                "82278990.f3ab6"
             ]
         ]
     },
@@ -682,7 +684,7 @@
         "y": 370,
         "wires": [
             [
-                "cf6ab180.ad4d98"
+                "82278990.f3ab6"
             ]
         ]
     },
@@ -701,7 +703,7 @@
         "y": 410,
         "wires": [
             [
-                "cf6ab180.ad4d98"
+                "82278990.f3ab6"
             ]
         ]
     },
@@ -720,7 +722,7 @@
         "y": 450,
         "wires": [
             [
-                "cf6ab180.ad4d98"
+                "82278990.f3ab6"
             ]
         ]
     },
@@ -739,7 +741,7 @@
         "y": 490,
         "wires": [
             [
-                "cf6ab180.ad4d98"
+                "82278990.f3ab6"
             ]
         ]
     },
@@ -758,7 +760,7 @@
         "y": 530,
         "wires": [
             [
-                "cf6ab180.ad4d98"
+                "82278990.f3ab6"
             ]
         ]
     },
@@ -777,7 +779,7 @@
         "y": 570,
         "wires": [
             [
-                "cf6ab180.ad4d98"
+                "82278990.f3ab6"
             ]
         ]
     },
@@ -796,7 +798,7 @@
         "y": 610,
         "wires": [
             [
-                "cf6ab180.ad4d98"
+                "82278990.f3ab6"
             ]
         ]
     },
@@ -815,7 +817,7 @@
         "y": 650,
         "wires": [
             [
-                "cf6ab180.ad4d98"
+                "82278990.f3ab6"
             ]
         ]
     },
@@ -846,7 +848,7 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 650,
+        "x": 700,
         "y": 30,
         "wires": []
     },
@@ -892,7 +894,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 880,
-        "y": 200,
+        "y": 180,
         "wires": []
     },
     {
@@ -1020,39 +1022,6 @@
                 "af26e828.9b92"
             ]
         ]
-    },
-    {
-        "id": "cf6ab180.ad4d98",
-        "type": "http request",
-        "z": "a6ca2108.abdcc8",
-        "name": "Switch Web Relays",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "http://192.168.1.56/gpios/switch?id={{{payload}}}",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 580,
-        "y": 450,
-        "wires": [
-            [
-                "48a96725.f96be"
-            ]
-        ]
-    },
-    {
-        "id": "48a96725.f96be",
-        "type": "debug",
-        "z": "a6ca2108.abdcc8",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 760,
-        "y": 450,
-        "wires": []
     },
     {
         "id": "9e12968e.6ff6b8",
@@ -1202,7 +1171,7 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 690,
+        "x": 740,
         "y": 70,
         "wires": []
     },
@@ -1360,9 +1329,9 @@
         "id": "cc675ec4.106d",
         "type": "comment",
         "z": "d88a69c4.1942c8",
-        "name": "Sensors - Heaters",
+        "name": "Sensors - Heaters/Power/RFM868",
         "info": "",
-        "x": 120,
+        "x": 170,
         "y": 120,
         "wires": []
     },
@@ -1370,67 +1339,13 @@
         "id": "90d304a9.c871a",
         "type": "mqtt in",
         "z": "d88a69c4.1942c8",
-        "name": "sensors/iotheaters/#",
-        "topic": "sensors/iotheaters/#",
+        "name": "sensors/#",
+        "topic": "sensors/#",
         "qos": "2",
         "datatype": "json",
         "broker": "c38452a5.4f84e8",
-        "x": 130,
+        "x": 100,
         "y": 160,
-        "wires": [
-            [
-                "dcd509f1.d56dd"
-            ]
-        ]
-    },
-    {
-        "id": "f508a719.4285d8",
-        "type": "comment",
-        "z": "d88a69c4.1942c8",
-        "name": "Sensors - Power",
-        "info": "",
-        "x": 120,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "6ddf0a38.d4697c",
-        "type": "mqtt in",
-        "z": "d88a69c4.1942c8",
-        "name": "sensors/iotpower/#",
-        "topic": "sensors/iotpower/#",
-        "qos": "2",
-        "datatype": "json",
-        "broker": "c38452a5.4f84e8",
-        "x": 130,
-        "y": 260,
-        "wires": [
-            [
-                "dcd509f1.d56dd"
-            ]
-        ]
-    },
-    {
-        "id": "68aae2ac.40a004",
-        "type": "comment",
-        "z": "d88a69c4.1942c8",
-        "name": "Sensors - rfm868usb",
-        "info": "",
-        "x": 130,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "401c77c8.e1141",
-        "type": "mqtt in",
-        "z": "d88a69c4.1942c8",
-        "name": "sensors/rfm868usb/#",
-        "topic": "sensors/rfm868usb/#",
-        "qos": "2",
-        "datatype": "json",
-        "broker": "c38452a5.4f84e8",
-        "x": 130,
-        "y": 360,
         "wires": [
             [
                 "dcd509f1.d56dd"
@@ -1449,7 +1364,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 870,
-        "y": 260,
+        "y": 160,
         "wires": []
     },
     {
@@ -1461,7 +1376,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 380,
-        "y": 260,
+        "y": 160,
         "wires": [
             [
                 "14def27.355280e"
@@ -1597,7 +1512,69 @@
         "retain": "",
         "broker": "c38452a5.4f84e8",
         "x": 920,
-        "y": 260,
+        "y": 240,
         "wires": []
+    },
+    {
+        "id": "af4997be.134f8",
+        "type": "http request",
+        "z": "a6ca2108.abdcc8",
+        "name": "Switch Web Relays",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://192.168.1.56/gpios/switch?id={{{payload.id}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 490,
+        "y": 160,
+        "wires": [
+            [
+                "476f5894.01527"
+            ]
+        ]
+    },
+    {
+        "id": "476f5894.01527",
+        "type": "debug",
+        "z": "a6ca2108.abdcc8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 690,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "43764d29.9774c4",
+        "type": "mqtt out",
+        "z": "a6ca2108.abdcc8",
+        "name": "actors/iotheaters/switch",
+        "topic": "actors/iotheaters/switch",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 740,
+        "y": 470,
+        "wires": []
+    },
+    {
+        "id": "82278990.f3ab6",
+        "type": "function",
+        "z": "a6ca2108.abdcc8",
+        "name": "Xfer",
+        "func": "return { 'payload': { 'id': msg.payload } }",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 480,
+        "y": 470,
+        "wires": [
+            [
+                "43764d29.9774c4"
+            ]
+        ]
     }
 ]
