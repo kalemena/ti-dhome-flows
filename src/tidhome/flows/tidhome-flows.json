@@ -229,13 +229,13 @@
         "type": "debug",
         "z": "d06e385b.de11c8",
         "name": "Debug",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 770,
+        "x": 790,
         "y": 30,
         "wires": []
     },
@@ -1047,39 +1047,13 @@
         "id": "f20c9be2.db11d8",
         "type": "mqtt out",
         "z": "d06e385b.de11c8",
-        "name": "sensors/iotpower/nodes/...",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 820,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "f1beea2b.c0578",
-        "type": "mqtt out",
-        "z": "d06e385b.de11c8",
-        "name": "sensors/rfm868usb/nodes/...",
+        "name": "sensors/xxx/nodes/...",
         "topic": "",
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
         "x": 830,
         "y": 220,
-        "wires": []
-    },
-    {
-        "id": "b71c316e.66ac78",
-        "type": "mqtt out",
-        "z": "d06e385b.de11c8",
-        "name": "sensors/iotheaters/nodes/...",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 830,
-        "y": 280,
         "wires": []
     },
     {
@@ -1110,7 +1084,7 @@
         "y": 220,
         "wires": [
             [
-                "f1beea2b.c0578"
+                "f20c9be2.db11d8"
             ]
         ]
     },
@@ -1126,7 +1100,7 @@
         "y": 280,
         "wires": [
             [
-                "b71c316e.66ac78"
+                "f20c9be2.db11d8"
             ]
         ]
     },
@@ -1200,7 +1174,7 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 810,
+        "x": 830,
         "y": 70,
         "wires": []
     },
@@ -1576,5 +1550,15 @@
                 "43764d29.9774c4"
             ]
         ]
+    },
+    {
+        "id": "a917766c.6f8908",
+        "type": "comment",
+        "z": "112e9cf8.590b23",
+        "name": "Sensors => Actors",
+        "info": "",
+        "x": 130,
+        "y": 290,
+        "wires": []
     }
 ]

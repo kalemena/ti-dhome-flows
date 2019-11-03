@@ -23,6 +23,8 @@ if(msg.payload.msg.tmpr != undefined && msg.payload.msg.sensor[0] == '1') {
         "timestamp": timestamp,
         "timestamp-human": timestampH
     }
+    displayMsg = msgT.payload.id + "/" + msgT.payload.type + "=" + msgT.payload.value
+    node.status({ fill:"orange", shape:"dot", text: displayMsg });
     outputMsgs.push(msgT);
     // node.warn("CC event temp:\n" + JSON.stringify(msgT))
 }
@@ -46,6 +48,8 @@ if(msg.payload.msg.sensor != undefined && msg.payload.msg.sensor[0] != undefined
         "timestamp": timestamp,
         "timestamp-human": timestampH
     }
+    displayMsg = msgP.payload.id + "/" + msgP.payload.type + "=" + msgP.payload.value
+    node.status({ fill:"blue", shape:"dot", text: displayMsg });
     outputMsgs.push(msgP);
     // node.warn("CC event:\n" + JSON.stringify(msg))
 }

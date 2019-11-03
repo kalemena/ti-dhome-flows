@@ -44,7 +44,10 @@ if(s[0] === 'ROOM') {
             "timestamp": timestamp,
             "timestamp-human": timestampH
         }
+        node.status({ fill:"blue", shape:"dot", text: msg.payload });
         outputMsgs.push(msgJ);
+    } else {
+      node.status({ fill:"red", shape:"dot", text: msg.payload });
     }
     
     //setTimeout(function() { this.status({}); }, 500);

@@ -1,6 +1,7 @@
 // name: Parse web relays
 // outputs: 1
-var outputMsgs = [];
+var outputMsgs = []
+var displayMsg = ""
 timestampH = new Date().toISOString()
 timestamp = new Date().getTime()
 
@@ -21,7 +22,10 @@ for (var i in msg.payload) {
         "timestamp": timestamp,
         "timestamp-human": timestampH
     }
+    displayMsg += msg.payload[i].description + "(" + msg.payload[i].switch + ")=" + msg.payload[i].value + "; "
     outputMsgs.push(msgS);
 }
+
+node.status({ fill:"blue", shape:"dot", text: displayMsg });
 
 return [ outputMsgs ];
