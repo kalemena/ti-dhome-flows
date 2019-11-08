@@ -51,6 +51,8 @@ sensors:
       location: Garage
     - id: 9
       location: "Ch.Bas"
+    - id: 30
+      location: "Ch.Bas.2"
     - id: 108
       location: "SdB.Bas"
       enabled: false

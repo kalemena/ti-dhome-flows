@@ -35,6 +35,13 @@
         "info": ""
     },
     {
+        "id": "e77a2be7.894528",
+        "type": "tab",
+        "label": "Bot",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "4fc69d2d.235124",
         "type": "telegram bot",
         "z": "",
@@ -345,7 +352,9 @@
         "x": 260,
         "y": 160,
         "wires": [
-            []
+            [
+                "57bdbb93.d54314"
+            ]
         ]
     },
     {
@@ -1015,7 +1024,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 610,
+        "x": 630,
         "y": 200,
         "wires": [
             [
@@ -1465,7 +1474,7 @@
         "type": "function",
         "z": "112e9cf8.590b23",
         "name": "Alarms",
-        "func": "var outputMsgs = []\nvar now = new Date().getTime()\nvar nowH = new Date().toISOString()\n\n// Read global info\nfor (var j = 0; j < msg.payload.length; j++) {\n    var topicNodesPrefix = 'tidhome.sensors.' + msg.payload[j] + '.nodes'\n    var nodes = global.get(topicNodesPrefix) || []\n    for (var i = 0; i < nodes.length; i++) {\n        \n        if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n            continue\n        \n        // sensor is configured but never seen !\n        if(nodes[i].timestamp == undefined) {\n            if(nodes[i].notifiedAt == undefined) {\n                var msgOut = {}\n                msgOut.payload = nodes[i]\n                msgOut.payload.gateway = msg.payload[j]\n                msgOut.payload.state = 'neverseen'\n                msgOut.payload.notifiedAt = now\n                msgOut.payload.notifiedAt_human = nowH\n                outputMsgs.push(msgOut)\n                continue\n            }\n            \n        } else {\n        \n            // sensor no longer seen after 30min !\n            var tOld = parseInt((now - nodes[i].timestamp) / (1000 * 60))\n            if(tOld > 30) {\n                if(nodes[i].notifiedAt == undefined) {\n                    // 30 min old data => alarm\n                    var msgOut = {}\n                    msgOut.payload = nodes[i]\n                    msgOut.payload.gateway = msg.payload[j]\n                    msgOut.payload.state = 'unavailable'\n                    msgOut.payload.notifiedAt = now\n                    msgOut.payload.notifiedAt_human = nowH\n                    msgOut.payload.for = tOld\n                    outputMsgs.push(msgOut)\n                }\n                \n            } else {\n                if(nodes[i].notifiedAt != undefined) {\n                    // reset notifiedAt\n                    global.set(topicNodesPrefix + '[' + i + '].notifiedAt', undefined);\n                    global.set(topicNodesPrefix + '[' + i + '].notifiedAt_human', undefined);\n                    global.set(topicNodesPrefix + '[' + i + '].for', undefined);\n                    \n                    var msgOut = {}\n                    msgOut.payload = nodes[i]\n                    msgOut.payload.state = 'available'\n                    msgOut.payload.gateway = msg.payload[j]\n                    outputMsgs.push(msgOut)\n                }\n            }\n            \n            // sensor is reporting low battery !\n            // TODO\n        }\n    }\n}\n\n// return [ outputMsgs ];\n\n// Factorize a single message\nvar finalMessage = \"\"\nfor (var j = 0; j < outputMsgs.length; j++) {\n    amsg = outputMsgs[j]\n    finalMessage += amsg.payload.state + \": \" + amsg.payload.gateway + \" / \" + amsg.payload.location + \"(\" + amsg.payload.id + \")\"\n    if(amsg.payload.for != undefined) {\n        finalMessage += amsg.payload.for + \"min\"\n    }\n    finalMessage += \"\\n\"\n}\n\nmsg.payload = finalMessage\nreturn msg;",
+        "func": "var outputMsgs = []\nvar now = new Date().getTime()\nvar nowH = new Date().toISOString()\n\n// Read global info\nfor (var j = 0; j < msg.payload.length; j++) {\n    var topicNodesPrefix = 'tidhome.sensors.' + msg.payload[j] + '.nodes'\n    var nodes = global.get(topicNodesPrefix) || []\n    for (var i = 0; i < nodes.length; i++) {\n        \n        if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n            continue\n        \n        // sensor is configured but never seen !\n        if(nodes[i].timestamp == undefined) {\n            if(nodes[i].notifiedAt == undefined) {\n                var msgOut = {}\n                msgOut.payload = nodes[i]\n                msgOut.payload.gateway = msg.payload[j]\n                msgOut.payload.state = 'neverseen'\n                msgOut.payload.notifiedAt = now\n                msgOut.payload.notifiedAt_human = nowH\n                outputMsgs.push(msgOut)\n                continue\n            }\n            \n        } else {\n        \n            // sensor no longer seen after 60min !\n            var tOld = parseInt((now - nodes[i].timestamp) / (1000 * 60))\n            if(tOld > 60) {\n                if(nodes[i].notifiedAt == undefined) {\n                    // 30 min old data => alarm\n                    var msgOut = {}\n                    msgOut.payload = nodes[i]\n                    msgOut.payload.gateway = msg.payload[j]\n                    msgOut.payload.state = 'unavailable'\n                    msgOut.payload.notifiedAt = now\n                    msgOut.payload.notifiedAt_human = nowH\n                    msgOut.payload.for = tOld\n                    outputMsgs.push(msgOut)\n                }\n                \n            } else {\n                if(nodes[i].notifiedAt != undefined) {\n                    // reset notifiedAt\n                    global.set(topicNodesPrefix + '[' + i + '].notifiedAt', undefined);\n                    global.set(topicNodesPrefix + '[' + i + '].notifiedAt_human', undefined);\n                    global.set(topicNodesPrefix + '[' + i + '].for', undefined);\n                    \n                    var msgOut = {}\n                    msgOut.payload = nodes[i]\n                    msgOut.payload.state = 'available'\n                    msgOut.payload.gateway = msg.payload[j]\n                    outputMsgs.push(msgOut)\n                }\n            }\n            \n            // sensor is reporting low battery !\n            // TODO\n        }\n    }\n}\n\n// return [ outputMsgs ];\n\n// Factorize a single message\nvar finalMessage = \"\"\nfor (var j = 0; j < outputMsgs.length; j++) {\n    amsg = outputMsgs[j]\n    finalMessage += amsg.payload.state + \": \" + amsg.payload.gateway + \" / \" + amsg.payload.location + \"(\" + amsg.payload.id + \")\"\n    if(amsg.payload.for != undefined) {\n        finalMessage += amsg.payload.for + \"min\"\n    }\n    finalMessage += \"\\n\"\n}\n\nmsg.payload = finalMessage\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 660,
@@ -1559,6 +1568,300 @@
         "info": "",
         "x": 130,
         "y": 290,
+        "wires": []
+    },
+    {
+        "id": "40233b26.60d444",
+        "type": "telegram command",
+        "z": "e77a2be7.894528",
+        "name": "/help",
+        "command": "/help",
+        "bot": "4fc69d2d.235124",
+        "strict": false,
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "414ea594.afc18c"
+            ],
+            [
+                "c829ddf4.a40fe8"
+            ]
+        ]
+    },
+    {
+        "id": "ec4a8411.e5dfa",
+        "type": "telegram sender",
+        "z": "e77a2be7.894528",
+        "name": "Response",
+        "bot": "4fc69d2d.235124",
+        "x": 580,
+        "y": 190,
+        "wires": [
+            [
+                "9c065846.7bb818"
+            ]
+        ]
+    },
+    {
+        "id": "414ea594.afc18c",
+        "type": "function",
+        "z": "e77a2be7.894528",
+        "name": "",
+        "func": "var helpMessage = \"/help - shows help\\n\";\nhelpMessage += \"/status - request for status\\n\";\n\nhelpMessage += \"Your chat id is \" + msg.payload.chatId + \"\\n\";\nhelpMessage += \"You are welcome: \"+ msg.originalMessage.from.username + \"\\n\";\n\nmsg.payload.content = helpMessage;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 190,
+        "wires": [
+            [
+                "ec4a8411.e5dfa"
+            ]
+        ]
+    },
+    {
+        "id": "c829ddf4.a40fe8",
+        "type": "file",
+        "z": "e77a2be7.894528",
+        "name": "",
+        "filename": "/var/log/telegram-unauthorized.log",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 400,
+        "y": 250,
+        "wires": [
+            [
+                "d548318e.c1bfb8"
+            ]
+        ]
+    },
+    {
+        "id": "9c065846.7bb818",
+        "type": "debug",
+        "z": "e77a2be7.894528",
+        "name": "Status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 830,
+        "y": 190,
+        "wires": []
+    },
+    {
+        "id": "8cff488a.8d6f98",
+        "type": "catch",
+        "z": "e77a2be7.894528",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 100,
+        "y": 30,
+        "wires": [
+            [
+                "d7b23e07.13b498",
+                "94457644.6eed38"
+            ]
+        ]
+    },
+    {
+        "id": "d7b23e07.13b498",
+        "type": "debug",
+        "z": "e77a2be7.894528",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 640,
+        "y": 30,
+        "wires": []
+    },
+    {
+        "id": "94457644.6eed38",
+        "type": "function",
+        "z": "e77a2be7.894528",
+        "name": "Flow Notification",
+        "func": "msg.payload = \"Flow Bot:\\n\" + msg.error.message\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 70,
+        "wires": [
+            [
+                "bab248aa.5dcf2"
+            ]
+        ]
+    },
+    {
+        "id": "bab248aa.5dcf2",
+        "type": "delay",
+        "z": "e77a2be7.894528",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "30",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 660,
+        "y": 70,
+        "wires": [
+            [
+                "9fab81e.43103"
+            ]
+        ]
+    },
+    {
+        "id": "9fab81e.43103",
+        "type": "mqtt out",
+        "z": "e77a2be7.894528",
+        "name": "notifications/telegram",
+        "topic": "notifications/telegram",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 880,
+        "y": 70,
+        "wires": []
+    },
+    {
+        "id": "ea1a2372.5149d",
+        "type": "telegram command",
+        "z": "e77a2be7.894528",
+        "name": "/start",
+        "command": "/start",
+        "bot": "4fc69d2d.235124",
+        "strict": false,
+        "x": 110,
+        "y": 190,
+        "wires": [
+            [
+                "414ea594.afc18c"
+            ],
+            [
+                "c829ddf4.a40fe8"
+            ]
+        ]
+    },
+    {
+        "id": "d548318e.c1bfb8",
+        "type": "debug",
+        "z": "e77a2be7.894528",
+        "name": "Error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 830,
+        "y": 250,
+        "wires": []
+    },
+    {
+        "id": "fdcfaa6a.393db",
+        "type": "telegram command",
+        "z": "e77a2be7.894528",
+        "name": "/status",
+        "command": "/status",
+        "bot": "4fc69d2d.235124",
+        "strict": false,
+        "x": 110,
+        "y": 510,
+        "wires": [
+            [
+                "b8b879fe.1654a"
+            ],
+            [
+                "ad191d4c.3e2998"
+            ]
+        ]
+    },
+    {
+        "id": "585f1b21.64d4d4",
+        "type": "telegram sender",
+        "z": "e77a2be7.894528",
+        "name": "show keyboard",
+        "bot": "4fc69d2d.235124",
+        "x": 860,
+        "y": 510,
+        "wires": [
+            [
+                "a3663751.58695"
+            ]
+        ]
+    },
+    {
+        "id": "b8b879fe.1654a",
+        "type": "function",
+        "z": "e77a2be7.894528",
+        "name": "confirmation message",
+        "func": "context.global.keyboard = { pending : true };\n\nvar opts = {\n  reply_to_message_id: msg.payload.messageId,\n  reply_markup: JSON.stringify({\n    keyboard: [\n      ['iotheaters'],\n      ['rfm868usb']],\n      'resize_keyboard' : true, \n      'one_time_keyboard' : true\n  })\n};\n\nmsg.payload.content = 'Which?';\nmsg.payload.options = opts;\n\nreturn [ msg ];\n",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 370,
+        "y": 510,
+        "wires": [
+            [
+                "585f1b21.64d4d4"
+            ]
+        ]
+    },
+    {
+        "id": "ad191d4c.3e2998",
+        "type": "function",
+        "z": "e77a2be7.894528",
+        "name": "create response",
+        "func": "if(context.global.keyboard.pending)\n{\n    context.global.keyboard.pending = false;\n    \n    if(msg.payload.content === 'iotheaters')\n    {\n        msg.payload.content = 'iotheaters-res';\n        return [msg, null];   \n    }\n    else\n    {\n        msg.payload.content = 'rfm868usb-res';\n        return [null, msg];   \n    }\n}\n",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 350,
+        "y": 550,
+        "wires": [
+            [
+                "6c3c697f.8887a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6c3c697f.8887a",
+        "type": "telegram sender",
+        "z": "e77a2be7.894528",
+        "name": "send response",
+        "bot": "4fc69d2d.235124",
+        "x": 860,
+        "y": 560,
+        "wires": [
+            [
+                "a3663751.58695"
+            ]
+        ]
+    },
+    {
+        "id": "a3663751.58695",
+        "type": "debug",
+        "z": "e77a2be7.894528",
+        "name": "Status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1040,
+        "y": 510,
         "wires": []
     }
 ]

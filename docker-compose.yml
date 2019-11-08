@@ -18,6 +18,7 @@ services:
     volumes:
      - ./src/tidhome:/opt/tidhome
      - ./src/tidhome/config:/root/.node-red
+     - ./var/log:/var/log
     devices:
      - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"
