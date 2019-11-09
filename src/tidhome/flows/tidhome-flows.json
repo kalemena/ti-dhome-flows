@@ -47,7 +47,7 @@
         "z": "",
         "botname": "Ti-dhome-base",
         "usernames": "",
-        "chatids": "",
+        "chatids": "703594763,661949166",
         "baseapiurl": "",
         "updatemode": "polling",
         "pollinterval": "3000",
@@ -310,14 +310,15 @@
         "lat": "48.4778124",
         "date": "",
         "time": "",
-        "mode": "node",
+        "mode": "message",
         "lang": "fr",
         "units": "si",
-        "x": 310,
+        "x": 490,
         "y": 370,
         "wires": [
             [
-                "8b517c2b.d93ed8"
+                "8b517c2b.d93ed8",
+                "eff1f82.28aea08"
             ]
         ]
     },
@@ -457,9 +458,9 @@
         "y": 240,
         "wires": [
             [
-                "45d9a893.f40ca8",
                 "f6373746.83f598",
-                "57bdbb93.d54314"
+                "57bdbb93.d54314",
+                "e7e9239c.0be1c"
             ]
         ]
     },
@@ -1896,7 +1897,7 @@
         "y": 370,
         "wires": [
             [
-                "45d9a893.f40ca8"
+                "e7e9239c.0be1c"
             ]
         ]
     },
@@ -1911,6 +1912,37 @@
         "broker": "c38452a5.4f84e8",
         "x": 350,
         "y": 280,
+        "wires": []
+    },
+    {
+        "id": "e7e9239c.0be1c",
+        "type": "function",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "func": "msg.time = new Date().getTime()\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 370,
+        "wires": [
+            [
+                "45d9a893.f40ca8"
+            ]
+        ]
+    },
+    {
+        "id": "eff1f82.28aea08",
+        "type": "debug",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 710,
+        "y": 410,
         "wires": []
     }
 ]
