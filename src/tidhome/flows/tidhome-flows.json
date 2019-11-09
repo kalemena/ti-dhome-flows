@@ -47,7 +47,7 @@
         "z": "",
         "botname": "Ti-dhome-base",
         "usernames": "",
-        "chatids": "703594763,661949166",
+        "chatids": "",
         "baseapiurl": "",
         "updatemode": "polling",
         "pollinterval": "3000",
@@ -1609,7 +1609,7 @@
         "type": "function",
         "z": "e77a2be7.894528",
         "name": "",
-        "func": "var helpMessage = \"/help - shows help\\n\";\nhelpMessage += \"/status - request for status\\n\";\n\nhelpMessage += \"Your chat id is \" + msg.payload.chatId + \"\\n\";\nhelpMessage += \"You are welcome: \"+ msg.originalMessage.from.username + \"\\n\";\n\nmsg.payload.content = helpMessage;\nreturn msg;",
+        "func": "var helpMessage = \"/help - shows help\\n\";\nhelpMessage += \"/status - request for status\\n\";\n\nhelpMessage += \"Your chat id is \" + msg.payload.chatId + \"\\n\";\nhelpMessage += \"You are welcome: \"+ msg.originalMessage.from.username + \"\\n\";\n\nmsg.payload.content = helpMessage;\nmsg.payload.chatids\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 320,
@@ -1877,42 +1877,12 @@
         "y": 290,
         "wires": [
             [
-                "e3bdec01.83eaa8"
+                "8e9d1931.8c5688"
             ],
             [
                 "c829ddf4.a40fe8"
             ]
         ]
-    },
-    {
-        "id": "6c13172d.a85fe8",
-        "type": "mqtt in",
-        "z": "8627a08f.2f4c18",
-        "name": "requests/meteo",
-        "topic": "requests/meteo",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "c38452a5.4f84e8",
-        "x": 80,
-        "y": 370,
-        "wires": [
-            [
-                "e7e9239c.0be1c"
-            ]
-        ]
-    },
-    {
-        "id": "e3bdec01.83eaa8",
-        "type": "mqtt out",
-        "z": "e77a2be7.894528",
-        "name": "requests/meteo",
-        "topic": "requests/meteo",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 350,
-        "y": 280,
-        "wires": []
     },
     {
         "id": "e7e9239c.0be1c",
@@ -1943,6 +1913,149 @@
         "targetType": "full",
         "x": 710,
         "y": 410,
+        "wires": []
+    },
+    {
+        "id": "dc46d36e.b44f88",
+        "type": "darksky",
+        "z": "e77a2be7.894528",
+        "darksky": "56c5e5e6.d3610c",
+        "name": "Weather Forecast",
+        "lon": "-4.574204",
+        "lat": "48.4778124",
+        "date": "",
+        "time": "",
+        "mode": "message",
+        "lang": "fr",
+        "units": "si",
+        "x": 680,
+        "y": 290,
+        "wires": [
+            [
+                "5943aef0.08ad28"
+            ]
+        ]
+    },
+    {
+        "id": "233f4d7d.288282",
+        "type": "function",
+        "z": "e77a2be7.894528",
+        "name": "Meteo",
+        "func": "var message = msg.forecast.detail + '\\n' + \n    \"temp=\" + msg.data.currently.temperature + \"°C (\" + msg.forecast.mintemp + \"°C to \" + msg.forecast.maxtemp + \"°C) \\n\" +\n    \"humidity=\" + (msg.forecast.humidity * 100) + \"%\\n\" +\n    \"pressure=\" + msg.data.currently.pressure + \"hPa\\n\" +\n    \"windspeed=\" + msg.forecast.windspeed + \"km/h\\n\" +\n    \"winddirection=\" + msg.forecast.winddirection + \"\\n\" + \n    \"clouds=\" + (msg.forecast.clouds * 100) + \"%\";\n    \nmsg.payload.content = message\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1020,
+        "y": 290,
+        "wires": [
+            [
+                "edb461bb.0b5cf8"
+            ]
+        ]
+    },
+    {
+        "id": "8e9d1931.8c5688",
+        "type": "change",
+        "z": "e77a2be7.894528",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "telegram",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 290,
+        "wires": [
+            [
+                "a9ef1b97.005e8"
+            ]
+        ]
+    },
+    {
+        "id": "a9ef1b97.005e8",
+        "type": "function",
+        "z": "e77a2be7.894528",
+        "name": "",
+        "func": "msg.time = new Date().getTime()\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520,
+        "y": 290,
+        "wires": [
+            [
+                "dc46d36e.b44f88"
+            ]
+        ]
+    },
+    {
+        "id": "5943aef0.08ad28",
+        "type": "change",
+        "z": "e77a2be7.894528",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "forecast",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "telegram",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 290,
+        "wires": [
+            [
+                "233f4d7d.288282"
+            ]
+        ]
+    },
+    {
+        "id": "edb461bb.0b5cf8",
+        "type": "telegram sender",
+        "z": "e77a2be7.894528",
+        "name": "Send",
+        "bot": "4fc69d2d.235124",
+        "x": 1140,
+        "y": 290,
+        "wires": [
+            [
+                "caca8848.b2a778"
+            ]
+        ]
+    },
+    {
+        "id": "caca8848.b2a778",
+        "type": "debug",
+        "z": "e77a2be7.894528",
+        "name": "Status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1260,
+        "y": 290,
         "wires": []
     }
 ]
