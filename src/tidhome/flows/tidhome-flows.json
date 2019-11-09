@@ -651,7 +651,7 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 110,
+        "x": 100,
         "y": 330,
         "wires": [
             [
@@ -822,7 +822,7 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 100,
+        "x": 90,
         "y": 650,
         "wires": [
             [
@@ -902,7 +902,7 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 880,
+        "x": 870,
         "y": 180,
         "wires": []
     },
@@ -1494,7 +1494,7 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 920,
+        "x": 910,
         "y": 240,
         "wires": []
     },
@@ -1630,7 +1630,7 @@
         "overwriteFile": "false",
         "encoding": "none",
         "x": 400,
-        "y": 250,
+        "y": 340,
         "wires": [
             [
                 "d548318e.c1bfb8"
@@ -1766,7 +1766,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 830,
-        "y": 250,
+        "y": 340,
         "wires": []
     },
     {
@@ -1862,6 +1862,55 @@
         "targetType": "full",
         "x": 1040,
         "y": 510,
+        "wires": []
+    },
+    {
+        "id": "f528cdd0.d1401",
+        "type": "telegram command",
+        "z": "e77a2be7.894528",
+        "name": "/meteo",
+        "command": "/meteo",
+        "bot": "4fc69d2d.235124",
+        "strict": false,
+        "x": 110,
+        "y": 290,
+        "wires": [
+            [
+                "e3bdec01.83eaa8"
+            ],
+            [
+                "c829ddf4.a40fe8"
+            ]
+        ]
+    },
+    {
+        "id": "6c13172d.a85fe8",
+        "type": "mqtt in",
+        "z": "8627a08f.2f4c18",
+        "name": "requests/meteo",
+        "topic": "requests/meteo",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c38452a5.4f84e8",
+        "x": 80,
+        "y": 370,
+        "wires": [
+            [
+                "45d9a893.f40ca8"
+            ]
+        ]
+    },
+    {
+        "id": "e3bdec01.83eaa8",
+        "type": "mqtt out",
+        "z": "e77a2be7.894528",
+        "name": "requests/meteo",
+        "topic": "requests/meteo",
+        "qos": "",
+        "retain": "",
+        "broker": "c38452a5.4f84e8",
+        "x": 350,
+        "y": 280,
         "wires": []
     }
 ]
