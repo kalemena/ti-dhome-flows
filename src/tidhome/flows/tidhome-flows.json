@@ -45,7 +45,7 @@
         "id": "4fc69d2d.235124",
         "type": "telegram bot",
         "z": "",
-        "botname": "Ti-dhome-base",
+        "botname": "SomeKalemenaBot",
         "usernames": "",
         "chatids": "",
         "baseapiurl": "",
@@ -353,9 +353,7 @@
         "x": 260,
         "y": 160,
         "wires": [
-            [
-                "57bdbb93.d54314"
-            ]
+            []
         ]
     },
     {
@@ -1630,7 +1628,7 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 400,
+        "x": 410,
         "y": 340,
         "wires": [
             [
@@ -1808,7 +1806,7 @@
         "type": "function",
         "z": "e77a2be7.894528",
         "name": "confirmation message",
-        "func": "context.global.keyboard = { pending : true };\n\nvar opts = {\n  reply_to_message_id: msg.payload.messageId,\n  reply_markup: JSON.stringify({\n    keyboard: [\n      ['iotheaters'],\n      ['rfm868usb']],\n      'resize_keyboard' : true, \n      'one_time_keyboard' : true\n  })\n};\n\nmsg.payload.content = 'Which?';\nmsg.payload.options = opts;\n\nreturn [ msg ];\n",
+        "func": "context.global.keyboard = { pending : true };\n\nvar opts = {\n  reply_to_message_id: msg.payload.messageId,\n  reply_markup: JSON.stringify({\n    keyboard: [ ['iotheaters'], ['rfm868usb']],\n      'resize_keyboard' : true, \n      'one_time_keyboard' : true\n  })\n};\n\nmsg.payload.content = 'Which?';\nmsg.payload.options = opts;\n\nreturn [ msg ];\n",
         "outputs": "1",
         "noerr": 0,
         "x": 370,
@@ -1824,16 +1822,15 @@
         "type": "function",
         "z": "e77a2be7.894528",
         "name": "create response",
-        "func": "if(context.global.keyboard.pending)\n{\n    context.global.keyboard.pending = false;\n    \n    if(msg.payload.content === 'iotheaters')\n    {\n        msg.payload.content = 'iotheaters-res';\n        return [msg, null];   \n    }\n    else\n    {\n        msg.payload.content = 'rfm868usb-res';\n        return [null, msg];   \n    }\n}\n",
-        "outputs": "2",
+        "func": "if(context.global.keyboard.pending)\n{\n    context.global.keyboard.pending = false;\n    return msg;\n}\n",
+        "outputs": 1,
         "noerr": 0,
         "x": 350,
         "y": 550,
         "wires": [
             [
-                "6c3c697f.8887a"
-            ],
-            []
+                "1593bcbf.dbacc3"
+            ]
         ]
     },
     {
@@ -2057,5 +2054,21 @@
         "x": 1260,
         "y": 290,
         "wires": []
+    },
+    {
+        "id": "1593bcbf.dbacc3",
+        "type": "function",
+        "z": "e77a2be7.894528",
+        "name": "Alarms",
+        "func": "var outputMsgsNeverSeen = []\nvar outputMsgsUnavailable = []\nvar now = new Date().getTime()\nvar nowH = new Date().toISOString()\nvar gateway = msg.payload.content\n\n// Read global info\nvar topicNodesPrefix = 'tidhome.sensors.' + gateway + '.nodes'\nvar nodes = global.get(topicNodesPrefix) || []\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n        continue\n    // sensor is configured but never seen !\n    if(nodes[i].timestamp == undefined) {\n        var msgOut = {}\n        msgOut.payload = nodes[i]\n        msgOut.payload.gateway = msg.payload[j]\n        msgOut.payload.state = 'neverseen'\n        msgOut.payload.notifiedAt = now\n        msgOut.payload.notifiedAt_human = nowH\n        outputMsgsNeverSeen.push(msgOut)\n        continue\n    }\n}\n\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n        continue\n    // sensor no longer seen after 60min !\n    var tOld = parseInt((now - nodes[i].timestamp) / (1000 * 60))\n    if(tOld > 60) {\n        // 30 min old data => alarm\n        var msgOut = {}\n        msgOut.payload = nodes[i]\n        msgOut.payload.gateway = msg.payload[j]\n        msgOut.payload.state = 'unavailable'\n        msgOut.payload.notifiedAt = now\n        msgOut.payload.notifiedAt_human = nowH\n        msgOut.payload.for = tOld\n        outputMsgsUnavailable.push(msgOut)\n    }\n}\n\n// Factorize a single message\nvar finalMessage = \"NeverSeen: \\n\"\nfor (var j = 0; j < outputMsgsNeverSeen.length; j++) {\n    amsg = outputMsgsNeverSeen[j]\n    finalMessage += amsg.payload.state + \": \" + gateway + \" / \" + amsg.payload.location + \"(\" + amsg.payload.id + \")\"\n    if(amsg.payload.for != undefined) {\n        finalMessage += amsg.payload.for + \"min\"\n    }\n    finalMessage += \"\\n\"\n}\nfinalMessage += \"Unavailable: \\n\"\nfor (var j = 0; j < outputMsgsUnavailable.length; j++) {\n    amsg = outputMsgsUnavailable[j]\n    finalMessage += amsg.payload.state + \": \" + gateway + \" / \" + amsg.payload.location + \"(\" + amsg.payload.id + \")\"\n    if(amsg.payload.for != undefined) {\n        finalMessage += amsg.payload.for + \"min\"\n    }\n    finalMessage += \"\\n\"\n}\n\nmsg.payload.content = finalMessage\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 550,
+        "wires": [
+            [
+                "6c3c697f.8887a"
+            ]
+        ]
     }
 ]
