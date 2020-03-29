@@ -37,3 +37,7 @@ See link:/etc/data/calendar-world-days.csv[World Days]
 === Meteo
 
 Block DarkSky is used to fetch meteo info for the next hours.
+
+=== Covid
+
+link:https://github.com/vukmirovic98/node-red-contrib-covid19[NodeRed Covid 19]

@@ -1,4 +1,4 @@
-FROM kalemena/node-red:1.0.2
+FROM kalemena/node-red:1.0.3
 
 RUN npm i \
     node-red-contrib-file-function-ext \
@@ -7,4 +7,5 @@ RUN npm i \
     node-red-contrib-readdir \
     node-red-contrib-telegrambot \
     node-red-node-darksky \
-    node-red-contrib-simple-weekly-scheduler;
+    node-red-contrib-simple-weekly-scheduler \
+    node-red-contrib-covid19;
