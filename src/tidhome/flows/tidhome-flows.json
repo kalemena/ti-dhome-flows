@@ -369,7 +369,8 @@
             [
                 "f6373746.83f598",
                 "57bdbb93.d54314",
-                "e7e9239c.0be1c"
+                "e7e9239c.0be1c",
+                "796c897.a1f1278"
             ]
         ]
     },
@@ -389,7 +390,8 @@
         "y": 200,
         "wires": [
             [
-                "57bdbb93.d54314"
+                "57bdbb93.d54314",
+                "796c897.a1f1278"
             ]
         ]
     },
@@ -495,7 +497,7 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 110,
+        "x": 100,
         "y": 330,
         "wires": [
             [
@@ -666,7 +668,7 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 100,
+        "x": 90,
         "y": 650,
         "wires": [
             [
@@ -794,7 +796,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 620,
+        "x": 630,
         "y": 160,
         "wires": [
             [
@@ -996,7 +998,7 @@
         "func": "var outputMsgs = []\nvar now = new Date().getTime()\nvar nowH = new Date().toISOString()\n\n// Read global info\nfor (var j = 0; j < msg.payload.length; j++) {\n    var topicNodesPrefix = 'tidhome.sensors.' + msg.payload[j] + '.nodes'\n    var nodes = global.get(topicNodesPrefix) || []\n    for (var i = 0; i < nodes.length; i++) {\n        \n        if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n            continue\n        \n        // sensor is configured but never seen !\n        if(nodes[i].timestamp == undefined) {\n            if(nodes[i].notifiedAt == undefined) {\n                var msgOut = {}\n                msgOut.payload = nodes[i]\n                msgOut.payload.gateway = msg.payload[j]\n                msgOut.payload.state = 'neverseen'\n                msgOut.payload.notifiedAt = now\n                msgOut.payload.notifiedAt_human = nowH\n                outputMsgs.push(msgOut)\n                continue\n            }\n            \n        } else {\n        \n            // sensor no longer seen after 60min !\n            var tOld = parseInt((now - nodes[i].timestamp) / (1000 * 60))\n            if(tOld > 60) {\n                if(nodes[i].notifiedAt == undefined) {\n                    // 30 min old data => alarm\n                    var msgOut = {}\n                    msgOut.payload = nodes[i]\n                    msgOut.payload.gateway = msg.payload[j]\n                    msgOut.payload.state = 'unavailable'\n                    msgOut.payload.notifiedAt = now\n                    msgOut.payload.notifiedAt_human = nowH\n                    msgOut.payload.for = tOld\n                    outputMsgs.push(msgOut)\n                }\n                \n            } else {\n                if(nodes[i].notifiedAt != undefined) {\n                    // reset notifiedAt\n                    global.set(topicNodesPrefix + '[' + i + '].notifiedAt', undefined);\n                    global.set(topicNodesPrefix + '[' + i + '].notifiedAt_human', undefined);\n                    global.set(topicNodesPrefix + '[' + i + '].for', undefined);\n                    \n                    var msgOut = {}\n                    msgOut.payload = nodes[i]\n                    msgOut.payload.state = 'available'\n                    msgOut.payload.gateway = msg.payload[j]\n                    outputMsgs.push(msgOut)\n                }\n            }\n            \n            // sensor is reporting low battery !\n            // TODO\n        }\n    }\n}\n\n// return [ outputMsgs ];\n\n// Factorize a single message\nvar finalMessage = \"\"\nfor (var j = 0; j < outputMsgs.length; j++) {\n    amsg = outputMsgs[j]\n    finalMessage += amsg.payload.state + \": \" + amsg.payload.gateway + \" / \" + amsg.payload.location + \"(\" + amsg.payload.id + \")\"\n    if(amsg.payload.for != undefined) {\n        finalMessage += amsg.payload.for + \"min\"\n    }\n    finalMessage += \"\\n\"\n}\n\nmsg.payload = finalMessage\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 640,
+        "x": 650,
         "y": 240,
         "wires": [
             [
@@ -1487,7 +1489,7 @@
         "type": "function",
         "z": "e77a2be7.894528",
         "name": "Alarms",
-        "func": "var outputMsgsNeverSeen = []\nvar outputMsgsUnavailable = []\nvar now = new Date().getTime()\nvar nowH = new Date().toISOString()\nvar gateway = msg.payload.content\n\n// Read global info\nvar topicNodesPrefix = 'tidhome.sensors.' + gateway + '.nodes'\nvar nodes = global.get(topicNodesPrefix) || []\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n        continue\n    // sensor is configured but never seen !\n    if(nodes[i].timestamp == undefined) {\n        var msgOut = {}\n        msgOut.payload = nodes[i]\n        msgOut.payload.gateway = msg.payload[j]\n        msgOut.payload.state = 'neverseen'\n        msgOut.payload.notifiedAt = now\n        msgOut.payload.notifiedAt_human = nowH\n        outputMsgsNeverSeen.push(msgOut)\n        continue\n    }\n}\n\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n        continue\n    // sensor no longer seen after 60min !\n    var tOld = parseInt((now - nodes[i].timestamp) / (1000 * 60))\n    if(tOld > 60) {\n        // 30 min old data => alarm\n        var msgOut = {}\n        msgOut.payload = nodes[i]\n        msgOut.payload.gateway = msg.payload[j]\n        msgOut.payload.state = 'unavailable'\n        msgOut.payload.notifiedAt = now\n        msgOut.payload.notifiedAt_human = nowH\n        msgOut.payload.for = tOld\n        outputMsgsUnavailable.push(msgOut)\n    }\n}\n\n// Factorize a single message\nvar finalMessage = \"NeverSeen: \\n\"\nfor (var j = 0; j < outputMsgsNeverSeen.length; j++) {\n    amsg = outputMsgsNeverSeen[j]\n    finalMessage += amsg.payload.state + \": \" + gateway + \" / \" + amsg.payload.location + \"(\" + amsg.payload.id + \")\"\n    if(amsg.payload.for != undefined) {\n        finalMessage += amsg.payload.for + \"min\"\n    }\n    finalMessage += \"\\n\"\n}\nfinalMessage += \"Unavailable: \\n\"\nfor (var j = 0; j < outputMsgsUnavailable.length; j++) {\n    amsg = outputMsgsUnavailable[j]\n    finalMessage += amsg.payload.state + \": \" + gateway + \" / \" + amsg.payload.location + \"(\" + amsg.payload.id + \")\"\n    if(amsg.payload.for != undefined) {\n        finalMessage += amsg.payload.for + \"min\"\n    }\n    finalMessage += \"\\n\"\n}\n\nmsg.payload.content = finalMessage\nreturn msg;",
+        "func": "var outputMsgsNeverSeen = []\nvar outputMsgsUnavailable = []\nvar now = new Date().getTime()\nvar nowH = new Date().toISOString()\nvar gateway = msg.payload.content\n\n// Read global info\nvar topicNodesPrefix = 'tidhome.sensors.' + gateway + '.nodes'\nvar nodes = global.get(topicNodesPrefix) || []\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n        continue\n    // sensor is configured but never seen !\n    if(nodes[i].timestamp == undefined) {\n        var msgOut = {}\n        msgOut.payload = nodes[i]\n        msgOut.payload.gateway = msg.payload[j]\n        msgOut.payload.state = 'neverseen'\n        msgOut.payload.notifiedAt = now\n        msgOut.payload.notifiedAt_human = nowH\n        outputMsgsNeverSeen.push(msgOut)\n        continue\n    }\n}\n\nfor (var i = 0; i < nodes.length; i++) {\n    if(nodes[i].enabled != undefined && nodes[i].enabled == false)\n        continue\n    // sensor no longer seen after 60min !\n    var tOld = parseInt((now - nodes[i].timestamp) / (1000 * 60))\n    if(tOld > 60) {\n        // 30 min old data => alarm\n        var msgOut = {}\n        msgOut.payload = nodes[i]\n        msgOut.payload.gateway = msg.payload[j]\n        msgOut.payload.state = 'unavailable'\n        msgOut.payload.notifiedAt = now\n        msgOut.payload.notifiedAt_human = nowH\n        msgOut.payload.for = tOld\n        outputMsgsUnavailable.push(msgOut)\n    }\n}\n\n// Factorize a single message\nvar finalMessage = \"NeverSeen: \\n\"\nfor (var j = 0; j < outputMsgsNeverSeen.length; j++) {\n    amsg = outputMsgsNeverSeen[j]\n    finalMessage += gateway + \" / \" + amsg.payload.location + \"(\" + amsg.payload.id + \")\"\n    if(amsg.payload.for != undefined) {\n        finalMessage += amsg.payload.for + \"min\"\n    }\n    finalMessage += \"\\n\"\n}\nfinalMessage += \"Unavailable: \\n\"\nfor (var j = 0; j < outputMsgsUnavailable.length; j++) {\n    amsg = outputMsgsUnavailable[j]\n    finalMessage += gateway + \" / \" + amsg.payload.location + \"(\" + amsg.payload.id + \")\"\n    if(amsg.payload.for != undefined) {\n        finalMessage += amsg.payload.for + \"min\"\n    }\n    finalMessage += \"\\n\"\n}\n\nmsg.payload.content = finalMessage\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 550,
@@ -1842,5 +1844,46 @@
         "x": 890,
         "y": 80,
         "wires": []
+    },
+    {
+        "id": "796c897.a1f1278",
+        "type": "country statistics",
+        "z": "8627a08f.2f4c18",
+        "name": "France",
+        "infected": true,
+        "deaths": true,
+        "recovered": true,
+        "active": false,
+        "critical": false,
+        "todaycases": false,
+        "todaydeaths": false,
+        "casepermilion": false,
+        "regionFilter": true,
+        "deathspermilion": false,
+        "regionList": "[\"FR\"]",
+        "regionListType": "json",
+        "x": 280,
+        "y": 450,
+        "wires": [
+            [
+                "9bc6fdda.21edd8"
+            ]
+        ]
+    },
+    {
+        "id": "9bc6fdda.21edd8",
+        "type": "function",
+        "z": "8627a08f.2f4c18",
+        "name": "Covid19",
+        "func": "var message = \"COVID:\\n\" + \n    \"Cas     = \" + msg.covid.FR.cases + \"\\n\" +\n    \"Morts   = \" + msg.covid.FR.deaths + \"\\n\" +\n    \"Sorties = \" + msg.covid.FR.recovered + \"\\n\";\n    \nmsg.payload = message\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 700,
+        "y": 450,
+        "wires": [
+            [
+                "57bdbb93.d54314"
+            ]
+        ]
     }
 ]
