@@ -1860,13 +1860,14 @@
         "casepermilion": false,
         "regionFilter": true,
         "deathspermilion": false,
-        "regionList": "[\"FR\"]",
+        "regionList": "[\"FR\",\"US\",\"GB\",\"IT\",\"ES\",\"DE\"]",
         "regionListType": "json",
-        "x": 280,
+        "x": 320,
         "y": 450,
         "wires": [
             [
-                "9bc6fdda.21edd8"
+                "9bc6fdda.21edd8",
+                "eff1f82.28aea08"
             ]
         ]
     },
@@ -1875,14 +1876,35 @@
         "type": "function",
         "z": "8627a08f.2f4c18",
         "name": "Covid19",
-        "func": "var message = \"COVID:\\n\" + \n    \"Cas     = \" + msg.covid.FR.cases + \"\\n\" +\n    \"Morts   = \" + msg.covid.FR.deaths + \"\\n\" +\n    \"Sorties = \" + msg.covid.FR.recovered + \"\\n\";\n    \nmsg.payload = message\nreturn msg;",
+        "func": "var outputMsgs = []\n//outputMsgs.push({ topic: \"COVID\", payload: msg.covid });\n//outputMsgs.push({ topic: \"COVID IT\", payload: msg.covid['IT'] });\n\nvar keys = Object.keys(msg.covid);\nfor (const country of keys) {\n  var message = \"COVID \" + \"[\" + msg.covid[country].countryinfo.country  + \"](\" + msg.covid[country].countryinfo.flagurl + \"): \\n\" +\n    \"Cas     = \" + msg.covid[country].cases + \"\\n\" +\n    \"Morts   = \" + msg.covid[country].deaths + \"\\n\" +\n    \"Sorties = \" + msg.covid[country].recovered + \"\\n\";\n    \n  outputMsgs.push({ topic: country, payload: message, photo: msg.covid[country].countryinfo.flagurl });\n}\n\nreturn [ outputMsgs ];",
         "outputs": 1,
         "noerr": 0,
-        "x": 700,
+        "x": 520,
         "y": 450,
         "wires": [
             [
+                "eff1f82.28aea08",
                 "57bdbb93.d54314"
+            ]
+        ]
+    },
+    {
+        "id": "b01fe37c.b78c3",
+        "type": "inject",
+        "z": "8627a08f.2f4c18",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 450,
+        "wires": [
+            [
+                "796c897.a1f1278"
             ]
         ]
     }
