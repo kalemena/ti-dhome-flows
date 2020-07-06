@@ -22,5 +22,6 @@ services:
     devices:
      - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"
+     - "/dev/ttyACM0:/dev/ttyZWave"
     environment:
      - FLOWS=/opt/tidhome/flows/tidhome-flows.json
