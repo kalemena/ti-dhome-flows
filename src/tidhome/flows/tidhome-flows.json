@@ -126,9 +126,9 @@
         "port": "/dev/ttyZWave",
         "driverattempts": "3",
         "pollinterval": "10000",
-        "allowunreadyupdates": false,
+        "allowunreadyupdates": true,
         "networkkey": "",
-        "logging": true
+        "logging": "full"
     },
     {
         "id": "cb68db5a.bdbca8",
@@ -273,9 +273,7 @@
         "x": 260,
         "y": 160,
         "wires": [
-            [
-                "57bdbb93.d54314"
-            ]
+            []
         ]
     },
     {
@@ -1100,6 +1098,7 @@
         "command": "/help",
         "bot": "4fc69d2d.235124",
         "strict": false,
+        "hasresponse": false,
         "x": 100,
         "y": 420,
         "wires": [
@@ -1182,6 +1181,7 @@
         "command": "/start",
         "bot": "4fc69d2d.235124",
         "strict": false,
+        "hasresponse": false,
         "x": 100,
         "y": 370,
         "wires": [
@@ -1216,6 +1216,7 @@
         "command": "/status",
         "bot": "4fc69d2d.235124",
         "strict": false,
+        "hasresponse": false,
         "x": 100,
         "y": 690,
         "wires": [
@@ -1310,6 +1311,7 @@
         "command": "/meteo",
         "bot": "4fc69d2d.235124",
         "strict": false,
+        "hasresponse": false,
         "x": 100,
         "y": 470,
         "wires": [
@@ -1925,11 +1927,12 @@
         "z": "d06e385b.de11c8",
         "name": "ZWave-USB",
         "controller": "d6378b62.a3ced8",
-        "x": 200,
-        "y": 520,
+        "x": 1000,
+        "y": 600,
         "wires": [
             [
-                "67fdf312.be2a2c"
+                "67fdf312.be2a2c",
+                "ea456bfe.8bcfa8"
             ]
         ]
     },
@@ -1946,17 +1949,17 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
-        "y": 520,
+        "x": 1440,
+        "y": 600,
         "wires": []
     },
     {
         "id": "f5a69074.d554d",
         "type": "zwave-out",
         "z": "d06e385b.de11c8",
-        "name": "Switch",
+        "name": "ZWave Out",
         "controller": "d6378b62.a3ced8",
-        "x": 440,
+        "x": 460,
         "y": 600,
         "wires": [
             [
@@ -2006,7 +2009,8 @@
         "y": 600,
         "wires": [
             [
-                "f5a69074.d554d"
+                "f5a69074.d554d",
+                "68d237a9.f06058"
             ]
         ]
     },
@@ -2038,5 +2042,258 @@
                 "f5a69074.d554d"
             ]
         ]
+    },
+    {
+        "id": "70698100.3c429",
+        "type": "inject",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "switchOn",
+        "payload": "{\"nodeid\":7}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 700,
+        "wires": [
+            [
+                "f5a69074.d554d"
+            ]
+        ]
+    },
+    {
+        "id": "ec533288.e4e89",
+        "type": "inject",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "switchOff",
+        "payload": "{\"nodeid\":7}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 740,
+        "wires": [
+            [
+                "f5a69074.d554d"
+            ]
+        ]
+    },
+    {
+        "id": "ea456bfe.8bcfa8",
+        "type": "switch",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "property": "payload.cmdclass",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "50",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "37",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1250,
+        "y": 660,
+        "wires": [
+            [
+                "3a40ecdf.7044dc"
+            ],
+            [
+                "fe25162f.2bfc9"
+            ]
+        ]
+    },
+    {
+        "id": "3a40ecdf.7044dc",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "Event",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1440,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "fe25162f.2bfc9",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "Switch",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1440,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "a4b10a7f.7ae5a8",
+        "type": "inject",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "enablePoll",
+        "payload": "{\"nodeid\":7,\"class_id\":37,\"instance\":1,\"index\":1}",
+        "payloadType": "json",
+        "x": 160,
+        "y": 460,
+        "wires": [
+            [
+                "f5a69074.d554d"
+            ]
+        ]
+    },
+    {
+        "id": "6911083a.cc7bf8",
+        "type": "link in",
+        "z": "d06e385b.de11c8",
+        "name": "inject",
+        "links": [
+            "21528503.db161a"
+        ],
+        "x": 315,
+        "y": 550,
+        "wires": [
+            [
+                "f5a69074.d554d"
+            ]
+        ]
+    },
+    {
+        "id": "40b927a.b6b7fd8",
+        "type": "telegram command",
+        "z": "e77a2be7.894528",
+        "name": "/switch",
+        "command": "/switch",
+        "bot": "4fc69d2d.235124",
+        "strict": false,
+        "hasresponse": false,
+        "x": 90,
+        "y": 250,
+        "wires": [
+            [
+                "34d52161.f3ac76"
+            ],
+            [
+                "c829ddf4.a40fe8"
+            ]
+        ]
+    },
+    {
+        "id": "34d52161.f3ac76",
+        "type": "function",
+        "z": "e77a2be7.894528",
+        "name": "",
+        "func": "var kwargs = []\nif (msg.payload) {\n    if (msg.payload.content) {\n        kwargs = msg.payload.content.trim().split(' ')\n    }\n}\n\nif (kwargs.length == 2) {\n    if(kwargs[1] == 'on')\n        msg.topic = 'switchOn'\n    else\n        msg.topic = 'switchOff'\n}\n\n// msg.payload = { \"nodeid\": kwargs[0] }\n\nreturn {\n    topic : msg.topic,\n    payload : { \"nodeid\": parseInt(kwargs[0]) }\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 310,
+        "y": 250,
+        "wires": [
+            [
+                "f8e23ac0.b10348",
+                "21528503.db161a"
+            ]
+        ]
+    },
+    {
+        "id": "21528503.db161a",
+        "type": "link out",
+        "z": "e77a2be7.894528",
+        "name": "",
+        "links": [
+            "6911083a.cc7bf8"
+        ],
+        "x": 535,
+        "y": 290,
+        "wires": []
+    },
+    {
+        "id": "f8e23ac0.b10348",
+        "type": "debug",
+        "z": "e77a2be7.894528",
+        "name": "Status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 570,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "68d237a9.f06058",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 530,
+        "wires": []
     }
 ]
