@@ -12,5 +12,5 @@ RUN mkdir -p /tmp/node.install \
         node-red-contrib-simple-weekly-scheduler \
         node-red-contrib-flatter \
         node-red-contrib-covid19 \
-    && cp -r node_modules /home/node-red/ \
+    && cp -r node_modules /opt/node-red/ \
     && rm -rf node_modules
