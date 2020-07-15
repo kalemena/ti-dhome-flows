@@ -62,6 +62,7 @@
         "privatekey": "",
         "certificate": "",
         "useselfsignedcertificate": false,
+        "sslterminated": false,
         "verboselogging": true
     },
     {
@@ -708,7 +709,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 160,
+        "y": 300,
         "wires": [
             [
                 "94e381cf.c2bab"
@@ -727,7 +728,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 870,
-        "y": 180,
+        "y": 320,
         "wires": []
     },
     {
@@ -737,7 +738,7 @@
         "property": "payload",
         "name": "",
         "x": 460,
-        "y": 160,
+        "y": 300,
         "wires": [
             [
                 "87655eff.6eacc"
@@ -754,7 +755,7 @@
         "chunk": false,
         "sendError": false,
         "x": 290,
-        "y": 160,
+        "y": 300,
         "wires": [
             [
                 "77ded097.d4bc6"
@@ -768,7 +769,7 @@
         "name": "Sensors - Configuration",
         "info": "",
         "x": 140,
-        "y": 120,
+        "y": 260,
         "wires": []
     },
     {
@@ -782,7 +783,7 @@
         "y": 80,
         "wires": [
             [
-                "573adf14.cb81d"
+                "a24eb884.8fa9a"
             ]
         ]
     },
@@ -806,7 +807,7 @@
         "to": "",
         "reg": false,
         "x": 630,
-        "y": 160,
+        "y": 300,
         "wires": [
             [
                 "af26e828.9b92"
@@ -833,7 +834,7 @@
         "to": "",
         "reg": false,
         "x": 620,
-        "y": 200,
+        "y": 340,
         "wires": [
             [
                 "af26e828.9b92"
@@ -853,7 +854,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 90,
-        "y": 200,
+        "y": 340,
         "wires": [
             [
                 "d18b1e8a.48615"
@@ -992,7 +993,7 @@
         "payload": "[\"iotpower\",\"iotheaters\",\"rfm868usb\"]",
         "payloadType": "json",
         "x": 100,
-        "y": 240,
+        "y": 380,
         "wires": [
             [
                 "9bca5b14.acefe8"
@@ -1008,7 +1009,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 650,
-        "y": 240,
+        "y": 380,
         "wires": [
             [
                 "f33af95f.a4de3"
@@ -1025,7 +1026,7 @@
         "retain": "",
         "broker": "c38452a5.4f84e8",
         "x": 910,
-        "y": 240,
+        "y": 380,
         "wires": []
     },
     {
@@ -1217,14 +1218,11 @@
         "bot": "4fc69d2d.235124",
         "strict": false,
         "hasresponse": false,
-        "x": 100,
-        "y": 690,
+        "x": 90,
+        "y": 680,
         "wires": [
             [
                 "b8b879fe.1654a"
-            ],
-            [
-                "ad191d4c.3e2998"
             ]
         ]
     },
@@ -1250,6 +1248,8 @@
         "func": "context.global.keyboard = { pending : true };\n\nvar opts = {\n  reply_to_message_id: msg.payload.messageId,\n  reply_markup: JSON.stringify({\n    keyboard: [ ['iotheaters'], ['rfm868usb']],\n      'resize_keyboard' : true, \n      'one_time_keyboard' : true\n  })\n};\n\nmsg.payload.content = 'Which?';\nmsg.payload.options = opts;\n\nreturn [ msg ];\n",
         "outputs": "1",
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 360,
         "y": 690,
         "wires": [
@@ -1263,9 +1263,11 @@
         "type": "function",
         "z": "e77a2be7.894528",
         "name": "create response",
-        "func": "if(context.global.keyboard.pending)\n{\n    context.global.keyboard.pending = false;\n    return msg;\n}\n",
+        "func": "if(context.global.keyboard.pending) {\n    context.global.keyboard.pending = false;\n    return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 340,
         "y": 730,
         "wires": [
@@ -1615,26 +1617,8 @@
         "name": "ERRORS Handling",
         "info": "",
         "x": 130,
-        "y": 310,
+        "y": 40,
         "wires": []
-    },
-    {
-        "id": "dfab2f83.41cbc8",
-        "type": "mqtt in",
-        "z": "112e9cf8.590b23",
-        "name": "",
-        "topic": "errors/catchall",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "c38452a5.4f84e8",
-        "x": 110,
-        "y": 350,
-        "wires": [
-            [
-                "41e3caeb.c73014",
-                "2d2c7365.5aa924"
-            ]
-        ]
     },
     {
         "id": "29f69392.4ebc64",
@@ -1647,8 +1631,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 870,
-        "y": 400,
+        "x": 880,
+        "y": 180,
         "wires": []
     },
     {
@@ -1660,8 +1644,8 @@
         "qos": "",
         "retain": "",
         "broker": "c38452a5.4f84e8",
-        "x": 910,
-        "y": 350,
+        "x": 920,
+        "y": 130,
         "wires": []
     },
     {
@@ -1679,26 +1663,13 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": true,
-        "x": 710,
-        "y": 350,
+        "x": 720,
+        "y": 130,
         "wires": [
             [
                 "7cd8cb74.d3227c"
             ]
         ]
-    },
-    {
-        "id": "573adf14.cb81d",
-        "type": "mqtt out",
-        "z": "112e9cf8.590b23",
-        "name": "",
-        "topic": "errors/catchall",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 890,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "2d2c7365.5aa924",
@@ -1710,8 +1681,8 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 660,
-        "y": 400,
+        "x": 670,
+        "y": 180,
         "wires": [
             [
                 "29f69392.4ebc64"
@@ -1729,22 +1700,9 @@
         "y": 80,
         "wires": [
             [
-                "5f2248f3.a3acd"
+                "950a0758.599f88"
             ]
         ]
-    },
-    {
-        "id": "5f2248f3.a3acd",
-        "type": "mqtt out",
-        "z": "d88a69c4.1942c8",
-        "name": "",
-        "topic": "errors/catchall",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 890,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "ec13faf7.4b286",
@@ -1757,22 +1715,9 @@
         "y": 80,
         "wires": [
             [
-                "6f16c404.30d3a4"
+                "64dacb8b.d2f3e4"
             ]
         ]
-    },
-    {
-        "id": "6f16c404.30d3a4",
-        "type": "mqtt out",
-        "z": "d06e385b.de11c8",
-        "name": "",
-        "topic": "errors/catchall",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 890,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "18ef54e4.557d1b",
@@ -1785,22 +1730,9 @@
         "y": 80,
         "wires": [
             [
-                "434d5668.0df56"
+                "139fba02.9e88fe"
             ]
         ]
-    },
-    {
-        "id": "434d5668.0df56",
-        "type": "mqtt out",
-        "z": "a6ca2108.abdcc8",
-        "name": "",
-        "topic": "errors/catchall",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 890,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "b24260ef.c5b1e8",
@@ -1813,22 +1745,9 @@
         "y": 80,
         "wires": [
             [
-                "95b128d5.5fec48"
+                "7ddfd97.7160228"
             ]
         ]
-    },
-    {
-        "id": "95b128d5.5fec48",
-        "type": "mqtt out",
-        "z": "8627a08f.2f4c18",
-        "name": "",
-        "topic": "errors/catchall",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 890,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "b1e82759.aea5d",
@@ -1841,22 +1760,9 @@
         "y": 80,
         "wires": [
             [
-                "41df4412.131d64"
+                "da805bda.a8c0b"
             ]
         ]
-    },
-    {
-        "id": "41df4412.131d64",
-        "type": "mqtt out",
-        "z": "e77a2be7.894528",
-        "name": "",
-        "topic": "errors/catchall",
-        "qos": "",
-        "retain": "",
-        "broker": "c38452a5.4f84e8",
-        "x": 890,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "796c897.a1f1278",
@@ -2169,35 +2075,6 @@
         "wires": []
     },
     {
-        "id": "a4b10a7f.7ae5a8",
-        "type": "inject",
-        "z": "d06e385b.de11c8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "enablePoll",
-        "payload": "{\"nodeid\":7,\"class_id\":37,\"instance\":1,\"index\":1}",
-        "payloadType": "json",
-        "x": 160,
-        "y": 460,
-        "wires": [
-            [
-                "f5a69074.d554d"
-            ]
-        ]
-    },
-    {
         "id": "6911083a.cc7bf8",
         "type": "link in",
         "z": "d06e385b.de11c8",
@@ -2228,9 +2105,7 @@
             [
                 "34d52161.f3ac76"
             ],
-            [
-                "c829ddf4.a40fe8"
-            ]
+            []
         ]
     },
     {
@@ -2294,6 +2169,129 @@
         "statusType": "auto",
         "x": 490,
         "y": 530,
+        "wires": []
+    },
+    {
+        "id": "bfccc38e.93a62",
+        "type": "inject",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "enablePoll",
+        "payload": "{\"nodeid\":7,\"class_id\":37,\"instance\":1,\"index\":1}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 460,
+        "wires": [
+            [
+                "f5a69074.d554d"
+            ]
+        ]
+    },
+    {
+        "id": "a24eb884.8fa9a",
+        "type": "link out",
+        "z": "112e9cf8.590b23",
+        "name": "General CatchAll",
+        "links": [
+            "1bf42829.b3e0b8"
+        ],
+        "x": 835,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1bf42829.b3e0b8",
+        "type": "link in",
+        "z": "112e9cf8.590b23",
+        "name": "errors/catchall",
+        "links": [
+            "a24eb884.8fa9a",
+            "950a0758.599f88",
+            "64dacb8b.d2f3e4",
+            "139fba02.9e88fe",
+            "7ddfd97.7160228",
+            "da805bda.a8c0b"
+        ],
+        "x": 145,
+        "y": 140,
+        "wires": [
+            [
+                "41e3caeb.c73014",
+                "2d2c7365.5aa924"
+            ]
+        ]
+    },
+    {
+        "id": "950a0758.599f88",
+        "type": "link out",
+        "z": "d88a69c4.1942c8",
+        "name": "General CatchAll",
+        "links": [
+            "1bf42829.b3e0b8"
+        ],
+        "x": 255,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "64dacb8b.d2f3e4",
+        "type": "link out",
+        "z": "d06e385b.de11c8",
+        "name": "General CatchAll",
+        "links": [
+            "1bf42829.b3e0b8"
+        ],
+        "x": 255,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "139fba02.9e88fe",
+        "type": "link out",
+        "z": "a6ca2108.abdcc8",
+        "name": "General CatchAll",
+        "links": [
+            "1bf42829.b3e0b8"
+        ],
+        "x": 255,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7ddfd97.7160228",
+        "type": "link out",
+        "z": "8627a08f.2f4c18",
+        "name": "General CatchAll",
+        "links": [
+            "1bf42829.b3e0b8"
+        ],
+        "x": 255,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "da805bda.a8c0b",
+        "type": "link out",
+        "z": "e77a2be7.894528",
+        "name": "General CatchAll",
+        "links": [
+            "1bf42829.b3e0b8"
+        ],
+        "x": 255,
+        "y": 80,
         "wires": []
     }
 ]
