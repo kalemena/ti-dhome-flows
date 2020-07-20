@@ -1,8 +1,6 @@
 FROM kalemena/node-red:latest
 
-RUN mkdir -p /tmp/node.install \
-    && cd /tmp/node.install \
-    && npm i \
+RUN npm i \
         node-red-contrib-file-function-ext \
         node-red-contrib-string \
         node-red-contrib-fs \
@@ -11,6 +9,4 @@ RUN mkdir -p /tmp/node.install \
         node-red-node-darksky \
         node-red-contrib-simple-weekly-scheduler \
         node-red-contrib-flatter \
-        node-red-contrib-covid19 \
-    && cp -r node_modules /opt/node-red/ \
-    && rm -rf node_modules
+        node-red-contrib-covid19
