@@ -9,4 +9,5 @@ RUN npm i \
         node-red-node-darksky \
         node-red-contrib-simple-weekly-scheduler \
         node-red-contrib-flatter \
-        node-red-contrib-covid19
+        node-red-contrib-covid19 \
+        node-red-contrib-deconz
