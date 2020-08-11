@@ -2271,7 +2271,8 @@
             "64dacb8b.d2f3e4",
             "139fba02.9e88fe",
             "7ddfd97.7160228",
-            "da805bda.a8c0b"
+            "da805bda.a8c0b",
+            "e0a0313d.ff21a"
         ],
         "x": 225,
         "y": 170,
@@ -2343,38 +2344,6 @@
         "wires": []
     },
     {
-        "id": "d42c9f1f.cfaf68",
-        "type": "websocket in",
-        "z": "2eb57898.a68ee8",
-        "name": "Ok",
-        "server": "",
-        "client": "b812dc68.010798",
-        "x": 130,
-        "y": 155,
-        "wires": [
-            [
-                "f7f86b60.b016d8"
-            ]
-        ]
-    },
-    {
-        "id": "f7f86b60.b016d8",
-        "type": "json",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 288.00001335144043,
-        "y": 155.00000095367432,
-        "wires": [
-            [
-                "57028b0.d53eef4",
-                "a215561c.3990c8"
-            ]
-        ]
-    },
-    {
         "id": "ec58883a.394a88",
         "type": "switch",
         "z": "2eb57898.a68ee8",
@@ -2391,8 +2360,8 @@
         ],
         "checkall": "true",
         "outputs": 2,
-        "x": 497.38677978515625,
-        "y": 283.56640625,
+        "x": 457.38677978515625,
+        "y": 348.56640625,
         "wires": [
             [
                 "72e50c53.e31524",
@@ -2414,8 +2383,8 @@
         "complete": "payload.state.buttonevent",
         "statusVal": "",
         "statusType": "auto",
-        "x": 689,
-        "y": 229,
+        "x": 649,
+        "y": 294,
         "wires": []
     },
     {
@@ -2429,8 +2398,8 @@
         "complete": "payload.state.presence",
         "statusVal": "",
         "statusType": "auto",
-        "x": 699.3828125,
-        "y": 340.28912353515625,
+        "x": 659.3828125,
+        "y": 405.28912353515625,
         "wires": []
     },
     {
@@ -2441,8 +2410,8 @@
         "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/switch/\"+msg.payload.id;\nnewmsg.payload = msg.payload.state.buttonevent;\nreturn newmsg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 917.0156860351562,
-        "y": 277.25,
+        "x": 877.0156860351562,
+        "y": 342.25,
         "wires": [
             [
                 "eae94177.751ee8"
@@ -2457,8 +2426,8 @@
         "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/motion/\"+msg.payload.id;\nif(msg.payload.state.presence === false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 919.5158081054688,
-        "y": 389.25006103515625,
+        "x": 879.5158081054688,
+        "y": 454.25006103515625,
         "wires": [
             [
                 "eae94177.751ee8"
@@ -2482,8 +2451,8 @@
         ],
         "checkall": "true",
         "outputs": 2,
-        "x": 498,
-        "y": 395,
+        "x": 458,
+        "y": 460,
         "wires": [
             [
                 "a51af144.e761a8",
@@ -2503,8 +2472,8 @@
         "tosidebar": true,
         "console": false,
         "complete": "payload.state.lightlevel",
-        "x": 703,
-        "y": 447,
+        "x": 663,
+        "y": 512,
         "wires": []
     },
     {
@@ -2515,8 +2484,8 @@
         "func": "// Needs to be adjusted\nvar newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/lightlevel/\"+msg.payload.id;\nif(msg.payload.state.lightlevel === false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 922.1329956054688,
-        "y": 498.9609375,
+        "x": 882.1329956054688,
+        "y": 563.9609375,
         "wires": [
             [
                 "eae94177.751ee8"
@@ -2540,8 +2509,8 @@
         ],
         "checkall": "true",
         "outputs": 2,
-        "x": 500.6171875,
-        "y": 504.71087646484375,
+        "x": 460.6171875,
+        "y": 569.7108764648438,
         "wires": [
             [
                 "e8cb689e.7b27b8",
@@ -2560,8 +2529,8 @@
         "active": false,
         "console": "false",
         "complete": "payload.state.openclose",
-        "x": 705,
-        "y": 562,
+        "x": 665,
+        "y": 627,
         "wires": []
     },
     {
@@ -2572,8 +2541,8 @@
         "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/contact/\"+msg.payload.id;\nif(msg.payload.state.contact === false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 925.1329956054688,
-        "y": 608.9609375,
+        "x": 885.1329956054688,
+        "y": 673.9609375,
         "wires": [
             [
                 "eae94177.751ee8"
@@ -2597,8 +2566,8 @@
         ],
         "checkall": "true",
         "outputs": 2,
-        "x": 503.6171875,
-        "y": 614.7108764648438,
+        "x": 463.6171875,
+        "y": 679.7108764648438,
         "wires": [
             [
                 "ffd1bef8.2ee3f",
@@ -2608,20 +2577,6 @@
                 "7108e1c0.0b5fa"
             ]
         ]
-    },
-    {
-        "id": "57028b0.d53eef4",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 490,
-        "y": 130,
-        "wires": []
     },
     {
         "id": "a215561c.3990c8",
@@ -2641,12 +2596,14 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 480,
-        "y": 180,
+        "x": 260,
+        "y": 200,
         "wires": [
-            [],
             [
-                "ec58883a.394a88"
+                "42f13481.91259c"
+            ],
+            [
+                "19ee2e3c.e069aa"
             ]
         ]
     },
@@ -2660,8 +2617,8 @@
         "console": false,
         "tostatus": false,
         "complete": "payload.state.water",
-        "x": 700,
-        "y": 680,
+        "x": 660,
+        "y": 745,
         "wires": []
     },
     {
@@ -2672,8 +2629,8 @@
         "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/water/\"+msg.payload.id;\nif(msg.payload.state.water == false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 910.1329956054688,
-        "y": 726.9609375,
+        "x": 870.1329956054688,
+        "y": 791.9609375,
         "wires": [
             [
                 "eae94177.751ee8"
@@ -2698,8 +2655,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 488.6171875,
-        "y": 732.7108764648438,
+        "x": 448.6171875,
+        "y": 797.7108764648438,
         "wires": [
             [
                 "2b691b9.a2273e4",
@@ -2721,8 +2678,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1200,
-        "y": 490,
+        "x": 1160,
+        "y": 555,
         "wires": []
     },
     {
@@ -2737,8 +2694,8 @@
         "state": "0",
         "output": "onchange",
         "outputAtStartup": true,
-        "x": 360,
-        "y": 990,
+        "x": 1110,
+        "y": 780,
         "wires": [
             [
                 "c6889d5b.a8562"
@@ -2758,8 +2715,8 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 660,
-        "y": 970,
+        "x": 1410,
+        "y": 760,
         "wires": []
     },
     {
@@ -2769,11 +2726,12 @@
         "name": "",
         "server": "7daf73cd.995c9c",
         "device_name": null,
-        "x": 350,
-        "y": 1050,
+        "x": 110,
+        "y": 160,
         "wires": [
             [
-                "e352d6a9.275858"
+                "e352d6a9.275858",
+                "a215561c.3990c8"
             ]
         ]
     },
@@ -2786,8 +2744,8 @@
         "device": "00:15:8d:00:01:5e:96:99-01-0406",
         "device_name": "Bureau : ZHAPresence",
         "outputAtStartup": true,
-        "x": 360,
-        "y": 1100,
+        "x": 1110,
+        "y": 890,
         "wires": [
             [
                 "9ab36741.8b154"
@@ -2807,8 +2765,8 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 660,
-        "y": 1010,
+        "x": 1410,
+        "y": 800,
         "wires": []
     },
     {
@@ -2821,8 +2779,8 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 660,
-        "y": 1090,
+        "x": 1410,
+        "y": 880,
         "wires": []
     },
     {
@@ -2835,22 +2793,25 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 660,
-        "y": 1130,
+        "x": 1410,
+        "y": 920,
         "wires": []
     },
     {
         "id": "e352d6a9.275858",
         "type": "debug",
         "z": "2eb57898.a68ee8",
-        "name": "",
+        "name": "ZigBeeRaw",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 660,
-        "y": 1050,
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 160,
         "wires": []
     },
     {
@@ -2865,7 +2826,7 @@
         "state": "0",
         "output": "always",
         "outputAtStartup": true,
-        "x": 1150,
+        "x": 150,
         "y": 880,
         "wires": [
             [
@@ -2886,7 +2847,7 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 1440,
+        "x": 440,
         "y": 860,
         "wires": []
     },
@@ -2900,8 +2861,79 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 1440,
+        "x": 440,
         "y": 900,
+        "wires": []
+    },
+    {
+        "id": "595219e5.e3c56",
+        "type": "catch",
+        "z": "2eb57898.a68ee8",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "e0a0313d.ff21a"
+            ]
+        ]
+    },
+    {
+        "id": "e0a0313d.ff21a",
+        "type": "link out",
+        "z": "2eb57898.a68ee8",
+        "name": "General CatchAll",
+        "links": [
+            "1bf42829.b3e0b8"
+        ],
+        "x": 255,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "b18a77a.df78708",
+        "type": "comment",
+        "z": "2eb57898.a68ee8",
+        "name": "ZigBee Tests",
+        "info": "",
+        "x": 110,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "42f13481.91259c",
+        "type": "debug",
+        "z": "2eb57898.a68ee8",
+        "name": "ZigBee Config",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "19ee2e3c.e069aa",
+        "type": "debug",
+        "z": "2eb57898.a68ee8",
+        "name": "ZigBee ?",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 240,
         "wires": []
     }
 ]
