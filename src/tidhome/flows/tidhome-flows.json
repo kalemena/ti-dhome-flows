@@ -2802,7 +2802,7 @@
         "type": "debug",
         "z": "2eb57898.a68ee8",
         "name": "ZigBeeRaw",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2924,7 +2924,7 @@
         "type": "debug",
         "z": "2eb57898.a68ee8",
         "name": "ZigBee ?",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2935,5 +2935,90 @@
         "x": 430,
         "y": 240,
         "wires": []
+    },
+    {
+        "id": "7466ad.b414a154",
+        "type": "debug",
+        "z": "2eb57898.a68ee8",
+        "name": "ZigBeeRaw",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "e4088aef.4fdff",
+        "type": "http request",
+        "z": "2eb57898.a68ee8",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 460,
+        "y": 1060,
+        "wires": [
+            [
+                "7466ad.b414a154"
+            ]
+        ]
+    },
+    {
+        "id": "e088ff58.f53ad8",
+        "type": "function",
+        "z": "2eb57898.a68ee8",
+        "name": "Deconz/water/{{id}}",
+        "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.url = \"http://deconz:7080/api/\"+ $(ZIGBEE_DECONZ_APIKEY) + \"/sensors\";\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 320,
+        "y": 1120,
+        "wires": [
+            [
+                "7466ad.b414a154"
+            ]
+        ]
+    },
+    {
+        "id": "6d187f1b.4ac0e",
+        "type": "inject",
+        "z": "2eb57898.a68ee8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 1120,
+        "wires": [
+            [
+                "e088ff58.f53ad8"
+            ]
+        ]
     }
 ]
