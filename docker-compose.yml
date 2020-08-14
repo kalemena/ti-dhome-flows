@@ -16,7 +16,7 @@ services:
       - 7080:7080
       - 7443:7443
     volumes:
-      - /opt/deconz:/root/.local/share/dresden-elektronik/deCONZ
+      - ./src/tidhome/etc/deconz:/root/.local/share/dresden-elektronik/deCONZ
     devices:
       - /dev/ttyZigbee
     environment:
@@ -42,6 +42,6 @@ services:
     devices:
      - "/dev/ttyCurrenCost:/dev/ttyCurrenCost"
      - "/dev/ttyJeeLink:/dev/ttyJeeLink"
-     - "/dev/ttyACM0:/dev/ttyZWave"
+     - "/dev/ttyZWave:/dev/ttyZWave"
     environment:
      - FLOWS=/opt/tidhome/flows/tidhome-flows.json
