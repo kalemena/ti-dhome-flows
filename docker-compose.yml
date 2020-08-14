@@ -45,6 +45,8 @@ services:
      - "/dev/ttyZWave:/dev/ttyZWave"
     environment:
      - FLOWS=/opt/tidhome/flows/tidhome-flows.json
+    env_file:
+     - ./src/tidhome/etc/.env-private
 
   homeassistant:
     container_name: home-assistant
