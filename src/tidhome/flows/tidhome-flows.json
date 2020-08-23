@@ -395,18 +395,15 @@
         "name": "Morning",
         "props": [
             {
-                "p": "payload",
-                "v": "Good morning!",
-                "vt": "str"
+                "p": "payload"
             },
             {
                 "p": "topic",
-                "v": "",
-                "vt": "string"
+                "vt": "str"
             }
         ],
         "repeat": "",
-        "crontab": "30 08 * * *",
+        "crontab": "30 07 * * *",
         "once": false,
         "onceDelay": "5",
         "topic": "",
