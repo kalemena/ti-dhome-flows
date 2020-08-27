@@ -42,13 +42,6 @@
         "info": ""
     },
     {
-        "id": "2eb57898.a68ee8",
-        "type": "tab",
-        "label": "Zigbee",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "4fc69d2d.235124",
         "type": "telegram bot",
         "z": "",
@@ -542,7 +535,7 @@
         "topic": "",
         "payload": "1",
         "payloadType": "string",
-        "x": 100,
+        "x": 110,
         "y": 330,
         "wires": [
             [
@@ -561,7 +554,7 @@
         "topic": "",
         "payload": "0",
         "payloadType": "str",
-        "x": 120,
+        "x": 130,
         "y": 290,
         "wires": [
             [
@@ -618,7 +611,7 @@
         "topic": "",
         "payload": "4",
         "payloadType": "string",
-        "x": 140,
+        "x": 150,
         "y": 450,
         "wires": [
             [
@@ -656,7 +649,7 @@
         "topic": "",
         "payload": "6",
         "payloadType": "string",
-        "x": 150,
+        "x": 160,
         "y": 530,
         "wires": [
             [
@@ -713,7 +706,7 @@
         "topic": "",
         "payload": "15",
         "payloadType": "string",
-        "x": 90,
+        "x": 100,
         "y": 650,
         "wires": [
             [
@@ -1873,269 +1866,6 @@
         ]
     },
     {
-        "id": "ebfe1ca6.312e8",
-        "type": "zwave-in",
-        "z": "d06e385b.de11c8",
-        "name": "ZWave-USB",
-        "controller": "d6378b62.a3ced8",
-        "x": 1000,
-        "y": 600,
-        "wires": [
-            [
-                "67fdf312.be2a2c",
-                "ea456bfe.8bcfa8"
-            ]
-        ]
-    },
-    {
-        "id": "67fdf312.be2a2c",
-        "type": "debug",
-        "z": "d06e385b.de11c8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1440,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "f5a69074.d554d",
-        "type": "zwave-out",
-        "z": "d06e385b.de11c8",
-        "name": "ZWave Out",
-        "controller": "d6378b62.a3ced8",
-        "x": 460,
-        "y": 600,
-        "wires": [
-            [
-                "15673348.75b575"
-            ]
-        ]
-    },
-    {
-        "id": "15673348.75b575",
-        "type": "debug",
-        "z": "d06e385b.de11c8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 640,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "1874ce60.23cf52",
-        "type": "inject",
-        "z": "d06e385b.de11c8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "switchOn",
-        "payload": "{\"nodeid\":6}",
-        "payloadType": "json",
-        "x": 230,
-        "y": 600,
-        "wires": [
-            [
-                "f5a69074.d554d",
-                "68d237a9.f06058"
-            ]
-        ]
-    },
-    {
-        "id": "6cd15dd9.66034c",
-        "type": "inject",
-        "z": "d06e385b.de11c8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "switchOff",
-        "payload": "{\"nodeid\":6}",
-        "payloadType": "json",
-        "x": 230,
-        "y": 640,
-        "wires": [
-            [
-                "f5a69074.d554d"
-            ]
-        ]
-    },
-    {
-        "id": "70698100.3c429",
-        "type": "inject",
-        "z": "d06e385b.de11c8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "switchOn",
-        "payload": "{\"nodeid\":7}",
-        "payloadType": "json",
-        "x": 230,
-        "y": 700,
-        "wires": [
-            [
-                "f5a69074.d554d"
-            ]
-        ]
-    },
-    {
-        "id": "ec533288.e4e89",
-        "type": "inject",
-        "z": "d06e385b.de11c8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "switchOff",
-        "payload": "{\"nodeid\":7}",
-        "payloadType": "json",
-        "x": 230,
-        "y": 740,
-        "wires": [
-            [
-                "f5a69074.d554d"
-            ]
-        ]
-    },
-    {
-        "id": "ea456bfe.8bcfa8",
-        "type": "switch",
-        "z": "d06e385b.de11c8",
-        "name": "",
-        "property": "payload.cmdclass",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "50",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "37",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 1250,
-        "y": 660,
-        "wires": [
-            [
-                "3a40ecdf.7044dc"
-            ],
-            [
-                "fe25162f.2bfc9"
-            ]
-        ]
-    },
-    {
-        "id": "3a40ecdf.7044dc",
-        "type": "debug",
-        "z": "d06e385b.de11c8",
-        "name": "Event",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1440,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "fe25162f.2bfc9",
-        "type": "debug",
-        "z": "d06e385b.de11c8",
-        "name": "Switch",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1440,
-        "y": 720,
-        "wires": []
-    },
-    {
-        "id": "6911083a.cc7bf8",
-        "type": "link in",
-        "z": "d06e385b.de11c8",
-        "name": "inject",
-        "links": [
-            "21528503.db161a"
-        ],
-        "x": 315,
-        "y": 550,
-        "wires": [
-            [
-                "f5a69074.d554d"
-            ]
-        ]
-    },
-    {
         "id": "40b927a.b6b7fd8",
         "type": "telegram command",
         "z": "e77a2be7.894528",
@@ -2178,7 +1908,8 @@
         "z": "e77a2be7.894528",
         "name": "",
         "links": [
-            "6911083a.cc7bf8"
+            "6911083a.cc7bf8",
+            "2efcbd70.53fe12"
         ],
         "x": 535,
         "y": 290,
@@ -2198,52 +1929,6 @@
         "x": 570,
         "y": 240,
         "wires": []
-    },
-    {
-        "id": "68d237a9.f06058",
-        "type": "debug",
-        "z": "d06e385b.de11c8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 490,
-        "y": 530,
-        "wires": []
-    },
-    {
-        "id": "bfccc38e.93a62",
-        "type": "inject",
-        "z": "d06e385b.de11c8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "enablePoll",
-        "payload": "{\"nodeid\":7,\"class_id\":37,\"instance\":1,\"index\":1}",
-        "payloadType": "json",
-        "x": 210,
-        "y": 460,
-        "wires": [
-            [
-                "f5a69074.d554d"
-            ]
-        ]
     },
     {
         "id": "a24eb884.8fa9a",
@@ -2341,602 +2026,9 @@
         "wires": []
     },
     {
-        "id": "ec58883a.394a88",
-        "type": "switch",
-        "z": "2eb57898.a68ee8",
-        "name": "Identify switch",
-        "property": "payload.state.buttonevent",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 450,
-        "y": 510,
-        "wires": [
-            [
-                "72e50c53.e31524",
-                "5ad97f2c.658ea8"
-            ],
-            [
-                "a1386ebe.d8cd08"
-            ]
-        ]
-    },
-    {
-        "id": "72e50c53.e31524",
+        "id": "bd4b8837.f30ac8",
         "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "Pushbutton",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "complete": "payload.state.buttonevent",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 641.6132202148438,
-        "y": 455.43359375,
-        "wires": []
-    },
-    {
-        "id": "a51af144.e761a8",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "Motion sensor",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "complete": "payload.state.presence",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 651.9960327148438,
-        "y": 566.7227172851562,
-        "wires": []
-    },
-    {
-        "id": "5ad97f2c.658ea8",
-        "type": "function",
-        "z": "2eb57898.a68ee8",
-        "name": "Deconz/switch/{{id}}",
-        "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/switch/\"+msg.payload.id;\nnewmsg.payload = msg.payload.state.buttonevent;\nreturn newmsg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 869.62890625,
-        "y": 503.68359375,
-        "wires": [
-            [
-                "eae94177.751ee8"
-            ]
-        ]
-    },
-    {
-        "id": "50dc1b4f.f4f70c",
-        "type": "function",
-        "z": "2eb57898.a68ee8",
-        "name": "Deconz/motion/{{id}}",
-        "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/motion/\"+msg.payload.id;\nif(msg.payload.state.presence === false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 872.1290283203125,
-        "y": 615.6836547851562,
-        "wires": [
-            [
-                "eae94177.751ee8"
-            ]
-        ]
-    },
-    {
-        "id": "a1386ebe.d8cd08",
-        "type": "switch",
-        "z": "2eb57898.a68ee8",
-        "name": "identify motion",
-        "property": "payload.state.presence",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 450.61322021484375,
-        "y": 621.43359375,
-        "wires": [
-            [
-                "a51af144.e761a8",
-                "50dc1b4f.f4f70c"
-            ],
-            [
-                "b2de8aaa.dc8688"
-            ]
-        ]
-    },
-    {
-        "id": "e8cb689e.7b27b8",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "Lightlevel sensor",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "complete": "payload.state.lightlevel",
-        "x": 655.6132202148438,
-        "y": 673.43359375,
-        "wires": []
-    },
-    {
-        "id": "a8d35bd2.bf34e",
-        "type": "function",
-        "z": "2eb57898.a68ee8",
-        "name": "Deconz/lightlevel/{{id}}",
-        "func": "// Needs to be adjusted\nvar newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/lightlevel/\"+msg.payload.id;\nif(msg.payload.state.lightlevel === false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 874.7462158203125,
-        "y": 725.39453125,
-        "wires": [
-            [
-                "eae94177.751ee8"
-            ]
-        ]
-    },
-    {
-        "id": "b2de8aaa.dc8688",
-        "type": "switch",
-        "z": "2eb57898.a68ee8",
-        "name": "identify lightlevel",
-        "property": "payload.state.lightlevel",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 453.23040771484375,
-        "y": 731.1444702148438,
-        "wires": [
-            [
-                "e8cb689e.7b27b8",
-                "a8d35bd2.bf34e"
-            ],
-            [
-                "77b16bd7.811e24"
-            ]
-        ]
-    },
-    {
-        "id": "ffd1bef8.2ee3f",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "Contact sensor",
-        "active": false,
-        "console": "false",
-        "complete": "payload.state.openclose",
-        "x": 657.6132202148438,
-        "y": 788.43359375,
-        "wires": []
-    },
-    {
-        "id": "fbe8e709.f3687",
-        "type": "function",
-        "z": "2eb57898.a68ee8",
-        "name": "Deconz/contact/{{id}}",
-        "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/contact/\"+msg.payload.id;\nif(msg.payload.state.contact === false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 877.7462158203125,
-        "y": 835.39453125,
-        "wires": [
-            [
-                "eae94177.751ee8"
-            ]
-        ]
-    },
-    {
-        "id": "77b16bd7.811e24",
-        "type": "switch",
-        "z": "2eb57898.a68ee8",
-        "name": "identify contact",
-        "property": "payload.state.openclose",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 456.23040771484375,
-        "y": 841.1444702148438,
-        "wires": [
-            [
-                "ffd1bef8.2ee3f",
-                "fbe8e709.f3687"
-            ],
-            [
-                "7108e1c0.0b5fa"
-            ]
-        ]
-    },
-    {
-        "id": "a215561c.3990c8",
-        "type": "switch",
-        "z": "2eb57898.a68ee8",
-        "name": "Is Config",
-        "property": "payload.config",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 252.61322021484375,
-        "y": 361.43359375,
-        "wires": [
-            [
-                "42f13481.91259c"
-            ],
-            [
-                "19ee2e3c.e069aa"
-            ]
-        ]
-    },
-    {
-        "id": "2b691b9.a2273e4",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "Water Sensor",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload.state.water",
-        "x": 652.6132202148438,
-        "y": 906.43359375,
-        "wires": []
-    },
-    {
-        "id": "5a433dc3.b18504",
-        "type": "function",
-        "z": "2eb57898.a68ee8",
-        "name": "Deconz/water/{{id}}",
-        "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/water/\"+msg.payload.id;\nif(msg.payload.state.water == false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 862.7462158203125,
-        "y": 953.39453125,
-        "wires": [
-            [
-                "eae94177.751ee8"
-            ]
-        ]
-    },
-    {
-        "id": "7108e1c0.0b5fa",
-        "type": "switch",
-        "z": "2eb57898.a68ee8",
-        "name": "identify water",
-        "property": "payload.state.water",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 441.23040771484375,
-        "y": 959.1444702148438,
-        "wires": [
-            [
-                "2b691b9.a2273e4",
-                "5a433dc3.b18504"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "eae94177.751ee8",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1152.6132202148438,
-        "y": 716.43359375,
-        "wires": []
-    },
-    {
-        "id": "d0060cbd.67076",
-        "type": "deconz-input",
-        "z": "2eb57898.a68ee8",
-        "name": "Listen in",
-        "server": "7daf73cd.995c9c",
-        "device": "00:15:8d:00:01:5e:96:99-01-0406",
-        "device_name": "Bureau : ZHAPresence",
-        "topic": "",
-        "state": "0",
-        "output": "onchange",
-        "outputAtStartup": true,
-        "x": 1102.6132202148438,
-        "y": 941.43359375,
-        "wires": [
-            [
-                "c6889d5b.a8562"
-            ],
-            [
-                "51ad191.3182de8"
-            ]
-        ]
-    },
-    {
-        "id": "c6889d5b.a8562",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "x": 1402.6132202148438,
-        "y": 921.43359375,
-        "wires": []
-    },
-    {
-        "id": "6b25a7.9ee95258",
-        "type": "deconz-event",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "server": "7daf73cd.995c9c",
-        "device_name": null,
-        "x": 110,
-        "y": 320,
-        "wires": [
-            [
-                "e352d6a9.275858",
-                "a215561c.3990c8"
-            ]
-        ]
-    },
-    {
-        "id": "61f6353e.906334",
-        "type": "deconz-battery",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "server": "7daf73cd.995c9c",
-        "device": "00:15:8d:00:01:5e:96:99-01-0406",
-        "device_name": "Bureau : ZHAPresence",
-        "outputAtStartup": true,
-        "x": 1102.6132202148438,
-        "y": 1051.43359375,
-        "wires": [
-            [
-                "9ab36741.8b154"
-            ],
-            [
-                "dbfca51e.aebdd8"
-            ]
-        ]
-    },
-    {
-        "id": "51ad191.3182de8",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "x": 1402.6132202148438,
-        "y": 961.43359375,
-        "wires": []
-    },
-    {
-        "id": "9ab36741.8b154",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "x": 1402.6132202148438,
-        "y": 1041.43359375,
-        "wires": []
-    },
-    {
-        "id": "dbfca51e.aebdd8",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "x": 1402.6132202148438,
-        "y": 1081.43359375,
-        "wires": []
-    },
-    {
-        "id": "e352d6a9.275858",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "ZigBeeRaw",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 432.61322021484375,
-        "y": 321.43359375,
-        "wires": []
-    },
-    {
-        "id": "f35d2f47.0f1b78",
-        "type": "deconz-input",
-        "z": "2eb57898.a68ee8",
-        "name": "CLIPSensor",
-        "server": "7daf73cd.995c9c",
-        "device": "00:15:8d:00:01:49:b6:c8-01-0006-ct-dim-toogle-1",
-        "device_name": "CLIP-Sensor CTDIM-TOOGLE : CLIPGenericFlag",
-        "topic": "",
-        "state": "0",
-        "output": "always",
-        "outputAtStartup": true,
-        "x": 142.61322021484375,
-        "y": 1041.43359375,
-        "wires": [
-            [
-                "e24bc3f5.b99048"
-            ],
-            [
-                "8b03acf8.b9d66"
-            ]
-        ]
-    },
-    {
-        "id": "e24bc3f5.b99048",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "x": 432.61322021484375,
-        "y": 1021.43359375,
-        "wires": []
-    },
-    {
-        "id": "8b03acf8.b9d66",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "x": 432.61322021484375,
-        "y": 1061.43359375,
-        "wires": []
-    },
-    {
-        "id": "595219e5.e3c56",
-        "type": "catch",
-        "z": "2eb57898.a68ee8",
-        "name": "",
-        "scope": null,
-        "uncaught": false,
-        "x": 100,
-        "y": 80,
-        "wires": [
-            [
-                "e0a0313d.ff21a"
-            ]
-        ]
-    },
-    {
-        "id": "e0a0313d.ff21a",
-        "type": "link out",
-        "z": "2eb57898.a68ee8",
-        "name": "General CatchAll",
-        "links": [
-            "1bf42829.b3e0b8"
-        ],
-        "x": 255,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "b18a77a.df78708",
-        "type": "comment",
-        "z": "2eb57898.a68ee8",
-        "name": "ZigBee Tests",
-        "info": "",
-        "x": 110,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "42f13481.91259c",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "ZigBee Config",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 442.61322021484375,
-        "y": 361.43359375,
-        "wires": []
-    },
-    {
-        "id": "19ee2e3c.e069aa",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
-        "name": "ZigBee ?",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 422.61322021484375,
-        "y": 401.43359375,
-        "wires": []
-    },
-    {
-        "id": "7466ad.b414a154",
-        "type": "debug",
-        "z": "2eb57898.a68ee8",
+        "z": "d06e385b.de11c8",
         "name": "ZigBeeConfig",
         "active": true,
         "tosidebar": true,
@@ -2947,13 +2039,13 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 160,
+        "y": 520,
         "wires": []
     },
     {
-        "id": "e4088aef.4fdff",
+        "id": "2f4f4031.d2a66",
         "type": "http request",
-        "z": "2eb57898.a68ee8",
+        "z": "d06e385b.de11c8",
         "name": "GET /sensors",
         "method": "GET",
         "ret": "obj",
@@ -2964,17 +2056,17 @@
         "proxy": "",
         "authType": "",
         "x": 580,
-        "y": 160,
+        "y": 520,
         "wires": [
             [
-                "7466ad.b414a154"
+                "bd4b8837.f30ac8"
             ]
         ]
     },
     {
-        "id": "e088ff58.f53ad8",
+        "id": "d80e2d8f.defe1",
         "type": "function",
-        "z": "2eb57898.a68ee8",
+        "z": "d06e385b.de11c8",
         "name": "/sensors",
         "func": "\nvar newmsg = {};\nnewmsg.payload = \"\";\nnewmsg.topic = \"\";\nnewmsg.url = \"http://deconz:7080/api/\"+ msg.apikey + \"/sensors\";\nreturn newmsg;\n\n// msg.payload = \"http://deconz:7080/api/\" + msg.apikey + \"/sensors\";\n//return msg;",
         "outputs": 1,
@@ -2982,17 +2074,17 @@
         "initialize": "",
         "finalize": "",
         "x": 400,
-        "y": 160,
+        "y": 520,
         "wires": [
             [
-                "e4088aef.4fdff"
+                "2f4f4031.d2a66"
             ]
         ]
     },
     {
-        "id": "6d187f1b.4ac0e",
+        "id": "a30f2db2.593ab8",
         "type": "inject",
-        "z": "2eb57898.a68ee8",
+        "z": "d06e385b.de11c8",
         "name": "",
         "props": [
             {
@@ -3011,17 +2103,17 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 160,
+        "y": 520,
         "wires": [
             [
-                "8f715819.eb0b1"
+                "1d11784.1ba6488"
             ]
         ]
     },
     {
-        "id": "8f715819.eb0b1",
+        "id": "1d11784.1ba6488",
         "type": "change",
-        "z": "2eb57898.a68ee8",
+        "z": "d06e385b.de11c8",
         "name": "APIKEY",
         "rules": [
             {
@@ -3038,21 +2130,898 @@
         "to": "",
         "reg": false,
         "x": 250,
-        "y": 160,
+        "y": 520,
         "wires": [
             [
-                "e088ff58.f53ad8"
+                "d80e2d8f.defe1"
             ]
         ]
     },
     {
-        "id": "110757ff.427bd8",
+        "id": "8827128b.525168",
         "type": "comment",
-        "z": "2eb57898.a68ee8",
-        "name": "ZigBee Sensors",
+        "z": "d06e385b.de11c8",
+        "name": "ZigBee Devices",
         "info": "",
         "x": 120,
-        "y": 120,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "69c715fe.2ca6cc",
+        "type": "switch",
+        "z": "d06e385b.de11c8",
+        "name": "Identify switch",
+        "property": "payload.state.buttonevent",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 450,
+        "y": 800,
+        "wires": [
+            [
+                "511f2e0c.7a0568",
+                "c47759cc.4f5a08"
+            ],
+            [
+                "c0af39fc.ca5c78"
+            ]
+        ]
+    },
+    {
+        "id": "511f2e0c.7a0568",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "Pushbutton",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload.state.buttonevent",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 641.6132202148438,
+        "y": 745.43359375,
+        "wires": []
+    },
+    {
+        "id": "143b3c35.88d6d4",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "Motion sensor",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload.state.presence",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 651.9960327148438,
+        "y": 856.7227172851562,
+        "wires": []
+    },
+    {
+        "id": "c47759cc.4f5a08",
+        "type": "function",
+        "z": "d06e385b.de11c8",
+        "name": "Deconz/switch/{{id}}",
+        "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/switch/\"+msg.payload.id;\nnewmsg.payload = msg.payload.state.buttonevent;\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 869.62890625,
+        "y": 793.68359375,
+        "wires": [
+            [
+                "3d4eb696.6811a2"
+            ]
+        ]
+    },
+    {
+        "id": "969261b9.9715f8",
+        "type": "function",
+        "z": "d06e385b.de11c8",
+        "name": "Deconz/motion/{{id}}",
+        "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/motion/\"+msg.payload.id;\nif(msg.payload.state.presence === false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 872.1290283203125,
+        "y": 905.6836547851562,
+        "wires": [
+            [
+                "3d4eb696.6811a2"
+            ]
+        ]
+    },
+    {
+        "id": "c0af39fc.ca5c78",
+        "type": "switch",
+        "z": "d06e385b.de11c8",
+        "name": "identify motion",
+        "property": "payload.state.presence",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 450.61322021484375,
+        "y": 911.43359375,
+        "wires": [
+            [
+                "143b3c35.88d6d4",
+                "969261b9.9715f8"
+            ],
+            [
+                "b6979343.7c0638"
+            ]
+        ]
+    },
+    {
+        "id": "cc8608ef.a9a508",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "Lightlevel sensor",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "payload.state.lightlevel",
+        "x": 655.6132202148438,
+        "y": 963.43359375,
+        "wires": []
+    },
+    {
+        "id": "7bc9334.1ceb74c",
+        "type": "function",
+        "z": "d06e385b.de11c8",
+        "name": "Deconz/lightlevel/{{id}}",
+        "func": "// Needs to be adjusted\nvar newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/lightlevel/\"+msg.payload.id;\nif(msg.payload.state.lightlevel === false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 874.7462158203125,
+        "y": 1015.39453125,
+        "wires": [
+            [
+                "3d4eb696.6811a2"
+            ]
+        ]
+    },
+    {
+        "id": "b6979343.7c0638",
+        "type": "switch",
+        "z": "d06e385b.de11c8",
+        "name": "identify lightlevel",
+        "property": "payload.state.lightlevel",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 453.23040771484375,
+        "y": 1021.1444702148438,
+        "wires": [
+            [
+                "cc8608ef.a9a508",
+                "7bc9334.1ceb74c"
+            ],
+            [
+                "b42bc6a6.e8726"
+            ]
+        ]
+    },
+    {
+        "id": "625a82f.f6890fc",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "Contact sensor",
+        "active": false,
+        "console": "false",
+        "complete": "payload.state.openclose",
+        "x": 657.6132202148438,
+        "y": 1078.43359375,
+        "wires": []
+    },
+    {
+        "id": "ef73ba9d.a45ef8",
+        "type": "function",
+        "z": "d06e385b.de11c8",
+        "name": "Deconz/contact/{{id}}",
+        "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/contact/\"+msg.payload.id;\nif(msg.payload.state.contact === false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 877.7462158203125,
+        "y": 1125.39453125,
+        "wires": [
+            [
+                "3d4eb696.6811a2"
+            ]
+        ]
+    },
+    {
+        "id": "b42bc6a6.e8726",
+        "type": "switch",
+        "z": "d06e385b.de11c8",
+        "name": "identify contact",
+        "property": "payload.state.openclose",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 456.23040771484375,
+        "y": 1131.1444702148438,
+        "wires": [
+            [
+                "625a82f.f6890fc",
+                "ef73ba9d.a45ef8"
+            ],
+            [
+                "dc4fd8a.1befca8"
+            ]
+        ]
+    },
+    {
+        "id": "d0e10eaf.45945",
+        "type": "switch",
+        "z": "d06e385b.de11c8",
+        "name": "Is Config",
+        "property": "payload.config",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 252.61322021484375,
+        "y": 651.43359375,
+        "wires": [
+            [
+                "6d621fb8.7224d8"
+            ],
+            [
+                "ed76213b.8c214"
+            ]
+        ]
+    },
+    {
+        "id": "87d2a70.7e9e7d8",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "Water Sensor",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.state.water",
+        "x": 652.6132202148438,
+        "y": 1196.43359375,
+        "wires": []
+    },
+    {
+        "id": "cecaa7fa.d1a8c8",
+        "type": "function",
+        "z": "d06e385b.de11c8",
+        "name": "Deconz/water/{{id}}",
+        "func": "var newmsg = {};\nnewmsg.payload = {};\nnewmsg.topic = {};\nnewmsg.topic = \"Deconz/water/\"+msg.payload.id;\nif(msg.payload.state.water == false){\n    newmsg.payload = \"OFF\";\n}else{\n    newmsg.payload = \"ON\";\n}\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 862.7462158203125,
+        "y": 1243.39453125,
+        "wires": [
+            [
+                "3d4eb696.6811a2"
+            ]
+        ]
+    },
+    {
+        "id": "dc4fd8a.1befca8",
+        "type": "switch",
+        "z": "d06e385b.de11c8",
+        "name": "identify water",
+        "property": "payload.state.water",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 441.23040771484375,
+        "y": 1249.1444702148438,
+        "wires": [
+            [
+                "87d2a70.7e9e7d8",
+                "cecaa7fa.d1a8c8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3d4eb696.6811a2",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1152.6132202148438,
+        "y": 1006.43359375,
+        "wires": []
+    },
+    {
+        "id": "eae17a40.519d98",
+        "type": "deconz-input",
+        "z": "d06e385b.de11c8",
+        "name": "Listen in",
+        "server": "7daf73cd.995c9c",
+        "device": "00:15:8d:00:01:5e:96:99-01-0406",
+        "device_name": "Bureau : ZHAPresence",
+        "topic": "",
+        "state": "0",
+        "output": "onchange",
+        "outputAtStartup": true,
+        "x": 1102.6132202148438,
+        "y": 1231.43359375,
+        "wires": [
+            [
+                "86578338.c68b4"
+            ],
+            [
+                "5cc4f8da.e0e6c"
+            ]
+        ]
+    },
+    {
+        "id": "86578338.c68b4",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1402.6132202148438,
+        "y": 1211.43359375,
+        "wires": []
+    },
+    {
+        "id": "7838d569.56e754",
+        "type": "deconz-event",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "server": "7daf73cd.995c9c",
+        "device_name": null,
+        "x": 110,
+        "y": 610,
+        "wires": [
+            [
+                "8a923b08.266ad8",
+                "d0e10eaf.45945"
+            ]
+        ]
+    },
+    {
+        "id": "8745966d.f320d",
+        "type": "deconz-battery",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "server": "7daf73cd.995c9c",
+        "device": "00:15:8d:00:01:5e:96:99-01-0406",
+        "device_name": "Bureau : ZHAPresence",
+        "outputAtStartup": true,
+        "x": 1102.6132202148438,
+        "y": 1341.43359375,
+        "wires": [
+            [
+                "1da28054.474388"
+            ],
+            [
+                "8f411db9.5e3d3"
+            ]
+        ]
+    },
+    {
+        "id": "5cc4f8da.e0e6c",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1402.6132202148438,
+        "y": 1251.43359375,
+        "wires": []
+    },
+    {
+        "id": "1da28054.474388",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1402.6132202148438,
+        "y": 1331.43359375,
+        "wires": []
+    },
+    {
+        "id": "8f411db9.5e3d3",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1402.6132202148438,
+        "y": 1371.43359375,
+        "wires": []
+    },
+    {
+        "id": "8a923b08.266ad8",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "ZigBeeRaw",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 432.61322021484375,
+        "y": 611.43359375,
+        "wires": []
+    },
+    {
+        "id": "513e7b9e.4ca75c",
+        "type": "deconz-input",
+        "z": "d06e385b.de11c8",
+        "name": "CLIPSensor",
+        "server": "7daf73cd.995c9c",
+        "device": "00:15:8d:00:01:49:b6:c8-01-0006-ct-dim-toogle-1",
+        "device_name": "CLIP-Sensor CTDIM-TOOGLE : CLIPGenericFlag",
+        "topic": "",
+        "state": "0",
+        "output": "always",
+        "outputAtStartup": true,
+        "x": 142.61322021484375,
+        "y": 1331.43359375,
+        "wires": [
+            [
+                "446628fd.bf1e4"
+            ],
+            [
+                "a5a95720.d5b5b8"
+            ]
+        ]
+    },
+    {
+        "id": "446628fd.bf1e4",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 432.61322021484375,
+        "y": 1311.43359375,
+        "wires": []
+    },
+    {
+        "id": "a5a95720.d5b5b8",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 432.61322021484375,
+        "y": 1351.43359375,
+        "wires": []
+    },
+    {
+        "id": "e24c22c4.bab6c8",
+        "type": "comment",
+        "z": "d06e385b.de11c8",
+        "name": "ZigBee Tests",
+        "info": "",
+        "x": 110,
+        "y": 570,
+        "wires": []
+    },
+    {
+        "id": "6d621fb8.7224d8",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "ZigBee Config",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 442.61322021484375,
+        "y": 651.43359375,
+        "wires": []
+    },
+    {
+        "id": "ed76213b.8c214",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "ZigBee ?",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 422.61322021484375,
+        "y": 691.43359375,
+        "wires": []
+    },
+    {
+        "id": "ee46144b.49c5d",
+        "type": "zwave-out",
+        "z": "a6ca2108.abdcc8",
+        "name": "ZWave Out",
+        "controller": "d6378b62.a3ced8",
+        "x": 340,
+        "y": 880,
+        "wires": [
+            [
+                "c3bffc80.b66a88"
+            ]
+        ]
+    },
+    {
+        "id": "c3bffc80.b66a88",
+        "type": "debug",
+        "z": "a6ca2108.abdcc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "66c1be.40c94644",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "switchOn",
+        "payload": "{\"nodeid\":6}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 880,
+        "wires": [
+            [
+                "ee46144b.49c5d",
+                "c03c64f9.0d9378"
+            ]
+        ]
+    },
+    {
+        "id": "fee5e0af.70f338",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "switchOff",
+        "payload": "{\"nodeid\":6}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 920,
+        "wires": [
+            [
+                "ee46144b.49c5d"
+            ]
+        ]
+    },
+    {
+        "id": "d75ee3a3.fde4d8",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "switchOn",
+        "payload": "{\"nodeid\":7}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 980,
+        "wires": [
+            [
+                "ee46144b.49c5d"
+            ]
+        ]
+    },
+    {
+        "id": "3432ad70.4a1312",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "switchOff",
+        "payload": "{\"nodeid\":7}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 1020,
+        "wires": [
+            [
+                "ee46144b.49c5d"
+            ]
+        ]
+    },
+    {
+        "id": "2efcbd70.53fe12",
+        "type": "link in",
+        "z": "a6ca2108.abdcc8",
+        "name": "inject",
+        "links": [
+            "21528503.db161a"
+        ],
+        "x": 195,
+        "y": 830,
+        "wires": [
+            [
+                "ee46144b.49c5d"
+            ]
+        ]
+    },
+    {
+        "id": "c03c64f9.0d9378",
+        "type": "debug",
+        "z": "a6ca2108.abdcc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 810,
+        "wires": []
+    },
+    {
+        "id": "593aeff8.7c24f",
+        "type": "inject",
+        "z": "a6ca2108.abdcc8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "enablePoll",
+        "payload": "{\"nodeid\":7,\"class_id\":37,\"instance\":1,\"index\":1}",
+        "payloadType": "json",
+        "x": 90,
+        "y": 740,
+        "wires": [
+            [
+                "ee46144b.49c5d"
+            ]
+        ]
+    },
+    {
+        "id": "1196525d.4b15a6",
+        "type": "comment",
+        "z": "a6ca2108.abdcc8",
+        "name": "ZigWave Devices",
+        "info": "",
+        "x": 120,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "9652e368.790d5",
+        "type": "zwave-in",
+        "z": "d06e385b.de11c8",
+        "name": "ZWave-USB",
+        "controller": "d6378b62.a3ced8",
+        "x": 110,
+        "y": 370,
+        "wires": [
+            [
+                "5d68fed4.786668"
+            ]
+        ]
+    },
+    {
+        "id": "5d68fed4.786668",
+        "type": "switch",
+        "z": "d06e385b.de11c8",
+        "name": "",
+        "property": "payload.cmdclass",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "50",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "37",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 590,
+        "y": 370,
+        "wires": [
+            [
+                "f898bbf0.dec48"
+            ],
+            [
+                "2dfdb4fd.489604"
+            ]
+        ]
+    },
+    {
+        "id": "f898bbf0.dec48",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "Event",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 370,
+        "wires": []
+    },
+    {
+        "id": "2dfdb4fd.489604",
+        "type": "debug",
+        "z": "d06e385b.de11c8",
+        "name": "Switch",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 430,
+        "wires": []
+    },
+    {
+        "id": "de268868.e79f2",
+        "type": "comment",
+        "z": "d06e385b.de11c8",
+        "name": "ZigWave Devices",
+        "info": "",
+        "x": 120,
+        "y": 330,
         "wires": []
     }
 ]
